@@ -1,6 +1,5 @@
-// Gatsby supports TypeScript natively!
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -14,7 +13,7 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
   return (
     <Layout>
       <SEO title="Blog Posts" />
-      {/* {posts.map(post => <BlogsListingItem {...post.node} />)} */}
+      {posts.map(post => <BlogsListingItem {...post.node} />)}
     </Layout>
   );
 };

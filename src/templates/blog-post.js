@@ -4,25 +4,16 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-
-const Bold = ({ children }) => <span className="bold">{children}</span>
-const Text = ({ children }) => <p className="align-center">{children}</p>
-
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-  },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-  },
-};
+import { renderRichTextContent } from "../utils/RichTextRenderer";
 
 class BlogPost extends React.Component {
   render() {
-    const post = this.props.data.contentfulBlogPosts;
-    const { title, excerpt, heroImage, content } = post;
+    const {
+      title,
+      excerpt,
+      heroImage,
+      content
+    } = this.props.data.contentfulBlogPosts;
 
     return (
       <Layout>
@@ -32,7 +23,7 @@ class BlogPost extends React.Component {
           <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
           <p>{excerpt.excerpt}</p>
           <section>
-            {documentToReactComponents(content.json, options)}
+            {renderRichTextContent(content.json)}
           </section>
         </div>
       </Layout>

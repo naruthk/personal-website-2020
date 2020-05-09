@@ -71,6 +71,7 @@ export const pageQuery = graphql`
     edges {
       node {
         title
+        slug
         category
         url
         description {

@@ -15,7 +15,7 @@ const BlogsListingItem = ({
 }: BlogPost) => {
   return (
     <section>
-      <div key={slug}>
+      <div>
         <Link to={`${ROUTES.BLOG}/${slug}`}><h1>{title}</h1></Link>
         <p>{category.map(item => <span>{item}</span>)}</p>
         <p>{prettyPrintDate({ timestamp: createdAt })}</p>

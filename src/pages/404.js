@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "../components/layout";
 import SEO from "../components/seo"
 
 const NotFoundPage = () => (
@@ -11,4 +11,4 @@ const NotFoundPage = () => (
   </Layout>
 )
 
-export default NotFoundPage
+export default NotFoundPage;
