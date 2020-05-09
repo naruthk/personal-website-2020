@@ -5,6 +5,7 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
+import { BlogsListingItem } from "../components/Blogs";
 import { BlogPostsPageProps } from "../utils/types";
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
@@ -13,17 +14,7 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
   return (
     <Layout>
       <SEO title="Blog Posts" />
-
-      {posts.map(post => {
-        const { title, heroImage, slug, excerpt } = post.node;
-        return (
-          <div key={slug}>
-            <Link to={`/${slug}`}><h1>{title}</h1></Link>
-            <img src={heroImage.fixed.src} alt={title} />
-            <p>{excerpt.excerpt}</p>
-          </div>
-        )
-      })}
+      {/* {posts.map(post => <BlogsListingItem {...post.node} />)} */}
     </Layout>
   );
 };
@@ -32,12 +23,13 @@ export default BlogsListingPage;
 
 export const pageQuery = graphql`
 {
-  allContentfulBlogPosts {
+  allContentfulBlogPosts(sort: {order: DESC, fields: createdAt}) {
     edges {
       node {
-        createdAt(formatString: "")
+        createdAt
         slug
         title
+        category
         heroImage {
           fixed {
             src

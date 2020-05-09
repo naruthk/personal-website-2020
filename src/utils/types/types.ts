@@ -11,7 +11,7 @@ interface ContentfulImage {
   };
 };
 
-interface BlogPost {
+export interface BlogPost {
   slug: string;
   title: string;
   content: object;
@@ -20,6 +20,7 @@ interface BlogPost {
   excerpt: {
     excerpt: string;
   }
+  category: [string];
 };
 
 export interface BlogPostsPageProps {
@@ -39,6 +40,7 @@ export interface ProjectItem {
   isActive: boolean;
   initialStartDate: string;
   completionDate: string;
+  category: [string];
   url: URL;
 };
 
@@ -66,6 +68,13 @@ export interface HomePageProps {
       edges: [
         {
           node: ProjectItem;
+        }
+      ]
+    }
+    allContentfulBlogPosts: {
+      edges: [
+        {
+          node: BlogPost;
         }
       ]
     }

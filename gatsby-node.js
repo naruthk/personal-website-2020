@@ -25,7 +25,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create blog post pages.
   result.data.allContentfulBlogPosts.edges.forEach(edge => {
     createPage({
-      path: `${edge.node.slug}`, // required
+      path: `/blog/${edge.node.slug}`, // required
       component: blogPostTemplate,
       context: {
         slug: edge.node.slug, // in react this will be the `:slug` part

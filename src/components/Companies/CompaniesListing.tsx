@@ -3,9 +3,7 @@ import { Link } from "gatsby";
 
 import { CompanyItem } from "../../utils/types";
 
-const CompaniesListing = (props) => {
-  const { items } = props;
-
+const CompaniesListing = ({ items }) => {
   return (
     <section>
       {items.map(item => {

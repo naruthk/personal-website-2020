@@ -5,28 +5,29 @@ import Layout from "../components/layout";
 import Image from "../components/image";
 import SEO from "../components/seo";
 
+import { BlogsListing } from "../components/Blogs";
 import { CompaniesListing } from "../components/Companies";
+import { ProjectsListing } from "../components/Projects";
 import { HomePageProps } from "../utils/types";
 
 const HomePage = (props: HomePageProps) => {
   const {
+    allContentfulBlogPosts: rawBlogPostsData,
     allContentfulProjects: rawProjectsData,
-    allContentfulCompanies: rawCompaniesData
+    allContentfulCompanies: rawCompaniesData,
   } = props.data;
-
-  const projects = rawProjectsData.edges;
-  const companies = rawCompaniesData.edges;
-
-  console.log(companies)
 
   return (
     <Layout>
       <SEO title="Home" />
-      <CompaniesListing items={companies} />
+      <Link to="/Blogs/">Blog</Link>
+      <hr />
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>
-      <Link to="/Blogs/">Go to Blog</Link>
+      <BlogsListing items={rawBlogPostsData.edges} />
+      <CompaniesListing items={rawCompaniesData.edges} />
+      <ProjectsListing items={rawProjectsData.edges} />
     </Layout>
   );
 };
@@ -53,14 +54,39 @@ export const pageQuery = graphql`
       }
     }
   }
+  allContentfulBlogPosts(sort: {order: DESC, fields: createdAt}, limit: 5) {
+    edges {
+      node {
+        createdAt
+        slug
+        title
+        category
+        excerpt {
+          excerpt
+        }
+      }
+    }
+  }
   allContentfulProjects {
     edges {
       node {
         title
-        isActive
-        completionDate
-        initialStartDate
+        category
         url
+        description {
+          description
+        }
+        excerpt {
+          excerpt
+        }
+        heroImage {
+          fixed {
+            src
+          }
+        }
+        isActive
+        initialStartDate
+        completionDate
       }
     }
   }
