@@ -3,9 +3,11 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-
-import { BlogsListingItem } from "../components/Blogs";
+import { Container } from "../components/Container";
+import { BlogsListing } from "../components/Blogs";
 import { BlogPostsPageProps } from "../utils/types";
+
+import { colors } from "../utils/styles";
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
   const posts = props.data.allContentfulBlogPosts.edges;
@@ -13,7 +15,10 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
   return (
     <Layout>
       <SEO title="Blog Posts" />
-      {posts.map(post => <BlogsListingItem {...post.node} />)}
+      <BlogsListing items={posts} />
+      {/* <Container bg={colors.white}> */}
+        {/* {posts.map(post => <BlogsListingItem {...post.node} />)} */}
+      {/* </Container> */}
     </Layout>
   );
 };

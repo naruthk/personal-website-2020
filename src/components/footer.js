@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import { Container } from "./Container";
+
 const Footer = () => (
-  <footer>
-    <div>
-    <p>© {new Date().getFullYear()}, Built with {` `} <a href="https://www.gatsbyjs.org">Gatsby</a></p>
-    </div>
-  </footer>
+  <Container>
+    <p>© {new Date().getFullYear()}. 😎 Built with {` `} <a href="https://www.gatsbyjs.org">Gatsby</a> 🔥</p>
+  </Container>
 );
 
 Footer.propTypes = {

@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import { Container } from "../components/Container";
 
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 
@@ -18,14 +19,14 @@ class BlogPost extends React.Component {
     return (
       <Layout>
         <SEO title={title} description={excerpt.excerpt} />
-        <div>
+        <Container>
           <h1>{title}</h1>
           <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
           <p>{excerpt.excerpt}</p>
           <section>
             {renderRichTextContent(content.json)}
           </section>
-        </div>
+        </Container>
       </Layout>
     )
   }

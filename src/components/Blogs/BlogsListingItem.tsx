@@ -1,28 +1,38 @@
 import React from "react"
 import { Link } from "gatsby";
 
+import Taglines from "../taglines";
+
+import { ROUTES } from "../../utils/routes";
 import { prettyPrintDate } from "../../utils/dates";
 import { BlogPost } from "../../utils/types";
-import { ROUTES } from "../../components/Routes";
+
+import styled from '@emotion/styled';
+
+const Section = styled.div`
+  margin-bottom: 20px;
+`;
+
+const Title = styled.h2`
+  margin-top: 0;
+`;
 
 const BlogsListingItem = ({
   title,
-  heroImage,
   category,
   slug,
   excerpt,
   createdAt
 }: BlogPost) => {
   return (
-    <section>
-      <div>
-        <Link to={`${ROUTES.BLOG}/${slug}`}><h1>{title}</h1></Link>
-        <p>{category.map(item => <span>{item}</span>)}</p>
-        <p>{prettyPrintDate({ timestamp: createdAt })}</p>
-        {heroImage && <img src={heroImage.fixed.src} alt={title} />}
-        <p>{excerpt.excerpt}</p>
-      </div>
-    </section>
+    <Section>
+      <Link to={`${ROUTES.BLOG}/${slug}`} title={title}>
+        <Title>{title}</Title>
+      </Link>
+      <p>{excerpt.excerpt}</p>
+      <Taglines items={category} />
+      <p>{prettyPrintDate({ timestamp: createdAt })}</p>
+    </Section>
   );
 };
 

@@ -6,10 +6,11 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 import Footer from "./footer";
 
-import { Global } from '@emotion/core'
-import { globalStyles } from "../utils/styles";
+import styled from '@emotion/styled';
+import { Global } from '@emotion/core';
+import { globalStyles, layout } from "../utils/styles";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isLargeHeader }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,7 +24,10 @@ const Layout = ({ children }) => {
   return (
     <>
       <Global styles={globalStyles} />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header
+        siteTitle={data.site.siteMetadata.title}
+        isLarge={isLargeHeader}
+      />
       {children}
       <Footer />
     </>
@@ -32,6 +36,11 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  isLargeHeader: PropTypes.bool
 }
+
+Layout.defaultProps = {
+  isLargeHeader: false
+};
 
 export default Layout

@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import { Container } from "../components/Container";
 
 import { prettyPrintDate } from "../utils/dates";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
@@ -23,7 +24,7 @@ class Project extends React.Component {
     return (
       <Layout>
         <SEO title={title} description={excerpt.excerpt} />
-        <div>
+        <Container>
           <h1>{title}</h1>
           <section>
             <p>{prettyPrintDate({ timestamp: initialStartDate })}</p>
@@ -36,8 +37,7 @@ class Project extends React.Component {
           <section>
             {renderRichTextContent(description.json)}
           </section>
-        </div>
-        <p>Hi</p>
+        </Container>
       </Layout>
     )
   }

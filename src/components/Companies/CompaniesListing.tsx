@@ -1,11 +1,13 @@
 import React from "react"
-import { Link } from "gatsby";
+import PropTypes from "prop-types";
 
-import { CompanyItem } from "../../utils/types";
+import { Container } from "../Container";
+
+import { colors } from "../../utils/styles";
 
 const CompaniesListing = ({ items }) => {
   return (
-    <section>
+    <Container bg={colors.white}>
       {items.map(item => {
         const {
           slug,
@@ -25,8 +27,20 @@ const CompaniesListing = ({ items }) => {
           </div>
         )
       })}
-    </section>
+    </Container>
   );
 };
+
+CompaniesListing.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string,
+      companyName: PropTypes.string,
+      employmentStartDate: PropTypes.string,
+      position: PropTypes.string,
+      companyUrl: PropTypes.string
+    })
+  )
+}
 
 export default CompaniesListing;

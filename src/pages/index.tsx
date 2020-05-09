@@ -1,14 +1,16 @@
 import React from "react"
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import Image from "../components/image";
 import SEO from "../components/seo";
 
 import { BlogsListing } from "../components/Blogs";
 import { CompaniesListing } from "../components/Companies";
 import { ProjectsListing } from "../components/Projects";
 import { HomePageProps } from "../utils/types";
+
+import { BlogsListingItem } from "../components/Blogs";
+import { Container } from "../components/Container";
 
 const HomePage = (props: HomePageProps) => {
   const {
@@ -18,16 +20,11 @@ const HomePage = (props: HomePageProps) => {
   } = props.data;
 
   return (
-    <Layout>
-      <SEO title="Home" />
-      <Link to="/Blogs/">Blog</Link>
-      <hr />
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
+    <Layout isLargeHeader={true}>
+      <SEO title="Naruth Kongurai" />
+      <ProjectsListing items={rawProjectsData.edges} />
       <BlogsListing items={rawBlogPostsData.edges} />
       <CompaniesListing items={rawCompaniesData.edges} />
-      <ProjectsListing items={rawProjectsData.edges} />
     </Layout>
   );
 };
@@ -67,7 +64,7 @@ export const pageQuery = graphql`
       }
     }
   }
-  allContentfulProjects {
+  allContentfulProjects(sort: {order: DESC, fields: initialStartDate}) {
     edges {
       node {
         title
@@ -83,6 +80,11 @@ export const pageQuery = graphql`
         heroImage {
           fixed {
             src
+          }
+        }
+        video {
+          file {
+            url
           }
         }
         isActive

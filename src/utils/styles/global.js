@@ -1,5 +1,5 @@
 import css from '@emotion/css';
-import { fonts, colors } from "./constants";
+import { fonts, colors, responsiveFontSizes } from "./constants";
 
 export const globalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
@@ -13,6 +13,7 @@ export const globalStyles = css`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: ${colors.bgLight};
   }
 
   html {
@@ -55,7 +56,7 @@ export const globalStyles = css`
     border-radius: 4px;
     background-color: ${colors.green};
     border: none;
-    color: ${colors.white},
+    color: ${colors.white};
     padding: 10px 15px;
     border: 1px solid ${colors.green};
     :hover {
