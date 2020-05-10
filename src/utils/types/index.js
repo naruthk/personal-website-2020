@@ -1,7 +1,11 @@
 export {
-  HomePageProps,
-  BlogPostsPageProps,
   BlogPost,
   ProjectItem,
-  CompanyItem
+  CompanyItem,
+  Tags
 } from "./types";
+
+export {
+  HomePageProps,
+  BlogPostsPageProps
+} from "./pages";

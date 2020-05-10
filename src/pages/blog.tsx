@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { Container } from "../components/Container";
-import { BlogsListing } from "../components/Blogs";
+import { BlogsListingItem } from "../components/Blogs";
 import { BlogPostsPageProps } from "../utils/types";
 
 import { colors } from "../utils/styles";
@@ -15,10 +15,10 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
   return (
     <Layout>
       <SEO title="Blog Posts" />
-      <BlogsListing items={posts} />
-      {/* <Container bg={colors.white}> */}
-        {/* {posts.map(post => <BlogsListingItem {...post.node} />)} */}
-      {/* </Container> */}
+      <Container bg={colors.white}>
+        <h1>Blog</h1>
+        {posts.map(post => <BlogsListingItem key={post.node.slug} {...post.node}/>)}
+      </Container>
     </Layout>
   );
 };

@@ -11,6 +11,10 @@ interface ContentfulImage {
   };
 };
 
+export interface Tags {
+  items: [string];
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -20,19 +24,7 @@ export interface BlogPost {
   excerpt: {
     excerpt: string;
   }
-  category: [string];
-};
-
-export interface BlogPostsPageProps {
-  data: {
-    allContentfulBlogPosts: {
-      edges: [
-        {
-          node: BlogPost;
-        }
-      ]
-    }
-  }
+  category: [Tags];
 };
 
 export interface ProjectItem {
@@ -40,7 +32,7 @@ export interface ProjectItem {
   isActive: boolean;
   initialStartDate: string;
   completionDate: string;
-  category: [string];
+  category: [Tags];
   url: URL;
 };
 
@@ -54,29 +46,3 @@ export interface CompanyItem {
   slug: string;
   logo: ContentfulImage;
 };
-
-export interface HomePageProps {
-  data: {
-    allContentfulCompanies: {
-      edges: [
-        {
-          node: CompanyItem;
-        }
-      ]
-    }
-    allContentfulProjects: {
-      edges: [
-        {
-          node: ProjectItem;
-        }
-      ]
-    }
-    allContentfulBlogPosts: {
-      edges: [
-        {
-          node: BlogPost;
-        }
-      ]
-    }
-  }
-}

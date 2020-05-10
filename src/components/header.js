@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 import { Container } from "./Container";
 import { ROUTES } from "../utils/routes";
-import { colors, responsiveFontSizes } from "../utils/styles";
+import { colors, breakpoints } from "../utils/styles";
 
 import styled from '@emotion/styled';
 
@@ -12,36 +12,48 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  line-height: 80px;
+
+  @media screen and (max-width: ${breakpoints.md}) {
+    line-height: 40px;
+  }
 `;
 
 const SiteLogo = styled.div`
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
   text-align: center;
   background-color: ${colors.dark};
   color: ${colors.white};
   font-weight: 700;
   transition: 1s all;
-  border-bottom-right-radius: 30px;
+
+  width: 80px;
+  height: 80px;
+
+  @media screen and (max-width: ${breakpoints.md}) {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+  
   :hover {
     border-radius: 25px;
   }
 `;
 
 const Nav = styled.nav`
-  line-height: 100px;
-  a {
-    margin-left: 30px;
-  }
+  a { margin-left: 30px; }
 `;
 
-const Intro = styled.div`
+const WelcomeText = styled.div`
   margin-top: 30px;
-  max-width: 500px;
+  max-width: 650px;
 `;
 
-const Header = ({ isLarge }) => (
+// 😉 Maybe move this to Contenful ?
+const WELCOME_TEXT = "Hi, I'm Naruth Kongurai. I love creating JavaScript web apps that bring people closer together through technology.";
+
+const Header = ({ showWelcomeText }) => (
   <header>
     <Container isFlex={true} isCentered={true}>
       <NavWrapper>
@@ -52,21 +64,17 @@ const Header = ({ isLarge }) => (
           <Link to={ROUTES.BLOG}>About</Link>
         </Nav>
       </NavWrapper>
-      {isLarge && (
-        <Intro>
-          <h1>Hi, I'm Naruth Kongurai. I build web apps that people love using and design interfaces with focus on user interaction.</h1>
-        </Intro>
-      )}
+      {showWelcomeText && <WelcomeText><h1>{WELCOME_TEXT}</h1></WelcomeText>}
     </Container>
   </header>
 )
 
 Header.propTypes = {
-  isLarge: PropTypes.bool
+  showWelcomeText: PropTypes.bool
 }
 
 Header.defaultProps = {
-  isLarge: false
+  showWelcomeText: false
 }
 
 export default Header;

@@ -12,20 +12,19 @@ export const colors = {
   border: '#C865B9',
 };
 
+/* TYPOGRAPHY */
 export const fonts = {
   primary: `-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif`,
   code: 'source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace'
 };
 
 export const responsiveFontSizes = {
-  xlarge: "3.0vw",
-  large: "2.3vw",
-  medium: "2.8vw",
-  normal: "1.569vw",
-  small: "1.2vw"
+  xlarge: "2em",
+  large: "1.7411em",
+  medium: "1.5157em",
+  normal: "1em",
+  small: "0.7em"
 };
-
-export const MAX_WIDTH = 940;
 
 export const breakpoints = {
   sm: '40em',
@@ -34,4 +33,9 @@ export const breakpoints = {
   xl: '80em'
 };
 
+export const MAX_WIDTH = 940;
+
+/* LOOK AND FEEL 😎 */
+
+/* SHADOWS */
 export const shadow = "0 1.5rem 5rem rgba(0,0,0,.15)";

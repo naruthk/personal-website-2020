@@ -64,4 +64,20 @@ export const globalStyles = css`
       border: 1px solid ${colors.blue};
     }
   }
+
+  h1 { font-size: ${responsiveFontSizes.xlarge } }
+  h2 { font-size: ${responsiveFontSizes.large } }
+  h3 { font-size: ${responsiveFontSizes.medium } }
+  p {
+    font-size: ${responsiveFontSizes.normal};
+    line-height: 1.4em;
+  }
+
+  .react-icons {
+    vertical-align: middle;
+  }
+
+  img {
+    width: 100%;
+  }
 `;

@@ -46,8 +46,8 @@ class Project extends React.Component {
 export default Project;
 
 export const pageQuery = graphql`
- query ProjectsBySlug {
-  contentfulProjects {
+ query ProjectsBySlug($slug: String!) {
+  contentfulProjects(slug: { eq: $slug }) {
     title
     category
     url

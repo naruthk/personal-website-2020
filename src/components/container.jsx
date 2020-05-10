@@ -4,16 +4,16 @@ import PropTypes from "prop-types";
 
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
-import { layout, MAX_WIDTH, breakpoints } from "../../utils/styles";
+import { layout, MAX_WIDTH, breakpoints } from "../utils/styles";
 
 const ContainerWrapper = styled.section`
   ${layout};
   margin-bottom: 30px;
   @media screen and (max-width: ${breakpoints.lg}) {
-    padding: 10px;
+    padding: 5px 20px;
   }
   @media screen and (min-width: ${breakpoints.lg}) {
-    padding: 40px 80px 60px;
+    padding: 40px 80px 20px;
   }
   ${({ isFlex }) =>
     isFlex && css`
