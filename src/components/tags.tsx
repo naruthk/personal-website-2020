@@ -39,7 +39,7 @@ interface TagsComponentProps {
 
 const TagsComponent = ({ items }: TagsComponentProps) => (
   <TagsWrapper>
-    {items.map(tag => <span>{mapTagToIcon(tag)} {`${tag}`}</span>)}
+    {items.map(tag => <span key={tag}>{mapTagToIcon(tag)} {`${tag}`}</span>)}
   </TagsWrapper>
 );
 

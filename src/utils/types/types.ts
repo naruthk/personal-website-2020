@@ -36,13 +36,20 @@ export interface ProjectItem {
   initialStartDate: string;
   completionDate: string;
   category: [Tags];
-  url: URL;
+  url: string;
+  heroImage: ContentfulImage;
+  excerpt: {
+    excerpt: string;
+  }
+  description: {
+    json: JSON;
+  }
 };
 
 export interface CompanyItem {
   companyName: string;
   employmentStartDate: string;
-  companyUrl: URL;
+  companyUrl: string;
   position: {
     position: string;
   }

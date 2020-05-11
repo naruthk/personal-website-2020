@@ -99,7 +99,7 @@ const ProjectsListing = ({ items }) => (
           <Item key={slug}>
             <BackgroundImage src={heroImage.fixed.src} /> 
             <div>
-              <Link to={`${ROUTES.PROJECT}/${slug}`}>
+              <Link to={`${ROUTES.PROJECT.url}/${slug}`}>
                 <h2>{title}</h2>
               </Link>
               <p>{excerpt.excerpt}</p>
@@ -124,7 +124,7 @@ const ProjectsListing = ({ items }) => (
     </Wrapper>
     
     <Wrapper justifyContent="space-evenly">
-      <Link to={ROUTES.PROJECT}>
+      <Link to={ROUTES.PROJECT.url}>
         <h3>View all projects -></h3>
       </Link>
     </Wrapper>

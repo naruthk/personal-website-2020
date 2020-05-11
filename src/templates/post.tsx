@@ -10,13 +10,7 @@ import SocialNetworkSharing from "../components/share";
 import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
-import { BlogPostItem } from "../utils/types";
-
-interface BlogPostItemTemplateProps {
-  data: {
-    contentfulBlogPosts: BlogPostItem
-  }
-};
+import { SingleBlogPostPageProps } from "../utils/types";
 
 const PostInformationContainer = styled.div`
   margin-bottom: 20px;
@@ -55,7 +49,7 @@ const PostContentContainer = styled.article`
   }
 `;
 
-const BlogPost = ({ data }: BlogPostItemTemplateProps) => {
+const BlogPost = ({ data }: SingleBlogPostPageProps) => {
   const {
     title,
     excerpt,

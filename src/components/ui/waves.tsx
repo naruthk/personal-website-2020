@@ -1,5 +1,5 @@
 /**
- * Credit to Daniel Österman
+ * Credit to Daniel Österman for the SVG waves animation
  * https://codepen.io/goodkatz/pen/LYPGxQz
  */
 
@@ -9,44 +9,30 @@ import PropTypes from "prop-types";
 import styled from '@emotion/styled';
 
 const WavesWrapper = styled.div`
-  .flex { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
   .waves {
     position:relative;
     width: 100%;
-    height:15vh;
-    margin-bottom:-7px; /*Fix for safari gap*/
-    min-height:100px;
-    max-height:150px;
+    height: 15vh;
+    margin-bottom: -7px; /*F ix for safari gap */
+    min-height: 100px;
+    max-height: 150px;
   }
-  .content {
-    position:relative;
-    height:20vh;
-    text-align:center;
-    background-color: white;
-  }
-
-  /* Animation */
   .parallax > use {
-    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
   }
-  .parallax > use:nth-child(1) {
+  .parallax > use:nth-of-type(1) {
     animation-delay: -2s;
     animation-duration: 7s;
   }
-  .parallax > use:nth-child(2) {
+  .parallax > use:nth-of-type(2) {
     animation-delay: -3s;
     animation-duration: 10s;
   }
-  .parallax > use:nth-child(3) {
+  .parallax > use:nth-of-type(3) {
     animation-delay: -4s;
     animation-duration: 13s;
   }
-  .parallax > use:nth-child(4) {
+  .parallax > use:nth-of-type(4) {
     animation-delay: -5s;
     animation-duration: 20s;
   }
@@ -58,18 +44,10 @@ const WavesWrapper = styled.div`
       transform: translate3d(85px,0,0);
     }
   }
-
-  /*Shrinking for mobile*/
   @media (max-width: 768px) {
     .waves {
       height:40px;
       min-height:40px;
-    }
-    .content {
-      height:30vh;
-    }
-    h1 {
-      font-size:24px;
     }
   }
 `;
@@ -103,5 +81,10 @@ Waves.propTypes = {
 }
 
 Waves.defaultProps = {
-  colorsShading: ["#fff", "rgb(245,245,245)", "rgb(216,216,216)", "rgb(167,167,167)"]
+  colorsShading: [
+    "#fff",
+    "rgb(245,245,245)",
+    "rgb(216,216,216)",
+    "rgb(167,167,167)"
+  ]
 };

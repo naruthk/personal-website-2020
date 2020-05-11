@@ -35,8 +35,7 @@ const Layout = ({ children, showWelcomeText, activePage }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  showWelcomeText: PropTypes.bool,
-  activePage: PropTypes.string.isRequired
+  showWelcomeText: PropTypes.bool
 }
 
 Layout.defaultProps = {

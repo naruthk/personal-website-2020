@@ -7,5 +7,7 @@ export {
 
 export {
   HomePageProps,
-  BlogPostsPageProps
+  BlogPostsPageProps,
+  SingleProjectPageProps,
+  SingleBlogPostPageProps
 } from "./pages";

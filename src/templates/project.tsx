@@ -5,10 +5,11 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Container from "../components/container";
 
+import { SingleProjectPageProps } from "../utils/types";
 import { prettyPrintDate } from "../utils/dates";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 
-const Project = ({ data }) => {
+const Project = ({ data }: SingleProjectPageProps) => {
   const {
     title,
     category,

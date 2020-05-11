@@ -4,13 +4,11 @@ import { graphql, Link } from "gatsby";
 import Container from "../components/container";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { CompaniesListing } from "../components/Companies";
 import ProjectsListing from "../components/projects-listing";
 import Waves from "../components/ui/waves";
 
 import { ROUTES } from "../utils/routes";
 import { HomePageProps } from "../utils/types";
-import { colors } from "../utils/styles";
 import styled from "@emotion/styled";
 
 const BlogsList = styled.div`
@@ -29,15 +27,15 @@ const HomePage = (props: HomePageProps) => {
 
   const renderBlogListingSection = () => (
     <Container>
-      <Link to={ROUTES.blog} title="Blog"><h1>Latest Posts</h1></Link>
+      <Link to={ROUTES.BLOG.url} title="Blog"><h1>Latest Posts</h1></Link>
       <BlogsList>
         <ul>
         {rawBlogPostsData.edges.map(post => {
           const { title, slug, excerpt } = post.node;
         
           return (
-            <li>
-              <Link to={`${ROUTES.BLOG}/${slug}`} title={title}>
+            <li key={slug}>
+              <Link to={`${ROUTES.BLOG.url}/${slug}`} title={title}>
                 <h3>{title}</h3>
               </Link>
               <p>{excerpt.excerpt}</p>
@@ -55,7 +53,6 @@ const HomePage = (props: HomePageProps) => {
       <ProjectsListing items={rawProjectsData.edges} />
       <Waves />
       {renderBlogListingSection()}
-      <CompaniesListing items={rawCompaniesData.edges} />
     </Layout>
   );
 };

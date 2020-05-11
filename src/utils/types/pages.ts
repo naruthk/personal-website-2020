@@ -1,4 +1,4 @@
-import { CompanyItem, ProjectItem, BlogPost } from "./types";
+import { CompanyItem, ProjectItem, BlogPostItem } from "./types";
 
 export interface HomePageProps {
   data: {
@@ -35,5 +35,17 @@ export interface BlogPostsPageProps {
         }
       ]
     }
+  }
+};
+
+export interface SingleBlogPostPageProps {
+  data: {
+    contentfulBlogPosts: BlogPostItem
+  }
+};
+
+export interface SingleProjectPageProps {
+  data: {
+    contentfulProjects: ProjectItem
   }
 };
