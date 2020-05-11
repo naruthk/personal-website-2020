@@ -9,7 +9,7 @@ import Footer from "./footer";
 import { globalStyles } from "../utils/styles";
 import { Global } from '@emotion/core';
 
-const Layout = ({ children, showWelcomeText, activePage }) => {
+const Layout = ({ children, showWelcomeText }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {

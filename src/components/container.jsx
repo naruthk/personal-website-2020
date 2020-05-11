@@ -2,20 +2,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  layout,
-  MAX_WIDTH,
-  mediaQuery
-} from "../utils/styles";
+import { layout, mediaQuery } from "../utils/styles";
 
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
 
 const ContainerWrapper = styled.section`
   ${layout};
-  padding: 5px 20px;
+  padding: 48px 30px;
   ${mediaQuery[2]} {
-    padding: 40px 80px 0px;
+    padding: 100px 16.66%;
   }
   ${({ isFlex }) =>
     isFlex && css`
@@ -38,7 +34,7 @@ const Container = ({
   isFullWidth
 }) => (
   <ContainerWrapper
-    maxWidth={width}
+    // maxWidth={width}
     isFullWidth={isFullWidth}
     isFlex={isFlex}
     isCentered={isCentered}
@@ -58,7 +54,6 @@ Container.propTypes = {
 }
 
 Container.defaultProps = {
-  width: MAX_WIDTH,
   isFlex: true,
   isCentered: true,
   bg: null,

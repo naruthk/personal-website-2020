@@ -1,15 +1,21 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 
 import Container from "./container";
+import Share from "./share";
+import Modal from "./ui/modal";
+
 import { ROUTES } from "../utils/routes";
 import { colors, mediaQuery } from "../utils/styles";
-
 import styled from '@emotion/styled';
+import { FiMenu } from 'react-icons/fi';
 
 const LENGTH_MOBILE = "40px";
 const LENGTH_DESKTOP = "80px";
+
+// 😉 Maybe move this to Contenful ?
+const WELCOME_TEXT = "Hi, I'm Naruth. I love creating JavaScript web apps that bring people closer together through technology.";
 
 const NavWrapper = styled.div`
   display: flex;
@@ -18,9 +24,31 @@ const NavWrapper = styled.div`
 
   line-height: ${LENGTH_MOBILE};
   ${mediaQuery[2]} {
+    margin-top: -60px;
     line-height: ${LENGTH_DESKTOP};
   }
   margin-bottom: 30px;
+
+  button {
+    background: none;
+    border: none;
+    outline: 0;
+    color: ${colors.dark};
+    font-size: inherit;
+  }
+
+  .desktop-only {
+    display: none;
+    ${mediaQuery[1]} {
+      cursor: pointer;
+      display: inline;
+    }
+  }
+  .mobile-only {
+    ${mediaQuery[1]} {
+      display: none;
+    }
+  }
 `;
 
 const SiteLogo = styled.div`
@@ -46,9 +74,11 @@ const SiteLogo = styled.div`
 `;
 
 const Nav = styled.nav`
+  button, a {
+    font-weight: 300 !important;
+  }
   a {
     margin-left: 30px;
-    font-weight: 300 !important;
     padding: 5px 10px;
     margin: 5px;
   }
@@ -63,24 +93,94 @@ const WelcomeText = styled.div`
   max-width: 650px;
 `;
 
-// 😉 Maybe move this to Contenful ?
-const WELCOME_TEXT = "Hi, I'm Naruth. I love creating JavaScript web apps that bring people closer together through technology.";
+const MenuOverlayContent = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  height: 90%;
 
-const Header = ({ showWelcomeText }) => (
-  <header>
-    <Container isFlex={true} isCentered={true}>
-      <NavWrapper>
-        <Link to="/"><SiteLogo>NK</SiteLogo></Link>
-        <Nav>
-          <Link to={ROUTES.BLOG.url}>{ROUTES.BLOG.name}</Link>
-          <Link to={ROUTES.PROJECT.url}>{ROUTES.PROJECT.name}</Link>
-          <Link to={ROUTES.ABOUT.url}>{ROUTES.ABOUT.name}</Link>
-        </Nav>
-      </NavWrapper>
-      {showWelcomeText && <WelcomeText><h1>{WELCOME_TEXT}</h1></WelcomeText>}
-    </Container>
-  </header>
-)
+  h3 {
+    font-weight: 400;
+    color: ${colors.lightGrey};
+  }
+  a, a:visited {
+    color: ${colors.white};
+  }
+`;
+
+const MenuOverlayLink = styled.span`
+  text-align: center;
+  transition: 0.7s all;
+  a {
+    font-weight: 400;
+    :hover {
+      font-weight: 700;
+    }
+  }
+`;
+
+const Header = ({ showWelcomeText }) => {
+  const [showModalOverlay, setShowModalOverlay] = useState(false);
+
+  const navOrder = [ROUTES.BLOG, ROUTES.PROJECT, ROUTES.ABOUT];
+
+  return (
+    <header>
+      <Container isFlex={true} isCentered={true}>
+        <NavWrapper>
+          <Link to="/"><SiteLogo>NK</SiteLogo></Link>
+          <Nav>
+            {navOrder.map(item => 
+              <Link
+                key={item.name}
+                className="desktop-only"
+                to={item.url}>
+                {item.name}
+              </Link>
+            )}
+            <button
+              className="desktop-only"
+              onClick={() => setShowModalOverlay(true)}
+            >
+              {ROUTES.CONTACT.name}
+            </button>
+            <button
+              className="mobile-only"
+              onClick={() => setShowModalOverlay(true)}
+            >
+              <FiMenu />
+            </button>
+          </Nav>
+        </NavWrapper>
+        {showWelcomeText && <WelcomeText><h1>{WELCOME_TEXT}</h1></WelcomeText>}
+      </Container>
+
+      {/* Modal expands full screen on mobile screen size */}
+      <Modal isActive={showModalOverlay} setActive={setShowModalOverlay}>
+        <MenuOverlayContent>
+          <div>
+            {navOrder.map(item => 
+              <MenuOverlayLink key={item.name}>
+                <h1>
+                  <Link to={item.url}>
+                    {item.name}
+                  </Link>
+                </h1>
+              </MenuOverlayLink>
+            )}
+          </div>
+          <div>
+            <p>Send your message to</p>
+            <h2>
+              <a href="mailto:nkongurai@gmail.com" title="Send a message">nkongurai@gmail.com</a>
+            </h2>
+          </div>
+          <Share />
+        </MenuOverlayContent>
+      </Modal>
+    </header>
+  );
+};
 
 Header.propTypes = {
   showWelcomeText: PropTypes.bool

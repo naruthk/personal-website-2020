@@ -18,6 +18,7 @@ export const globalStyles = css`
 
   html {
     font-family: Inter,${fonts.primary};
+    font-size: 100%;
   }
 
   code {
@@ -65,7 +66,14 @@ export const globalStyles = css`
     }
   }
 
-  h1 { font-size: ${responsiveFontSizes.xlarge} }
+  h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: ${responsiveFontSizes.xlarge};
+    letter-spacing: -0.033em;
+  }
   h2 {
     font-size: ${responsiveFontSizes.large};
   }

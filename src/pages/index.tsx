@@ -9,13 +9,12 @@ import Waves from "../components/ui/waves";
 
 import { ROUTES } from "../utils/routes";
 import { HomePageProps } from "../utils/types";
+import { mediaQuery, colors } from "../utils/styles";
 import styled from "@emotion/styled";
 
 const BlogsList = styled.div`
-  ul, li {
-    margin: 0;
-    padding: 0;
-  }
+  padding: 10px 0;
+  a { font-weight: 400; }
 `;
 
 const HomePage = (props: HomePageProps) => {
@@ -28,22 +27,20 @@ const HomePage = (props: HomePageProps) => {
   const renderBlogListingSection = () => (
     <Container>
       <Link to={ROUTES.BLOG.url} title="Blog"><h1>Latest Posts</h1></Link>
-      <BlogsList>
-        <ul>
-        {rawBlogPostsData.edges.map(post => {
-          const { title, slug, excerpt } = post.node;
-        
-          return (
-            <li key={slug}>
+      {rawBlogPostsData.edges.map(post => {
+        const { title, slug, excerpt } = post.node;
+      
+        return (
+          <BlogsList key={slug}>
+            <h3>
               <Link to={`${ROUTES.BLOG.url}/${slug}`} title={title}>
-                <h3>{title}</h3>
+                {title}
               </Link>
-              <p>{excerpt.excerpt}</p>
-            </li>
-          )
-        })}
-        </ul>
-      </BlogsList>
+            </h3>
+            <p>{excerpt.excerpt}</p>
+          </BlogsList>
+        )
+      })}
     </Container>
   );
 
