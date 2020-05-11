@@ -77,7 +77,13 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
           <p>{prettyPrintDate({ timestamp: createdAt })} | Last updated: {prettyPrintDate({ timestamp: updatedAt })}</p>
           <Tags items={category} />
         </PostMetaContainer>
-        <SocialNetworkSharing data={data.contentfulBlogPosts} />
+        <SocialNetworkSharing
+          data={{
+            title,
+            description: excerpt,
+            thumbnail: heroImage.fluid.src
+          }}
+        />
       </Container>
     </Layout>
   )

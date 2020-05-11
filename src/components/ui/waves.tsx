@@ -9,13 +9,15 @@ import PropTypes from "prop-types";
 import styled from '@emotion/styled';
 
 const WavesWrapper = styled.div`
+  overflow: hidden !important;
+  margin: 30px 0;
   .waves {
-    position:relative;
+    position: relative;
     width: 100%;
     height: 15vh;
     margin-bottom: -7px; /*F ix for safari gap */
-    min-height: 100px;
-    max-height: 150px;
+    min-height: 120px;
+    max-height: 200px;
   }
   .parallax > use {
     animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
@@ -46,8 +48,8 @@ const WavesWrapper = styled.div`
   }
   @media (max-width: 768px) {
     .waves {
-      height:40px;
-      min-height:40px;
+      height: 40px;
+      min-height: 40px;
     }
   }
 `;

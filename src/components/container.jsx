@@ -26,11 +26,20 @@ const ContainerWrapper = styled.section`
     isCentered && css`margin-left: auto; margin-right: auto;`
   }
   ${({ bg }) => bg && css`background-color: ${bg}`}
+  ${({ isFullWidth }) => isFullWidth && css`width: 100vw;`}
 `;
 
-const Container = ({ children, width, isFlex, isCentered, bg }) => (
+const Container = ({
+  children,
+  width,
+  isFlex,
+  isCentered,
+  bg,
+  isFullWidth
+}) => (
   <ContainerWrapper
     maxWidth={width}
+    isFullWidth={isFullWidth}
     isFlex={isFlex}
     isCentered={isCentered}
     bg={bg}
@@ -44,14 +53,16 @@ Container.propTypes = {
   width: PropTypes.number,
   isFlex: PropTypes.bool,
   isCentered: PropTypes.bool,
-  bg: PropTypes.string
+  bg: PropTypes.string,
+  isFullWidth: PropTypes.bool
 }
 
 Container.defaultProps = {
   width: MAX_WIDTH,
   isFlex: true,
   isCentered: true,
-  bg: null
+  bg: null,
+  isFullWidth: false
 };
 
 export default Container;

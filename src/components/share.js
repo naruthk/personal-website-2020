@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types";
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 import { responsiveFontSizes } from "../utils/styles";
 import styled from "@emotion/styled";
@@ -17,28 +17,38 @@ const Wrapper = styled.section`
   }
 `;
 
-const SocialNetworkSharing = ({ title, excerpt, heroImage }) => (
+const renderSharingLinks = ({ title, description, image }) => (
+  <>
+    <li><FaFacebook /></li>
+    <li><FaTwitter /></li>
+    <li><FaLinkedin /></li>
+  </>
+);
+
+const SocialNetworkSharing = ({ data }) => (
   <Wrapper>
     <ul>
-      <li><FaFacebook /></li>
-      <li><FaTwitter /></li>
-      <li><FaLinkedin /></li>
+      {data ? renderSharingLinks(data) : (
+        <>
+          <li><FaGithub /></li>
+          <li><FaTwitter /></li>
+          <li><FaLinkedin /></li>
+        </>
+      )}
     </ul>
   </Wrapper>
 );
 
 SocialNetworkSharing.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      slug: PropTypes.string,
-      isActive: PropTypes.bool,
-      initialStartDate: PropTypes.string,
-      completionDate: PropTypes.string,
-      category: PropTypes.arrayOf(PropTypes.string),
-      url: PropTypes.string
-    })
-  )
-}
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    descrption: PropTypes.string,
+    image: PropTypes.string
+  }),
+};
+
+SocialNetworkSharing.propTypes = {
+  data: null
+};
 
 export default SocialNetworkSharing;
