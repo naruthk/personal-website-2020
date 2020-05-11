@@ -15,16 +15,19 @@ export interface Tags {
   items: [string];
 }
 
-export interface BlogPost {
+export interface BlogPostItem {
   slug: string;
   title: string;
-  content: object;
+  content: {
+    json: object;
+  };
   heroImage: ContentfulImage;
-  createdAt: string;
   excerpt: {
     excerpt: string;
   }
   category: [Tags];
+  createdAt: string;
+  updatedAt: string;
 };
 
 export interface ProjectItem {

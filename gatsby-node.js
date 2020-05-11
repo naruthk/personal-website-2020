@@ -3,8 +3,8 @@ const path = require("path");
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  const blogPostTemplate = path.resolve(`src/templates/post.js`)
-  const projectTemplate = path.resolve(`src/templates/project.js`)
+  const blogPostTemplate = path.resolve(`src/templates/post.tsx`)
+  const projectsTemplate = path.resolve(`src/templates/projects.js`)
 
   const result = await graphql(
     `
@@ -44,8 +44,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   result.data.allContentfulProjects.edges.forEach(edge => {
     createPage({
-      path: `/project/${edge.node.slug}`,
-      component: projectTemplate,
+      path: `/projects/${edge.node.slug}`,
+      component: projectsTemplate,
       context: {
         slug: edge.node.slug,
       },

@@ -1,5 +1,5 @@
 export {
-  BlogPost,
+  BlogPostItem,
   ProjectItem,
   CompanyItem,
   Tags

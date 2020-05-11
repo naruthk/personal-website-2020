@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types";
 
-import { Container } from "../Container";
+import Container from "../container";
 
 import { colors } from "../../utils/styles";
 

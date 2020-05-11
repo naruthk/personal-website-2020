@@ -3,44 +3,42 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { Container } from "../components/Container";
+import Container from "../components/container";
 
 import { prettyPrintDate } from "../utils/dates";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 
-class Project extends React.Component {
-  render() {
-    const {
-      title,
-      category,
-      url,
-      description,
-      excerpt,
-      heroImage,
-      initialStartDate,
-      completionDate
-    } = this.props.data.contentfulProjects;
+const Project = ({ data }) => {
+  const {
+    title,
+    category,
+    url,
+    description,
+    excerpt,
+    heroImage,
+    initialStartDate,
+    completionDate
+  } = data.contentfulProjects;
 
-    return (
-      <Layout>
-        <SEO title={title} description={excerpt.excerpt} />
-        <Container>
-          <h1>{title}</h1>
-          <section>
-            <p>{prettyPrintDate({ timestamp: initialStartDate })}</p>
-            <p>{prettyPrintDate({ timestamp: completionDate })}</p>
-            <p>{category.map(item => <span>{item}</span>)}</p>
-            <p><a href={url} title={title}>GitHub Repo</a></p>
-          </section>
-          <p><img src={heroImage.fixed.src} alt={heroImage.title} /></p>
-          <p>{excerpt.excerpt}</p>
-          <section>
-            {renderRichTextContent(description.json)}
-          </section>
-        </Container>
-      </Layout>
-    )
-  }
+  return (
+    <Layout>
+      <SEO title={title} description={excerpt.excerpt} />
+      <Container>
+        <h1>{title}</h1>
+        <section>
+          <p>{prettyPrintDate({ timestamp: initialStartDate })}</p>
+          <p>{prettyPrintDate({ timestamp: completionDate })}</p>
+          <p>{category.map(item => <span>{item}</span>)}</p>
+          <p><a href={url} title={title}>GitHub Repo</a></p>
+        </section>
+        <p><img src={heroImage.fixed.src} alt={heroImage.title} /></p>
+        <p>{excerpt.excerpt}</p>
+        <section>
+          {renderRichTextContent(description.json)}
+        </section>
+      </Container>
+    </Layout>
+  )
 };
 
 export default Project;

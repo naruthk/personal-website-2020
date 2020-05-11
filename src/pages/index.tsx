@@ -1,11 +1,14 @@
 import React from "react"
 import { graphql, Link } from "gatsby";
-import { Container } from "../components/Container";
+
+import Container from "../components/container";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { ROUTES } from "../utils/routes";
 import { CompaniesListing } from "../components/Companies";
-import { ProjectsListing } from "../components/Projects";
+import ProjectsListing from "../components/projects-listing";
+import Waves from "../components/ui/waves";
+
+import { ROUTES } from "../utils/routes";
 import { HomePageProps } from "../utils/types";
 import { colors } from "../utils/styles";
 import styled from "@emotion/styled";
@@ -25,8 +28,8 @@ const HomePage = (props: HomePageProps) => {
   } = props.data;
 
   const renderBlogListingSection = () => (
-    <Container bg={colors.white}>
-      <h1>Blog</h1>
+    <Container>
+      <Link to={ROUTES.blog} title="Blog"><h1>Latest Posts</h1></Link>
       <BlogsList>
         <ul>
         {rawBlogPostsData.edges.map(post => {
@@ -50,6 +53,7 @@ const HomePage = (props: HomePageProps) => {
     <Layout showWelcomeText>
       <SEO title="Naruth Kongurai" />
       <ProjectsListing items={rawProjectsData.edges} />
+      <Waves />
       {renderBlogListingSection()}
       <CompaniesListing items={rawCompaniesData.edges} />
     </Layout>

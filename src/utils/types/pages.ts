@@ -19,7 +19,7 @@ export interface HomePageProps {
     allContentfulBlogPosts: {
       edges: [
         {
-          node: BlogPost;
+          node: BlogPostItem;
         }
       ]
     }
@@ -31,7 +31,7 @@ export interface BlogPostsPageProps {
     allContentfulBlogPosts: {
       edges: [
         {
-          node: BlogPost;
+          node: BlogPostItem;
         }
       ]
     }

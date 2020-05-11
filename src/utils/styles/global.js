@@ -65,12 +65,16 @@ export const globalStyles = css`
     }
   }
 
-  h1 { font-size: ${responsiveFontSizes.xlarge } }
-  h2 { font-size: ${responsiveFontSizes.large } }
-  h3 { font-size: ${responsiveFontSizes.medium } }
+  h1 { font-size: ${responsiveFontSizes.xlarge} }
+  h2 {
+    font-size: ${responsiveFontSizes.large};
+  }
+  h3 {
+    font-size: ${responsiveFontSizes.medium};
+  }
   p {
     font-size: ${responsiveFontSizes.normal};
-    line-height: 1.4em;
+    line-height: 1.7em;
   }
 
   .react-icons {

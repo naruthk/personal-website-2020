@@ -5,7 +5,7 @@ import Tags from "./tags";
 
 import { ROUTES } from "../utils/routes";
 import { prettyPrintDate } from "../utils/dates";
-import { BlogPost } from "../utils/types";
+import { BlogPostItem } from "../utils/types";
 import { responsiveFontSizes } from "../utils/styles";
 
 import styled from '@emotion/styled';
@@ -27,7 +27,6 @@ const Title = styled.h2`
 `;
 
 const Date = styled.span`
-  /* font-size: ${responsiveFontSizes.small}; */
   margin-right: 30px;
 `;
 
@@ -38,7 +37,7 @@ const BlogsListingItem = ({
   slug,
   excerpt,
   createdAt
-}: BlogPost) => {
+}: BlogPostItem) => {
   return (
     <Section>
       <div>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from '@emotion/styled';
 import { colors, responsiveFontSizes } from "../utils/styles";
 
-import { Tags as TagProps } from "../utils/types";
+import { Tags } from "../utils/types";
 
 import { DiJavascript1, DiHtml5, DiBootstrap, DiReact } from 'react-icons/di';
 
@@ -15,6 +15,9 @@ const TagsWrapper = styled.section`
     display: inline-block;
     font-size: ${responsiveFontSizes.small};
     cursor: default;
+  }
+  svg {
+    vertical-align: middle;
   }
 `;
 
@@ -30,10 +33,14 @@ function mapTagToIcon(tag) {
   return TAG_TO_ICON_MAP[lowerCaseTag] || null;
 };
 
-const Tags = ({ items }: TagProps) => (
+interface TagsComponentProps {
+  items: [Tags];
+}
+
+const TagsComponent = ({ items }: TagsComponentProps) => (
   <TagsWrapper>
     {items.map(tag => <span>{mapTagToIcon(tag)} {`${tag}`}</span>)}
   </TagsWrapper>
 );
 
-export default Tags;
+export default TagsComponent;

@@ -1,8 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types";
+import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
+
 import { responsiveFontSizes } from "../utils/styles";
 import styled from "@emotion/styled";
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const Wrapper = styled.section`
   ul, li {
@@ -13,16 +14,6 @@ const Wrapper = styled.section`
     display: inline;
     margin-right: 20px;
     font-size: ${responsiveFontSizes.xlarge};
-  }
-`;
-
-const Date = styled.div`
-  margin-bottom: 10px;
-  span {
-    font-size: ${responsiveFontSizes.small};
-  }
-  .date--active {
-    font-weight: 700;
   }
 `;
 

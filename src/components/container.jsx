@@ -2,18 +2,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import {
+  layout,
+  MAX_WIDTH,
+  mediaQuery
+} from "../utils/styles";
+
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
-import { layout, MAX_WIDTH, breakpoints } from "../utils/styles";
 
 const ContainerWrapper = styled.section`
   ${layout};
-  margin-bottom: 30px;
-  @media screen and (max-width: ${breakpoints.lg}) {
-    padding: 5px 20px;
-  }
-  @media screen and (min-width: ${breakpoints.lg}) {
-    padding: 40px 80px 20px;
+  padding: 5px 20px;
+  ${mediaQuery[2]} {
+    padding: 40px 80px 0px;
   }
   ${({ isFlex }) =>
     isFlex && css`

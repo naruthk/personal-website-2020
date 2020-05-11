@@ -8,10 +8,10 @@ export { layout, flexbox };
 export {
   colors,
   fonts,
-  breakpoints,
   MAX_WIDTH,
   responsiveFontSizes,
-  shadow
+  shadow,
+  mediaQuery
 } from "./constants";
 
 export { globalStyles } from "./global";

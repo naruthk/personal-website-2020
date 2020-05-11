@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { Container } from "./Container";
+import Container from "./container";
 
 const Footer = () => (
   <Container>

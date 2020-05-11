@@ -19,23 +19,20 @@ export const fonts = {
 };
 
 export const responsiveFontSizes = {
-  xlarge: "2em",
+  xlarge: "2rem",
   large: "1.7411em",
   medium: "1.5157em",
   normal: "1em",
   small: "0.7em"
 };
 
-export const breakpoints = {
-  sm: '40em',
-  md: '52em',
-  lg: '64em',
-  xl: '80em'
-};
+const breakpoints = [576, 768, 992, 1200];
+
+export const mediaQuery = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+);
 
 export const MAX_WIDTH = 940;
-
-/* LOOK AND FEEL 😎 */
 
 /* SHADOWS */
 export const shadow = "0 1.5rem 5rem rgba(0,0,0,.15)";

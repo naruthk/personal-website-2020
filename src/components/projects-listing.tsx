@@ -2,16 +2,15 @@ import React from "react"
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-import Tags from "../tags";
-import { ROUTES } from "../../utils/routes";
-import { prettyPrintDate } from "../../utils/dates";
+import Tags from "./tags";
+import { ROUTES } from "../utils/routes";
+import { prettyPrintDate } from "../utils/dates";
 import {
   responsiveFontSizes,
-  breakpoints,
+  mediaQuery,
   flexbox,
-  MAX_WIDTH,
   layout
-} from "../../utils/styles";
+} from "../utils/styles";
 
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
@@ -30,13 +29,18 @@ const Item = styled.div`
   display: flex;
   margin-top: 30px;
   margin-bottom: 30px;
-  max-width: 520px;
+  max-width: 100%;
 
-  @media screen and (max-width: ${breakpoints.sm}) {
-    max-width: 300px;
+  ${mediaQuery[2]} {
+    max-width: 480px;
   }
-  @media screen and (max-width: ${breakpoints.md}) {
-    max-width: 400px;
+
+  ${mediaQuery[3]} {
+    max-width: 600px;
+  }
+
+  h2 {
+    font-weight: 500;
   }
 `;
 
@@ -44,9 +48,11 @@ const BackgroundImage = styled.div`
   ${({ src }) =>
     src && css`
       background: url(${src}) left / cover no-repeat;
-      width: 500px;
+      width: 400px;
       :hover {
-        width: 750px;
+        background: url(${src}) center / cover no-repeat;
+        width: 500px;
+        border-radius: 20px;
       }
       transition: 1s all;
       height: auto;

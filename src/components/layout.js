@@ -6,10 +6,10 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 import Footer from "./footer";
 
-import { Global } from '@emotion/core';
 import { globalStyles } from "../utils/styles";
+import { Global } from '@emotion/core';
 
-const Layout = ({ children, showWelcomeText }) => {
+const Layout = ({ children, showWelcomeText, activePage }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -35,7 +35,8 @@ const Layout = ({ children, showWelcomeText }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  showWelcomeText: PropTypes.bool
+  showWelcomeText: PropTypes.bool,
+  activePage: PropTypes.string.isRequired
 }
 
 Layout.defaultProps = {

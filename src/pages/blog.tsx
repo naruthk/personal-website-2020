@@ -3,10 +3,10 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { Container } from "../components/Container";
-import { BlogsListingItem } from "../components/Blogs";
-import { BlogPostsPageProps } from "../utils/types";
+import Container from "../components/container";
+import BlogsListingItem from "../components/blog-listing-item";
 
+import { BlogPostsPageProps } from "../utils/types";
 import { colors } from "../utils/styles";
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
