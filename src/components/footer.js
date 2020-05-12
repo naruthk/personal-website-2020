@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 import Social from "../components/share";
@@ -19,18 +18,10 @@ const FooterWrapper = styled.footer`
 const Footer = () => (
   <FooterWrapper>
     <Container>
+      <p>© {new Date().getFullYear()}<br/>Naruth Kongurai</p>
       <Social />
-      <p>© {new Date().getFullYear()}</p>
     </Container>
   </FooterWrapper>
 );
-
-Footer.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Footer.defaultProps = {
-  siteTitle: ``,
-};
 
 export default Footer;

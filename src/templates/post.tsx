@@ -33,7 +33,8 @@ const PostMetaContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: normal;
+  margin-top: 20px;
 `;
 
 const PostContentContainer = styled.article`
@@ -73,10 +74,6 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
           {renderRichTextContent(content.json)}
         </PostContentContainer>
         <hr />
-        <PostMetaContainer>
-          <p>{prettyPrintDate({ timestamp: createdAt })} | Last updated: {prettyPrintDate({ timestamp: updatedAt })}</p>
-          <Tags items={category} />
-        </PostMetaContainer>
         <SocialNetworkSharing
           data={{
             title,
@@ -84,6 +81,10 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
             thumbnail: heroImage.fluid.src
           }}
         />
+        <PostMetaContainer>
+          <p>{prettyPrintDate({ timestamp: createdAt })} | Last updated: {prettyPrintDate({ timestamp: updatedAt })}</p>
+          <Tags items={category} />
+        </PostMetaContainer>
       </Container>
     </Layout>
   )

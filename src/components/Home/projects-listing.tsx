@@ -2,15 +2,15 @@ import React from "react"
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-import Tags from "./tags";
-import { ROUTES } from "../utils/routes";
-import { prettyPrintDate } from "../utils/dates";
+import Tags from "../tags";
+import { ROUTES } from "../../utils/routes";
+import { prettyPrintDate } from "../../utils/dates";
 import {
   responsiveFontSizes,
   mediaQuery,
   flexbox,
   layout
-} from "../utils/styles";
+} from "../../utils/styles";
 
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";

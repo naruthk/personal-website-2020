@@ -11,7 +11,8 @@ export {
   MAX_WIDTH,
   responsiveFontSizes,
   shadow,
-  mediaQuery
+  mediaQuery,
+  transition
 } from "./constants";
 
 export { globalStyles } from "./global";

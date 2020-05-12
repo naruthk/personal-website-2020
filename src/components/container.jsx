@@ -9,9 +9,9 @@ import { css } from "@emotion/core";
 
 const ContainerWrapper = styled.section`
   ${layout};
-  padding: 48px 30px;
+  padding: 15px 30px;
   ${mediaQuery[2]} {
-    padding: 100px 16.66%;
+    padding: 50px 16.66%;
   }
   ${({ isFlex }) =>
     isFlex && css`

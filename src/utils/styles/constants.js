@@ -36,3 +36,6 @@ export const MAX_WIDTH = 940;
 
 /* SHADOWS */
 export const shadow = "0 1.5rem 5rem rgba(0,0,0,.15)";
+
+/* TRANSITIONS */
+export const transition = "0.7s all";

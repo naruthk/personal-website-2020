@@ -1,9 +1,41 @@
 import React from "react"
 import PropTypes from "prop-types";
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+  FaCodepen
+} from 'react-icons/fa';
 
-import { responsiveFontSizes } from "../utils/styles";
+import { responsiveFontSizes, colors } from "../utils/styles";
 import styled from "@emotion/styled";
+
+const SOCIAL_NETWORK_LINKS_MAP = {
+  twitter: {
+    name: "Twitter",
+    icon: <FaTwitter />,
+    url: "https://twitter.com/nkongurai",
+    articleSharingUrl: ""
+  },
+  linkedin: {
+    name: "Linkedin",
+    icon: <FaLinkedin />,
+    url: "https://www.linkedin.com/in/naruthkongurai",
+    articleSharingUrl: ""
+  },
+  github: {
+    name: "GitHub",
+    icon: <FaGithub />,
+    url: "https://www.github.com/naruthk",
+    articleSharingUrl: ""
+  },
+  codepen: {
+    name: "CodePen",
+    icon: <FaCodepen />,
+    url: "https://www.codepen.io/nkongurai"
+  }
+};
 
 const Wrapper = styled.section`
   ul, li {
@@ -14,10 +46,16 @@ const Wrapper = styled.section`
     display: inline;
     margin-right: 20px;
     font-size: ${responsiveFontSizes.xlarge};
+    :last-child {
+      margin-right: 0;
+    }
+  }
+  a, a:visited {
+    color: ${colors.white};
   }
 `;
 
-const renderSharingLinks = ({ title, description, image }) => (
+const renderArticleSharingLinks = ({ title, description, image }) => (
   <>
     <li><FaFacebook /></li>
     <li><FaTwitter /></li>
@@ -28,12 +66,14 @@ const renderSharingLinks = ({ title, description, image }) => (
 const SocialNetworkSharing = ({ data }) => (
   <Wrapper>
     <ul>
-      {data ? renderSharingLinks(data) : (
-        <>
-          <li><FaGithub /></li>
-          <li><FaTwitter /></li>
-          <li><FaLinkedin /></li>
-        </>
+      {data ? renderArticleSharingLinks(data) : (
+        Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
+          <li>
+            <a href={link.url} title={`Naruth Kongurai's ${link.name}`}>
+              {link.icon}
+            </a>
+          </li>
+        ))
       )}
     </ul>
   </Wrapper>

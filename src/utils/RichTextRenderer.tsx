@@ -8,12 +8,8 @@ import styled from "@emotion/styled";
 const UIList = styled.ul`
   margin: 0;
   padding: 0;
-  list-style-position: inside;
   li {
-    margin-left: 30px;
-    * {
-      display: inline;
-    }
+    margin-left: 20px;
   }
 `;
 

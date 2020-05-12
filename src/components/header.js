@@ -15,16 +15,16 @@ const LENGTH_MOBILE = "40px";
 const LENGTH_DESKTOP = "80px";
 
 // 😉 Maybe move this to Contenful ?
-const WELCOME_TEXT = "Hi, I'm Naruth. I love creating JavaScript web apps that bring people closer together through technology.";
+const WELCOME_TEXT = "Hi, I'm Naruth. I enjoy designing and creating web projects that can help bring technology closer to people.";
 
 const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   line-height: ${LENGTH_MOBILE};
+
   ${mediaQuery[2]} {
-    margin-top: -60px;
+    margin-top: -44px;
     line-height: ${LENGTH_DESKTOP};
   }
   margin-bottom: 30px;
