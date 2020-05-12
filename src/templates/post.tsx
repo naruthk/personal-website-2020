@@ -6,6 +6,7 @@ import SEO from "../components/seo";
 import Container from "../components/container";
 import Tags from "../components/tags";
 import SocialNetworkSharing from "../components/share";
+import FloatingHeader from "../components/ui/floating-header";
 
 import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
@@ -45,6 +46,7 @@ const PostContentContainer = styled.article`
 `;
 
 const BlogPost = ({ data }: SingleBlogPostPageProps) => {
+
   const {
     title,
     excerpt,
@@ -58,23 +60,23 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
   return (
     <Layout>
       <SEO title={title} description={excerpt.excerpt} />
-        <PostInformationContainer>
-          <h1>{title}</h1>
-          <p className="post_information_center---label">{excerpt.excerpt}</p>
-          <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
-        </PostInformationContainer>
+      <FloatingHeader
+        title={title}
+        sharingStructData={{
+          title,
+          description: excerpt,
+          thumbnail: heroImage.fluid.src
+        }}/>
+      <PostInformationContainer>
+        <h1>{title}</h1>
+        <p className="post_information_center---label">{excerpt.excerpt}</p>
+        <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
+      </PostInformationContainer>
       <Container bg={colors.white}>
         <PostContentContainer>
           {renderRichTextContent(content.json)}
         </PostContentContainer>
         <hr />
-        <SocialNetworkSharing
-          data={{
-            title,
-            description: excerpt,
-            thumbnail: heroImage.fluid.src
-          }}
-        />
         <PostMetaContainer>
           <p>{prettyPrintDate({ timestamp: createdAt })} | Last updated: {prettyPrintDate({ timestamp: updatedAt })}</p>
           <Tags items={category} />

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "gatsby";
 
 import Container from "./container";
+import Logo from "./ui/logo";
 import Share from "./share";
 import Modal from "./ui/modal";
 
@@ -134,7 +135,7 @@ const Header = ({ showWelcomeText }) => {
     <header>
       <Container isFlex={true} isCentered={true}>
         <NavWrapper>
-          <Link to="/"><SiteLogo>NK</SiteLogo></Link>
+          <Logo />
           <Nav>
             {navOrder.map(item => 
               <Link

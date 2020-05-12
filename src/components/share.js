@@ -39,47 +39,40 @@ const SOCIAL_NETWORK_LINKS_MAP = {
 };
 
 const Wrapper = styled.section`
+  margin: 10px;
+
   ul, li {
     margin: 0;
     padding: 0;
+    font-size: ${responsiveFontSizes.small};
+
+    ${responsiveFontSizes[2]} {
+      font-size: ${responsiveFontSizes.normal};
+    }
   }
   li {
     vertical-align: middle;
     display: inline;
     margin-right: 20px;
-    font-size: ${responsiveFontSizes.xlarge};
     :last-child {
       margin-right: 0;
     }
-  }
-
-  .label {
-    font-size: ${responsiveFontSizes.normal};
-    ${({ isDark }) => isDark ?
-      css`color: ${colors.dark}` :
-      css`color: ${colors.lightGrey}`
-    }
-  }
-
-  a, a:visited {
-    ${({ isDark }) => isDark ?
-      css`color: ${colors.dark}` :
-      css`color: ${colors.white}`
+    ${({ isFloatingHeader }) => isFloatingHeader &&
+      css`color: ${colors.mediumGrey}`
     }
   }
 `;
 
 const renderArticleSharingLinks = ({ title, description, image }) => (
   <>
-    <li className="label">Share this item:</li>
     <li><FaFacebook /></li>
     <li><FaTwitter /></li>
     <li><FaLinkedin /></li>
   </>
 );
 
-const SocialNetworkSharing = ({ isDark, data }) => (
-  <Wrapper isDark={isDark}>
+const SocialNetworkSharing = ({ data, isDark, isFloatingHeader }) => (
+  <Wrapper isDark={isDark} isFloatingHeader={isFloatingHeader}>
     <ul>
       {data ? renderArticleSharingLinks(data) : (
         Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
@@ -101,10 +94,12 @@ SocialNetworkSharing.propTypes = {
     descrption: PropTypes.string,
     image: PropTypes.string
   }),
+  isFloatingHeader: PropTypes.bool
 };
 
 SocialNetworkSharing.propTypes = {
   isDark: false,
+  isFloatingHeader: false,
   data: null
 };
 

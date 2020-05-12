@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Waves from "../components/ui/waves";
 
 import { HomePageBlogListing, HomePageProjectsListing } from "../components/Home";
 
@@ -19,7 +18,6 @@ const HomePage = (props: HomePageProps) => {
     <Layout showWelcomeText>
       <SEO title="Naruth Kongurai" />
       <HomePageProjectsListing items={rawProjectsData.edges} />
-      <Waves />
       <HomePageBlogListing items={rawBlogPostsData.edges} />
     </Layout>
   );

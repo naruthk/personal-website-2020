@@ -3,6 +3,7 @@ export const colors = {
   bgLight: 'rgb(250, 250, 250)',
   grey: 'rgb(34, 36, 38)',
   lightGrey: '#f9f9f9',
+  mediumGrey: '#CCC',
   dark: '#1D2029',
   orange: '#fe520e',
   green: '#3aa95a',

@@ -10,7 +10,6 @@ const FooterWrapper = styled.footer`
   background-color: ${colors.yellowDark};
   width: 100%;
   min-height: 200px;
-  color: ${colors.white};
   text-align: center;
   p { margin-top: 20px; }
 `;
