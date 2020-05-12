@@ -2,9 +2,8 @@ import React from "react"
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-import Tags from "../tags";
+import Container from "../container";
 import { ROUTES } from "../../utils/routes";
-import { prettyPrintDate } from "../../utils/dates";
 import {
   responsiveFontSizes,
   mediaQuery,
@@ -15,8 +14,6 @@ import {
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 
-import { DiGithubBadge } from 'react-icons/di';
-
 const Wrapper = styled.section`
   ${flexbox}
   ${layout}
@@ -25,20 +22,10 @@ const Wrapper = styled.section`
 `;
 
 const Item = styled.div`
-  ${flexbox}
-  display: flex;
-  margin-top: 30px;
   margin-bottom: 30px;
-  max-width: 100%;
-
   ${mediaQuery[2]} {
-    max-width: 480px;
+    width: 50%;
   }
-
-  ${mediaQuery[3]} {
-    max-width: 600px;
-  }
-
   h2 {
     font-weight: 500;
   }
@@ -47,16 +34,8 @@ const Item = styled.div`
 const BackgroundImage = styled.div`
   ${({ src }) =>
     src && css`
-      background: url(${src}) left / cover no-repeat;
-      width: 400px;
-      :hover {
-        background: url(${src}) center / cover no-repeat;
-        width: 500px;
-        border-radius: 20px;
-      }
-      transition: 1s all;
-      height: auto;
-      margin-right: 15px;
+      background: url(${src}) center / cover no-repeat;
+      height: 400px;
   `}
 `;
 
@@ -98,26 +77,12 @@ const ProjectsListing = ({ items }) => (
         return (
           <Item key={slug}>
             <BackgroundImage src={heroImage.fixed.src} /> 
-            <div>
+            <Container>
               <Link to={`${ROUTES.PROJECT.url}/${slug}`}>
                 <h2>{title}</h2>
               </Link>
               <p>{excerpt.excerpt}</p>
-              <Date isActive={isActive}>
-                <span>{prettyPrintDate({ timestamp: initialStartDate })}</span>
-                <i> - </i>
-                <span>
-                  {isActive ? 
-                    <i className="date--active">Present</i> : 
-                    prettyPrintDate({ timestamp: completionDate })
-                  }
-                </span>
-              </Date>
-              <Tags items={category} />
-              <ExternalLink>
-                <a href={url} title={`${title} - GitHub Repository`}><DiGithubBadge /></a>
-              </ExternalLink>
-            </div>
+            </Container>
           </Item>
         )
       })}

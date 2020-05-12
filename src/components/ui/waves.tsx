@@ -6,6 +6,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { colors } from "../../utils/styles";
 import styled from '@emotion/styled';
 
 const WavesWrapper = styled.div`
@@ -84,9 +85,9 @@ Waves.propTypes = {
 
 Waves.defaultProps = {
   colorsShading: [
-    "#fff",
-    "rgb(245,245,245)",
-    "rgb(216,216,216)",
-    "rgb(167,167,167)"
+    colors.lightGrey,
+    colors.yellow,
+    colors.yellowDark,
+    colors.lightGrey
   ]
 };

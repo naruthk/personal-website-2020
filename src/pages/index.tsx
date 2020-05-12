@@ -3,6 +3,8 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Waves from "../components/ui/waves";
+
 import { HomePageBlogListing, HomePageProjectsListing } from "../components/Home";
 
 import { HomePageProps } from "../utils/types";
@@ -10,14 +12,14 @@ import { HomePageProps } from "../utils/types";
 const HomePage = (props: HomePageProps) => {
   const {
     allContentfulBlogPosts: rawBlogPostsData,
-    allContentfulProjects: rawProjectsData,
-    allContentfulCompanies: rawCompaniesData,
+    allContentfulProjects: rawProjectsData
   } = props.data;
 
   return (
     <Layout showWelcomeText>
       <SEO title="Naruth Kongurai" />
       <HomePageProjectsListing items={rawProjectsData.edges} />
+      <Waves />
       <HomePageBlogListing items={rawBlogPostsData.edges} />
     </Layout>
   );
@@ -27,24 +29,6 @@ export default HomePage;
 
 export const pageQuery = graphql`
  query HomePostsBySlug {
-  allContentfulCompanies {
-    edges {
-      node {
-        slug
-        companyName
-        employmentStartDate
-        companyUrl
-        position { 
-          position
-        }
-        logo {
-          fixed {
-            src
-          }
-        }
-      }
-    }
-  }
   allContentfulBlogPosts(sort: {order: DESC, fields: createdAt}, limit: 5) {
     edges {
       node {

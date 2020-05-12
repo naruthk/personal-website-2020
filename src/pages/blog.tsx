@@ -29,7 +29,9 @@ const Title = styled.h2`
 `;
 
 const Date = styled.span`
-  margin-right: 30px;
+  margin-right: 20px;
+  border-right: 1px solid ${colors.yellow};
+  padding-right: 20px;
 `;
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
@@ -42,16 +44,17 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
         <h1>Blog</h1>
         {posts.map(post => {
           const { title, slug, excerpt, createdAt } = post.node;
+          const url = `${ROUTES.BLOG.url}/${slug}`;
           return (
             <Section>
               <div>
-                <Link to={`${ROUTES.BLOG}/${slug}`} title={title}>
+                <Link to={url} title={title}>
                   <Title>{title}</Title>
                 </Link>
                 <p>{excerpt.excerpt}</p>
                 <p>
                   <Date>{prettyPrintDate({ timestamp: createdAt })}</Date>
-                  <Link to={`${ROUTES.BLOG}/${slug}`} title="Read more">
+                  <Link to={url} title="Read more">
                     Read more
                   </Link> ->
                 </p>

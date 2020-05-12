@@ -9,23 +9,23 @@ import SocialNetworkSharing from "../components/share";
 
 import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
+import { mediaQuery } from "../utils/styles";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 import { SingleBlogPostPageProps } from "../utils/types";
 
 const PostInformationContainer = styled.div`
   margin-bottom: 20px;
+  text-align: center;
   h1 {
-    text-align: center;
     font-weight: 300;
   }
   .post_information_center---label {
     font-style: italic;
   }
-  img {
-    transition: all 3s;
-    :hover {
-      border-radius: 20px;
-    }
+  ${mediaQuery[2]} {
+    width: 80%;
+    padding: 20px;
+    margin: auto;
   }
 `;
 
@@ -41,12 +41,6 @@ const PostContentContainer = styled.article`
   h1, h2, h3, h4 {
     padding-top: 30px;
     font-weight: 500;
-  }
-    img {
-    transition: all 3s;
-    :hover {
-      border-radius: 20px;
-    }
   }
 `;
 
@@ -64,12 +58,12 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
   return (
     <Layout>
       <SEO title={title} description={excerpt.excerpt} />
-      <Container>
         <PostInformationContainer>
           <h1>{title}</h1>
-          <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
           <p className="post_information_center---label">{excerpt.excerpt}</p>
+          <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
         </PostInformationContainer>
+      <Container>
         <PostContentContainer>
           {renderRichTextContent(content.json)}
         </PostContentContainer>

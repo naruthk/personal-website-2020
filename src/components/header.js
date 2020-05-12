@@ -15,7 +15,7 @@ const LENGTH_MOBILE = "40px";
 const LENGTH_DESKTOP = "80px";
 
 // 😉 Maybe move this to Contenful ?
-const WELCOME_TEXT = "Hi, I'm Naruth. I enjoy designing and creating web projects that can help bring technology closer to people.";
+const WELCOME_TEXT = <h1>Hi, I'm <span>Naruth</span>. I enjoy designing and creating web projects that can <span>help bring technology closer to people.</span></h1>;
 
 const NavWrapper = styled.div`
   display: flex;
@@ -24,9 +24,10 @@ const NavWrapper = styled.div`
   line-height: ${LENGTH_MOBILE};
 
   ${mediaQuery[2]} {
-    margin-top: -44px;
+    margin: -15px 0;
     line-height: ${LENGTH_DESKTOP};
   }
+  
   margin-bottom: 30px;
 
   button {
@@ -83,14 +84,18 @@ const Nav = styled.nav`
     margin: 5px;
   }
   a[aria-current="page"] {
-    background-color: ${colors.grey};
+    background-color: ${colors.yellowDark};
     color: ${colors.white};
+    font-weight: 700;
   }
 `;
 
 const WelcomeText = styled.div`
-  margin-top: 30px;
+  margin-top: 60px;
   max-width: 650px;
+  span {
+    color: ${colors.yellowDark};
+  }
 `;
 
 const MenuOverlayContent = styled.div`
@@ -114,7 +119,7 @@ const MenuOverlayLink = styled.span`
   a {
     font-weight: 400;
     :hover {
-      font-weight: 700;
+      color: ${colors.yellowDark};
     }
   }
 `;
@@ -152,7 +157,7 @@ const Header = ({ showWelcomeText }) => {
             </button>
           </Nav>
         </NavWrapper>
-        {showWelcomeText && <WelcomeText><h1>{WELCOME_TEXT}</h1></WelcomeText>}
+        {showWelcomeText && <WelcomeText>{WELCOME_TEXT}</WelcomeText>}
       </Container>
 
       {/* Modal expands full screen on mobile screen size */}

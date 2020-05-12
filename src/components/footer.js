@@ -7,7 +7,7 @@ import { colors } from "../utils/styles";
 import styled from "@emotion/styled";
 
 const FooterWrapper = styled.footer`
-  background-color: ${colors.grey};
+  background-color: ${colors.yellowDark};
   width: 100%;
   min-height: 200px;
   color: ${colors.white};

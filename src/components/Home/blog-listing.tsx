@@ -14,7 +14,7 @@ const BlogsList = styled.div`
 
 const HomePageBlogListing = ({ items }) => (
   <Container>
-    <Link to={ROUTES.BLOG.url} title="Blog"><h1>Latest Posts</h1></Link>
+    <h1>Latest Posts</h1>
     {items.map(post => {
       const { title, slug, excerpt } = post.node;
     

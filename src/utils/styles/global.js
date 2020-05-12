@@ -7,7 +7,7 @@ export const globalStyles = css`
   html, body {
     margin: 0px;
     padding: 0px;
-    color: ${colors.gray};
+    color: ${colors.grey};
   }
 
   body {

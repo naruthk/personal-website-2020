@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 
 import { responsiveFontSizes, colors } from "../utils/styles";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
 const SOCIAL_NETWORK_LINKS_MAP = {
@@ -43,6 +44,7 @@ const Wrapper = styled.section`
     padding: 0;
   }
   li {
+    vertical-align: middle;
     display: inline;
     margin-right: 20px;
     font-size: ${responsiveFontSizes.xlarge};
@@ -50,21 +52,31 @@ const Wrapper = styled.section`
       margin-right: 0;
     }
   }
+
+  .label {
+    font-size: ${responsiveFontSizes.normal};
+    color: ${colors.lightGrey};
+  }
+
   a, a:visited {
-    color: ${colors.white};
+    ${({ isDark }) => isDark ?
+      css`color: ${colors.dark}` :
+      css`color: ${colors.white}`
+    }
   }
 `;
 
 const renderArticleSharingLinks = ({ title, description, image }) => (
   <>
+    <li className="label">Share this item:</li>
     <li><FaFacebook /></li>
     <li><FaTwitter /></li>
     <li><FaLinkedin /></li>
   </>
 );
 
-const SocialNetworkSharing = ({ data }) => (
-  <Wrapper>
+const SocialNetworkSharing = ({ isDark, data }) => (
+  <Wrapper isDark={isDark}>
     <ul>
       {data ? renderArticleSharingLinks(data) : (
         Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
@@ -80,6 +92,7 @@ const SocialNetworkSharing = ({ data }) => (
 );
 
 SocialNetworkSharing.propTypes = {
+  isDark: PropTypes.bool,
   data: PropTypes.shape({
     title: PropTypes.string,
     descrption: PropTypes.string,
@@ -88,6 +101,7 @@ SocialNetworkSharing.propTypes = {
 };
 
 SocialNetworkSharing.propTypes = {
+  isDark: false,
   data: null
 };
 
