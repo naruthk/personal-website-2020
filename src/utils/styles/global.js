@@ -43,7 +43,7 @@ export const globalStyles = css`
   }
 
   a:hover {
-    color: ${colors.blue}
+    color: ${colors.orange}
   }
 
   hr {

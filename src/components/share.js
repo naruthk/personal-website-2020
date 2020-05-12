@@ -55,7 +55,10 @@ const Wrapper = styled.section`
 
   .label {
     font-size: ${responsiveFontSizes.normal};
-    color: ${colors.lightGrey};
+    ${({ isDark }) => isDark ?
+      css`color: ${colors.dark}` :
+      css`color: ${colors.lightGrey}`
+    }
   }
 
   a, a:visited {

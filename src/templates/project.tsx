@@ -67,7 +67,7 @@ const Project = ({ data }: SingleProjectPageProps) => {
         <h1>{title}</h1>
       </Container>
       <img src={heroImage.fluid.src} alt={heroImage.title} />
-      <Container>
+      <Container bg={colors.white}>
         <ContentWrapper>
           <div>
             <h2>{title}</h2>

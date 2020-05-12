@@ -71,6 +71,7 @@ const SiteLogo = styled.div`
 
   :hover {
     border-radius: 25px;
+    background-color: ${colors.orange};
   }
 `;
 

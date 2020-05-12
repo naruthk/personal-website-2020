@@ -9,7 +9,7 @@ import SocialNetworkSharing from "../components/share";
 
 import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
-import { mediaQuery } from "../utils/styles";
+import { mediaQuery, colors } from "../utils/styles";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 import { SingleBlogPostPageProps } from "../utils/types";
 
@@ -63,7 +63,7 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
           <p className="post_information_center---label">{excerpt.excerpt}</p>
           <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
         </PostInformationContainer>
-      <Container>
+      <Container bg={colors.white}>
         <PostContentContainer>
           {renderRichTextContent(content.json)}
         </PostContentContainer>
