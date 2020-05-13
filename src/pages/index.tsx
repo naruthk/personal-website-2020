@@ -17,8 +17,8 @@ const HomePage = (props: HomePageProps) => {
   return (
     <Layout showWelcomeText>
       <SEO title="Naruth Kongurai" />
-      <HomePageProjectsListing items={rawProjectsData.edges} />
-      <HomePageBlogListing items={rawBlogPostsData.edges} />
+      {/* <HomePageProjectsListing items={rawProjectsData.edges} />
+      <HomePageBlogListing items={rawBlogPostsData.edges} /> */}
     </Layout>
   );
 };

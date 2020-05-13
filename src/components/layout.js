@@ -8,6 +8,13 @@ import Footer from "./footer";
 
 import { globalStyles } from "../utils/styles";
 import { Global } from '@emotion/core';
+import styled from "@emotion/styled";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+`;
 
 const Layout = ({ children, showWelcomeText }) => {
   const data = useStaticQuery(graphql`
@@ -21,7 +28,7 @@ const Layout = ({ children, showWelcomeText }) => {
   `);
 
   return (
-    <>
+    <Wrapper>
       <Global styles={globalStyles} />
       <Header
         siteTitle={data.site.siteMetadata.title}
@@ -29,7 +36,7 @@ const Layout = ({ children, showWelcomeText }) => {
       />
       {children}
       <Footer />
-    </>
+    </Wrapper>
   )
 }
 

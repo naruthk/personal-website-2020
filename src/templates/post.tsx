@@ -7,15 +7,16 @@ import Container from "../components/container";
 import FloatingHeader from "../components/ui/floating-header";
 import AuthorProfile from "../components/author-profile";
 
-import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
 import { mediaQuery, colors, MAX_WIDTH} from "../utils/styles";
-import { renderRichTextContent } from "../utils/RichTextRenderer";
+import MD from 'react-markdown'
+import styled from "@emotion/styled";
 
 const PostInformationContainer = styled.div`
   text-align: center;
   h1 {
     font-weight: 300;
+    padding: 10px;
   }
   .post_information_center---label {
     font-style: italic;
@@ -25,13 +26,6 @@ const PostInformationContainer = styled.div`
     padding: 20px;
     margin: auto;
   }
-`;
-
-const PostMetaContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: normal;
 `;
 
 const PostContentContainer = styled.article`
@@ -60,9 +54,7 @@ const BlogPost = ({ location, data }) => {
     title,
     excerpt,
     heroImage,
-    category,
     createdAt,
-    updatedAt,
     content
   } = data.contentfulBlogPosts;
 
@@ -81,7 +73,7 @@ const BlogPost = ({ location, data }) => {
         <img src={heroImage.resize.src} alt={heroImage.title} />
       </PostInformationContainer>
       <PostContentContainer>
-        {renderRichTextContent(content.json)}
+        <MD source={content.content} />
         <hr />
         <p className="post_content---date">{prettyPrintDate({ timestamp: createdAt })}</p>
       </PostContentContainer>
@@ -101,7 +93,7 @@ export const pageQuery = graphql`
     slug
     title
     content {
-      json
+      content
     }
     excerpt {
       excerpt

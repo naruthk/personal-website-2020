@@ -1,12 +1,23 @@
 import React from "react";
 
-import { colors, transition } from "../utils/styles";
+import { colors, transition, mediaQuery, responsiveFontSizes } from "../utils/styles";
 import styled from "@emotion/styled";
 
 const WelcomeTextWrapper = styled.div`
   margin-top: 20px;
+  ${mediaQuery[2]} {
+    margin-top: 40px;
+  }
   max-width: 650px;
   cursor: default;
+
+  h1 {
+    font-size: ${responsiveFontSizes.medium};
+    ${mediaQuery[2]} {
+      font-size: ${responsiveFontSizes.xlarge};
+    }
+  }
+  
   span {
     color: ${colors.yellowDark};
     transition: ${transition};

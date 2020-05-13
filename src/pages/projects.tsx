@@ -7,6 +7,8 @@ import Container from "../components/container";
 
 import { ROUTES } from "../utils/routes";
 import { colors, mediaQuery } from "../utils/styles";
+
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from "@emotion/styled";
 
 import { FaGithub } from 'react-icons/fa';
@@ -55,7 +57,7 @@ const ProjectsListingPage = ({ data }) => {
                 <h2><Link to={projectPageUrl}>{title}</Link></h2>
                 <p>{excerpt.excerpt}</p>
                 <LinksWrapper>
-                  <a href={url} title={title}><FaGithub /></a>
+                  <OutboundLink href={url} title={title}><FaGithub /></OutboundLink>
                   <Link to={projectPageUrl} title="Read more">
                     Read more ->
                   </Link>

@@ -10,6 +10,8 @@ import WelcomeText from "./welcome-text";
 
 import { ROUTES } from "../utils/routes";
 import { colors, mediaQuery } from "../utils/styles";
+
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import styled from '@emotion/styled';
 import { FiMenu } from 'react-icons/fi';
 
@@ -99,7 +101,7 @@ const Header = ({ showWelcomeText }) => {
   const navOrder = [ROUTES.BLOG, ROUTES.PROJECT, ROUTES.ABOUT];
 
   return (
-    <header>
+    <>
       <Container isFlex={true} isCentered={true}>
         <NavWrapper>
           <Logo />
@@ -114,7 +116,15 @@ const Header = ({ showWelcomeText }) => {
             )}
             <button
               className="desktop-only"
-              onClick={() => setShowModalOverlay(true)}
+              onClick={() => {
+                trackCustomEvent({
+                  category: "click",
+                  action: "Click",
+                  label: "Contact Button",
+                  value: "ContactButton"
+                });
+                setShowModalOverlay(true);
+              }}
             >
               {ROUTES.CONTACT.name}
             </button>
@@ -152,7 +162,7 @@ const Header = ({ showWelcomeText }) => {
           <Share />
         </MenuOverlayContent>
       </Modal>
-    </header>
+    </>
   );
 };
 

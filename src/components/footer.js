@@ -3,11 +3,10 @@ import React from "react";
 import Social from "../components/share";
 import Container from "../components/container";
 
-import { colors } from "../utils/styles";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from "@emotion/styled";
 
 const FooterWrapper = styled.footer`
-  background-color: ${colors.yellowDark};
   width: 100%;
   min-height: 200px;
   text-align: center;
@@ -17,8 +16,15 @@ const FooterWrapper = styled.footer`
 const Footer = () => (
   <FooterWrapper>
     <Container>
-      <p>© {new Date().getFullYear()}<br/>Naruth Kongurai</p>
       <Social />
+      <p>
+        © {new Date().getFullYear()}
+        <br/>
+        Powered by {" "}
+        <OutboundLink href="https://www.gatsbyjs.org" title="Gatsby.js">
+          gatsby.js
+        </OutboundLink>
+      </p>
     </Container>
   </FooterWrapper>
 );

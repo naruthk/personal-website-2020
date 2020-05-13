@@ -4,17 +4,20 @@ import PropTypes from "prop-types";
 import useSiteMetadata from '../hooks/use-site-metadata';
 
 import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
-  FaGithub,
-  FaCodepen
-} from 'react-icons/fa';
-import {
   responsiveFontSizes,
   colors,
   mediaQuery,
+  transition
 } from "../utils/styles";
+
+import {
+  FaFacebook,
+  FaTwitter,
+  FaGithub,
+  FaLinkedin,
+  FaCodepen
+} from 'react-icons/fa';
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
@@ -23,19 +26,16 @@ const SOCIAL_NETWORK_LINKS_MAP = {
     name: "Twitter",
     icon: <FaTwitter />,
     url: "https://twitter.com/nkongurai",
-    articleSharingUrl: ""
   },
   linkedin: {
     name: "Linkedin",
     icon: <FaLinkedin />,
     url: "https://www.linkedin.com/in/naruthkongurai",
-    articleSharingUrl: ""
   },
   github: {
     name: "GitHub",
     icon: <FaGithub />,
     url: "https://www.github.com/naruthk",
-    articleSharingUrl: ""
   },
   codepen: {
     name: "CodePen",
@@ -60,6 +60,15 @@ const Wrapper = styled.section`
     }
     ${({ isFloatingHeader }) => isFloatingHeader &&
       css`color: ${colors.mediumGrey}`
+    }
+  }
+
+  a {
+    opacity: 0.7;
+    transition: ${transition};
+    :hover {
+      opacity: 1;
+      color: ${colors.blue};
     }
   }
 `;
@@ -127,12 +136,6 @@ const renderArticleSharingLinks = url => {
       >
         <FaTwitter />
       </button>
-      <button
-        className="linkedin"
-        onClick={() => alert("hi")}
-      >
-        <FaLinkedin />
-      </button>
     </ArticleSharingWrapper>
   );
 };
@@ -147,9 +150,7 @@ const SocialNetworkSharing = ({ isDark, isFloatingHeader, pathName }) => {
         <ul>
         {Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
           <li>
-            <a href={link.url} title={`Naruth Kongurai's ${link.name}`}>
-              {link.icon}
-            </a>
+            <OutboundLink href={link.url} title={`Naruth Kongurai's ${link.name}`}>{link.icon}</OutboundLink>
           </li>
         ))}
         </ul>

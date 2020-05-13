@@ -43,7 +43,7 @@ export const globalStyles = css`
   }
 
   a:hover {
-    color: ${colors.orange}
+    color: ${colors.orange};
   }
 
   hr {
@@ -94,5 +94,22 @@ export const globalStyles = css`
 
   img {
     width: 100%;
+  }
+  
+  ::-moz-selection, ::selection {
+    color: ${colors.white};
+    background: ${colors.yellowDark};
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: ${colors.white};
+  }
+
+  /* PrismJS Customization */
+  pre[class*="language-"] {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: initial;
+    float: left; /* 1 */
+    min-width: 100%; /* 2 */
   }
 `;
