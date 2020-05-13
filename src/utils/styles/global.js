@@ -1,5 +1,5 @@
 import css from '@emotion/css';
-import { fonts, colors, responsiveFontSizes } from "./constants";
+import { fonts, colors, responsiveFontSizes, mediaQuery } from "./constants";
 
 export const globalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
@@ -47,7 +47,10 @@ export const globalStyles = css`
   }
 
   hr {
-    margin: 50px 0;
+    margin: 10px 0;
+    ${mediaQuery[2]} {
+      margin: 50px 0;
+    };
     border: none;
     border-top: 1px solid ${colors.lightGrey};
     background:none;

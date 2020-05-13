@@ -12,7 +12,7 @@ export const colors = {
   darkBlue: '#0067cf',
   blue: '#2c71d7',
   lightBlue: '#46C9E5',
-  border: '#C865B9',
+  border: '#C865B9'
 };
 
 /* TYPOGRAPHY */

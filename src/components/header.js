@@ -6,6 +6,7 @@ import Container from "./container";
 import Logo from "./ui/logo";
 import Share from "./share";
 import Modal from "./ui/modal";
+import WelcomeText from "./welcome-text";
 
 import { ROUTES } from "../utils/routes";
 import { colors, mediaQuery } from "../utils/styles";
@@ -14,9 +15,6 @@ import { FiMenu } from 'react-icons/fi';
 
 const LENGTH_MOBILE = "40px";
 const LENGTH_DESKTOP = "80px";
-
-// 😉 Maybe move this to Contenful ?
-const WELCOME_TEXT = <h1>Hi, I'm <span>Naruth</span>. I enjoy designing and creating web projects that can <span>help bring technology closer to people.</span></h1>;
 
 const NavWrapper = styled.div`
   display: flex;
@@ -53,29 +51,6 @@ const NavWrapper = styled.div`
   }
 `;
 
-const SiteLogo = styled.div`
-  text-align: center;
-  background-color: ${colors.dark};
-  color: ${colors.white};
-  font-weight: 700;
-  transition: 1s all;
-
-  width: ${LENGTH_MOBILE};
-  height: ${LENGTH_MOBILE};
-  line-height: ${LENGTH_MOBILE};
-  
-  ${mediaQuery[2]} {
-    width: ${LENGTH_DESKTOP};
-    height: ${LENGTH_DESKTOP};
-    line-height: ${LENGTH_DESKTOP};
-  }
-
-  :hover {
-    border-radius: 25px;
-    background-color: ${colors.orange};
-  }
-`;
-
 const Nav = styled.nav`
   button, a {
     font-weight: 300 !important;
@@ -89,14 +64,6 @@ const Nav = styled.nav`
     background-color: ${colors.yellowDark};
     color: ${colors.white};
     font-weight: 700;
-  }
-`;
-
-const WelcomeText = styled.div`
-  margin-top: 60px;
-  max-width: 650px;
-  span {
-    color: ${colors.yellowDark};
   }
 `;
 
@@ -159,7 +126,7 @@ const Header = ({ showWelcomeText }) => {
             </button>
           </Nav>
         </NavWrapper>
-        {showWelcomeText && <WelcomeText>{WELCOME_TEXT}</WelcomeText>}
+        {showWelcomeText && <WelcomeText />}
       </Container>
 
       {/* Modal expands full screen on mobile screen size */}

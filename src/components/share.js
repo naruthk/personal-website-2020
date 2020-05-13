@@ -8,7 +8,11 @@ import {
   FaCodepen
 } from 'react-icons/fa';
 
-import { responsiveFontSizes, colors } from "../utils/styles";
+import {
+  responsiveFontSizes,
+  colors,
+  mediaQuery,
+} from "../utils/styles";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
@@ -39,8 +43,6 @@ const SOCIAL_NETWORK_LINKS_MAP = {
 };
 
 const Wrapper = styled.section`
-  margin: 10px;
-
   ul, li {
     margin: 0;
     padding: 0;
@@ -50,6 +52,7 @@ const Wrapper = styled.section`
       font-size: ${responsiveFontSizes.normal};
     }
   }
+
   li {
     vertical-align: middle;
     display: inline;
@@ -63,27 +66,41 @@ const Wrapper = styled.section`
   }
 `;
 
+const ArticleSharingWrapper = styled.div`
+  font-size: ${responsiveFontSizes.medium};
+  ${mediaQuery[2]} {
+    margin-right: 20px;
+  }
+  > * {
+    vertical-align: sub;
+    margin: 10px;
+  }
+  a:hover {
+    color: ${colors.blue};
+  }
+`;
+
 const renderArticleSharingLinks = ({ title, description, image }) => (
-  <>
-    <li><FaFacebook /></li>
-    <li><FaTwitter /></li>
-    <li><FaLinkedin /></li>
-  </>
+  <ArticleSharingWrapper>
+    <a className="facebook" href="#"><FaFacebook /></a>
+    <a className="twitter" href="#"><FaTwitter /></a>
+    <a className="linkedin" href="#"><FaLinkedin /></a>
+  </ArticleSharingWrapper>
 );
 
 const SocialNetworkSharing = ({ data, isDark, isFloatingHeader }) => (
   <Wrapper isDark={isDark} isFloatingHeader={isFloatingHeader}>
-    <ul>
       {data ? renderArticleSharingLinks(data) : (
-        Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
+        <ul>
+        {Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
           <li>
             <a href={link.url} title={`Naruth Kongurai's ${link.name}`}>
               {link.icon}
             </a>
           </li>
-        ))
+        ))}
+        </ul>
       )}
-    </ul>
   </Wrapper>
 );
 

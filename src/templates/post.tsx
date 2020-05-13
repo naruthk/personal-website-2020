@@ -4,18 +4,16 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Container from "../components/container";
-import Tags from "../components/tags";
-import SocialNetworkSharing from "../components/share";
 import FloatingHeader from "../components/ui/floating-header";
+import AuthorProfile from "../components/author-profile";
 
 import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
-import { mediaQuery, colors } from "../utils/styles";
+import { mediaQuery, colors, MAX_WIDTH} from "../utils/styles";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 import { SingleBlogPostPageProps } from "../utils/types";
 
 const PostInformationContainer = styled.div`
-  margin-bottom: 20px;
   text-align: center;
   h1 {
     font-weight: 300;
@@ -35,13 +33,25 @@ const PostMetaContainer = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: normal;
-  margin-top: 20px;
 `;
 
 const PostContentContainer = styled.article`
   h1, h2, h3, h4 {
     padding-top: 30px;
     font-weight: 500;
+  }
+  padding: 20px;
+  background-color: ${colors.white};
+
+  p.post_content---date {
+    text-align: center;
+  }
+
+  ${mediaQuery[2]} {
+    width: 70%;
+    max-width: ${MAX_WIDTH};
+    padding: 40px;
+    margin: -100px auto 0 auto;
   }
 `;
 
@@ -70,17 +80,15 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
       <PostInformationContainer>
         <h1>{title}</h1>
         <p className="post_information_center---label">{excerpt.excerpt}</p>
-        <p><img src={heroImage.fluid.src} alt={heroImage.title} /></p>
+        <img src={heroImage.fluid.src} alt={heroImage.title} />
       </PostInformationContainer>
-      <Container bg={colors.white}>
-        <PostContentContainer>
-          {renderRichTextContent(content.json)}
-        </PostContentContainer>
+      <PostContentContainer>
+        {renderRichTextContent(content.json)}
         <hr />
-        <PostMetaContainer>
-          <p>{prettyPrintDate({ timestamp: createdAt })} | Last updated: {prettyPrintDate({ timestamp: updatedAt })}</p>
-          <Tags items={category} />
-        </PostMetaContainer>
+        <p className="post_content---date">{prettyPrintDate({ timestamp: createdAt })}</p>
+      </PostContentContainer>
+      <Container>
+         <AuthorProfile />
       </Container>
     </Layout>
   )
@@ -105,7 +113,6 @@ export const pageQuery = graphql`
         src
       }
     }
-    updatedAt
     category
   }
 }
