@@ -18,9 +18,6 @@ const ContainerWrapper = styled.section`
       display: flex;
       flex-direction: column;`
   }
-  ${({ isCentered }) =>
-    isCentered && css`margin-left: auto; margin-right: auto;`
-  }
   ${({ bg }) => bg && css`background-color: ${bg}`}
   ${({ isFullWidth }) => isFullWidth && css`width: 100vw;`}
 `;
@@ -29,7 +26,6 @@ const Container = ({
   children,
   width,
   isFlex,
-  isCentered,
   bg,
   isFullWidth
 }) => (
@@ -37,7 +33,6 @@ const Container = ({
     // maxWidth={width}
     isFullWidth={isFullWidth}
     isFlex={isFlex}
-    isCentered={isCentered}
     bg={bg}
   >
     {children}
@@ -55,7 +50,6 @@ Container.propTypes = {
 
 Container.defaultProps = {
   isFlex: true,
-  isCentered: true,
   bg: null,
   isFullWidth: false
 };

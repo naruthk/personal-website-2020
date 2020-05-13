@@ -1,5 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types";
+
+import useSiteMetadata from '../hooks/use-site-metadata';
+
 import {
   FaFacebook,
   FaTwitter,
@@ -7,7 +10,6 @@ import {
   FaGithub,
   FaCodepen
 } from 'react-icons/fa';
-
 import {
   responsiveFontSizes,
   colors,
@@ -73,24 +75,79 @@ const ArticleSharingWrapper = styled.div`
   }
   > * {
     vertical-align: sub;
-    margin: 10px;
+    margin: 5px;
+    ${mediaQuery[2]} {
+      margin: 10px;
+    }}
   }
-  a:hover {
+  button {
+    background: transparent;
+    padding: 0;
+    border: none;
+    outline: none;
+    color: ${colors.dark};
+    font-size: ${responsiveFontSizes.normal};
+  }
+  button:hover {
     color: ${colors.blue};
+  }
+  span {
+    font-size: ${responsiveFontSizes.small};
+    vertical-align: middle;
+    color: ${colors.mediumGrey};
   }
 `;
 
-const renderArticleSharingLinks = ({ title, description, image }) => (
-  <ArticleSharingWrapper>
-    <a className="facebook" href="#"><FaFacebook /></a>
-    <a className="twitter" href="#"><FaTwitter /></a>
-    <a className="linkedin" href="#"><FaLinkedin /></a>
-  </ArticleSharingWrapper>
-);
+const renderArticleSharingLinks = url => {
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
 
-const SocialNetworkSharing = ({ data, isDark, isFloatingHeader }) => (
-  <Wrapper isDark={isDark} isFloatingHeader={isFloatingHeader}>
-      {data ? renderArticleSharingLinks(data) : (
+  return (
+    <ArticleSharingWrapper>
+      <span className="label">Share:</span>
+      <button
+        className="facebook"
+        onClick={e => {
+          e.preventDefault();
+          window.open(
+            facebookShareUrl,
+            "Share on Facebook",
+            "width=626, height=436"
+          );
+        }}
+      >
+        <FaFacebook />
+      </button>
+      <button
+        className="twitter"
+        onClick={e => {
+          e.preventDefault();
+          window.open(
+            twitterShareUrl,
+            "Share on Twitter",
+            "height=320, width=500"
+          );
+        }}
+      >
+        <FaTwitter />
+      </button>
+      <button
+        className="linkedin"
+        onClick={() => alert("hi")}
+      >
+        <FaLinkedin />
+      </button>
+    </ArticleSharingWrapper>
+  );
+};
+
+const SocialNetworkSharing = ({ isDark, isFloatingHeader, pathName }) => {
+  const { siteUrl } = useSiteMetadata();
+  const currentPageUrl = `${siteUrl}${pathName}`;
+
+  return (
+    <Wrapper isDark={isDark} isFloatingHeader={isFloatingHeader}>
+      {isFloatingHeader ? renderArticleSharingLinks(currentPageUrl) : (
         <ul>
         {Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
           <li>
@@ -101,23 +158,19 @@ const SocialNetworkSharing = ({ data, isDark, isFloatingHeader }) => (
         ))}
         </ul>
       )}
-  </Wrapper>
-);
+    </Wrapper>
+  );
+};
 
 SocialNetworkSharing.propTypes = {
   isDark: PropTypes.bool,
-  data: PropTypes.shape({
-    title: PropTypes.string,
-    descrption: PropTypes.string,
-    image: PropTypes.string
-  }),
-  isFloatingHeader: PropTypes.bool
+  isFloatingHeader: PropTypes.bool,
+  pathName: PropTypes.string.isRequired
 };
 
 SocialNetworkSharing.propTypes = {
   isDark: false,
-  isFloatingHeader: false,
-  data: null
+  isFloatingHeader: false
 };
 
 export default SocialNetworkSharing;

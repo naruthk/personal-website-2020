@@ -64,7 +64,7 @@ const PostTitleWrapper = styled.div`
   white-space: nowrap;
 `;
 
-const FloatingHeader = ({ title, sharingStructData }) => {
+const FloatingHeader = ({ title, sharingStructData, pathName }) => {
   const [isActive, setIsActive] = useState(false);
   const [currentScrollingPositionY, setCurrentScrollingPositionY] = useState(0);
 
@@ -89,7 +89,7 @@ const FloatingHeader = ({ title, sharingStructData }) => {
     <FloatingHeaderWrapper isActive={isActive}>
       <Logo />
       <PostTitleWrapper>{title}</PostTitleWrapper>
-      <Share isFloatingHeader={true} data={sharingStructData} />
+      <Share isFloatingHeader={true} pathName={pathName} />
       <ProgressContainer value={currentScrollingPositionY} max="100" />
     </FloatingHeaderWrapper>
   )
@@ -99,7 +99,8 @@ export default FloatingHeader;
 
 FloatingHeader.propTypes = {
   title: PropTypes.string,
-  sharingStructData: PropTypes.object
+  sharingStructData: PropTypes.object,
+  pathName: PropTypes.string.isRequired
 }
 
 FloatingHeader.defaultProps = {

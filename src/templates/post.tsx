@@ -11,7 +11,6 @@ import styled from "@emotion/styled";
 import { prettyPrintDate } from "../utils/dates";
 import { mediaQuery, colors, MAX_WIDTH} from "../utils/styles";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
-import { SingleBlogPostPageProps } from "../utils/types";
 
 const PostInformationContainer = styled.div`
   text-align: center;
@@ -55,7 +54,7 @@ const PostContentContainer = styled.article`
   }
 `;
 
-const BlogPost = ({ data }: SingleBlogPostPageProps) => {
+const BlogPost = ({ location, data }) => {
 
   const {
     title,
@@ -69,18 +68,17 @@ const BlogPost = ({ data }: SingleBlogPostPageProps) => {
 
   return (
     <Layout>
-      <SEO title={title} description={excerpt.excerpt} />
-      <FloatingHeader
+      <SEO
         title={title}
-        sharingStructData={{
-          title,
-          description: excerpt,
-          thumbnail: heroImage.fluid.src
-        }}/>
+        description={excerpt.excerpt}
+        metaImage={heroImage.resize}
+        pathName={location.pathname}
+      />
+      <FloatingHeader title={title} pathName={location.pathname}/>
       <PostInformationContainer>
         <h1>{title}</h1>
         <p className="post_information_center---label">{excerpt.excerpt}</p>
-        <img src={heroImage.fluid.src} alt={heroImage.title} />
+        <img src={heroImage.resize.src} alt={heroImage.title} />
       </PostInformationContainer>
       <PostContentContainer>
         {renderRichTextContent(content.json)}
@@ -109,8 +107,10 @@ export const pageQuery = graphql`
       excerpt
     }
     heroImage {
-      fluid {
+      resize(width: 1200) {
         src
+        width
+        height
       }
     }
     category

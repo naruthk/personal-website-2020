@@ -26,7 +26,8 @@ export const responsiveFontSizes = {
   large: "1.7411em",
   medium: "1.5157em",
   normal: "1em",
-  small: "0.7em"
+  small: "0.7em",
+  tiny: "0.2em"
 };
 
 const breakpoints = [576, 768, 992, 1200];

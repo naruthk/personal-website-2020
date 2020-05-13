@@ -7,6 +7,7 @@ module.exports = {
     title: `Naruth Kongurai Personal Website`,
     description: `Full Stack Web Developer building awesome and exciting web applications with JavaScript.`,
     author: `Naruth Kongurai`,
+    siteUrl: `https://www.naruth.com`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

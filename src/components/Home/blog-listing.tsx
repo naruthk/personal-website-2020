@@ -14,6 +14,7 @@ const BlogsList = styled.div`
 
 const HomePageBlogListing = ({ items }) => (
   <Container>
+    <hr />
     <h1>Latest Posts</h1>
     {items.map(post => {
       const { title, slug, excerpt } = post.node;

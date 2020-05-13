@@ -54,7 +54,7 @@ export const pageQuery = graphql`
           excerpt
         }
         heroImage {
-          fixed {
+          fluid {
             src
           }
         }

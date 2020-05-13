@@ -5,10 +5,10 @@ import { Link } from "gatsby";
 import Container from "../container";
 import { ROUTES } from "../../utils/routes";
 import {
-  responsiveFontSizes,
   mediaQuery,
   flexbox,
-  layout
+  layout,
+  colors
 } from "../../utils/styles";
 
 import styled from "@emotion/styled";
@@ -19,6 +19,7 @@ const Wrapper = styled.section`
   ${layout}
   display: flex;
   flex-flow: row wrap;
+  background: ${colors.white};
 `;
 
 const Item = styled.div`
@@ -39,23 +40,6 @@ const BackgroundImage = styled.div`
   `}
 `;
 
-const ExternalLink = styled.div`
-  margin-top: 10px;
-  a {
-    font-size: ${responsiveFontSizes.large};
-  }
-`;
-
-const Date = styled.div`
-  margin-bottom: 10px;
-  span {
-    font-size: ${responsiveFontSizes.small};
-  }
-  .date--active {
-    font-weight: 700;
-  }
-`;
-
 const NUMBER_OF_PROJECTS_TO_FEATURED = 4;
 
 const ProjectsListing = ({ items }) => (
@@ -65,18 +49,13 @@ const ProjectsListing = ({ items }) => (
         const {
           slug,
           title,
-          category,
-          url,
           excerpt,
           heroImage,
-          isActive,
-          initialStartDate,
-          completionDate
         } = item.node;
         
         return (
           <Item key={slug}>
-            <BackgroundImage src={heroImage.fixed.src} /> 
+            <BackgroundImage src={heroImage.fluid.src} /> 
             <Container>
               <Link to={`${ROUTES.PROJECT.url}/${slug}`}>
                 <h2>{title}</h2>
@@ -90,7 +69,7 @@ const ProjectsListing = ({ items }) => (
     
     <Wrapper justifyContent="space-evenly">
       <Link to={ROUTES.PROJECT.url}>
-        <h3>View all projects -></h3>
+        <h4>View all projects -></h4>
       </Link>
     </Wrapper>
   </>

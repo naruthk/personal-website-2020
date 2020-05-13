@@ -9,12 +9,14 @@ import { DiJavascript1, DiHtml5, DiBootstrap, DiReact } from 'react-icons/di';
 const TagsWrapper = styled.section`
   span {
     padding: 5px 10px;
-    border: 1px solid ${colors.lightGrey};
-    color: ${colors.lightGrey};
+    border: 1px solid ${colors.yellow};
     margin-right: 5px;
     display: inline-block;
     font-size: ${responsiveFontSizes.small};
     cursor: default;
+    :last-child {
+      margin: 0;
+    }
   }
   svg {
     vertical-align: middle;

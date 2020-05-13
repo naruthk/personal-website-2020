@@ -6,8 +6,8 @@ import SEO from "../components/seo";
 import Container from "../components/container";
 import Share from "../components/share";
 import Tags from "../components/tags";
+import FloatingHeader from "../components/ui/floating-header";
 
-import { SingleProjectPageProps } from "../utils/types";
 import { prettyPrintDate } from "../utils/dates";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 
@@ -48,7 +48,7 @@ const Meta = styled.div`
   }
 `;
 
-const Project = ({ data }: SingleProjectPageProps) => {
+const Project = ({ location, data }) => {
   const {
     title,
     category,
@@ -62,34 +62,38 @@ const Project = ({ data }: SingleProjectPageProps) => {
 
   return (
     <Layout>
-      <SEO title={title} description={excerpt.excerpt} />
+      <SEO
+        title={title}
+        description={excerpt.excerpt}
+        metaImage={heroImage.resize}
+        pathName={location.pathname}
+      />
+      <FloatingHeader title={title} pathName={location.pathname}/>
       <Container>
         <h1>{title}</h1>
       </Container>
-      <img src={heroImage.fluid.src} alt={heroImage.title} />
-      <Container bg={colors.white}>
+      <img src={heroImage.resize.src} alt={heroImage.title} />
+      <Container>
         <ContentWrapper>
           <div>
             <h2>{title}</h2>
             <p>{excerpt.excerpt}</p>
-            <p><a href={url} title={title}>GitHub Repository</a></p>
-            <Tags items={category} />
+            <p>
+              <a href={url} title={`${title} - GitHub`}>
+                View source code on GitHub ->
+              </a>
+            </p>
           </div>
           <Meta>
             <h4>
               {prettyPrintDate({ timestamp: initialStartDate })} - {prettyPrintDate({ timestamp: completionDate })}
               <span>Date of Completion</span>
-              </h4>
-            <Share
-              isDark={true}
-              data={{
-                title,
-                description: excerpt,
-                thumbnail: heroImage.fluid.src
-              }}
-            />
+            </h4>
+            <Tags items={category} />
           </Meta>
         </ContentWrapper>
+      </Container>
+      <Container bg={colors.white}>
         <section>
           {renderRichTextContent(description.json)}
         </section>
@@ -113,8 +117,10 @@ export const pageQuery = graphql`
       excerpt
     }
     heroImage {
-      fluid {
+      resize(width: 1200) {
         src
+        width
+        height
       }
     }
     initialStartDate

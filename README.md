@@ -1,11 +1,11 @@
 # Naruth Kongurai Personal Website 😎
 
-In the process of cooking up 👩‍🍳 🍣
+Source code for my website.
 
-A follow-up blog post detailing the entire process from start to finish is also in the work.
-
-## Technology Listing
+Please [check out this blog post](https://www.naruth.com/blog/it-is-time-for-a-refresh) I have written that describes the overall features and architecture of this website.
 
 - Gatsby.js
-- TypeScript coverage
+- React.js
 - Contentful (Headless CMS)
+- TypeScript
+- SEO optimization
