@@ -48,11 +48,7 @@ const Wrapper = styled.section`
   ul, li {
     margin: 0;
     padding: 0;
-    font-size: ${responsiveFontSizes.small};
-
-    ${responsiveFontSizes[2]} {
-      font-size: ${responsiveFontSizes.normal};
-    }
+    font-size: ${responsiveFontSizes.medium};
   }
 
   li {

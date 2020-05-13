@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { css } from "@emotion/core";
@@ -84,19 +84,30 @@ const CloseButton = styled.span`
   }
 `;
 
-const Modal = ({ children, isActive, setActive }) => (
-  <>
-    <ModalWrapper>
-      <ContentWrapper className={isActive && "active" || ""}>
-        <CloseButton>
-          <a onClick={() => setActive(!isActive)}>Close X</a>
-        </CloseButton>
-        {children}
-      </ContentWrapper>
-    </ModalWrapper>
-    <Portal isActive={isActive} onClick={() => setActive(!isActive)} />
-  </>
-);
+const Modal = ({ children, isActive, setActive }) => {
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.addEventListener("keydown", event => {
+      if (event.keyCode === 27) setActive(false);
+    });
+
+    return () => window.removeEventListener("keydown", null);
+  }, []);
+
+  return (
+    <>
+      <ModalWrapper>
+        <ContentWrapper className={isActive && "active" || ""}>
+          <CloseButton>
+            <a onClick={() => setActive(!isActive)}>Close X</a>
+          </CloseButton>
+          {children}
+        </ContentWrapper>
+      </ModalWrapper>
+      <Portal isActive={isActive} onClick={() => setActive(!isActive)} />
+    </>
+  );
+};
 
 export default Modal;
 
