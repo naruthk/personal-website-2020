@@ -102,14 +102,4 @@ export const globalStyles = css`
     -webkit-background-clip: unset;
     -webkit-text-fill-color: ${colors.white};
   }
-
-  /* PrismJS Customization */
-  pre[class*="language-"] {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    overflow: initial;
-    float: left; /* 1 */
-    min-width: 100%; /* 2 */
-  }
 `;

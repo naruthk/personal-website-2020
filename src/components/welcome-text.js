@@ -4,7 +4,7 @@ import { colors, transition, mediaQuery, responsiveFontSizes } from "../utils/st
 import styled from "@emotion/styled";
 
 const WelcomeTextWrapper = styled.div`
-  margin-top: 20px;
+  margin: 20px auto 0 auto;
   ${mediaQuery[2]} {
     margin-top: 40px;
   }

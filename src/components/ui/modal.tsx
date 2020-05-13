@@ -41,6 +41,7 @@ const Portal = styled.div`
       background-color: ${colors.dark};
       overflow: hidden;
       color: ${colors.white};
+      overflow-y: hidden !important;
     `
   }
 `;

@@ -7,6 +7,7 @@ import SEO from "../components/seo";
 import { HomePageBlogListing, HomePageProjectsListing } from "../components/Home";
 
 import { HomePageProps } from "../utils/types";
+import MovingProfilePicture from "../components/ui/moving-profile-picture";
 
 const HomePage = (props: HomePageProps) => {
   const {
@@ -19,6 +20,7 @@ const HomePage = (props: HomePageProps) => {
       <SEO title="Naruth Kongurai" />
       {/* <HomePageProjectsListing items={rawProjectsData.edges} />
       <HomePageBlogListing items={rawBlogPostsData.edges} /> */}
+      <MovingProfilePicture />
     </Layout>
   );
 };
