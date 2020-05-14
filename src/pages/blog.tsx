@@ -46,7 +46,7 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
           const { title, slug, excerpt, createdAt } = post.node;
           const url = `${ROUTES.BLOG.url}/${slug}`;
           return (
-            <Section>
+            <Section key={slug}>
               <div>
                 <Link to={url} title={title}>
                   <Title>{title}</Title>

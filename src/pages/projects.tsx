@@ -29,7 +29,7 @@ const ProjectItemWrapper = styled.div`
 const LinksWrapper = styled.p`
   a {
     margin-right: 20px;
-    :first-child {
+    :first-of-type {
       border-right: 1px solid ${colors.yellow};
       padding-right: 20px;
       vertical-align: middle;
@@ -49,7 +49,7 @@ const ProjectsListingPage = ({ data }) => {
           const { title, excerpt, heroImage, slug, url } = post.node;
           const projectPageUrl = `${ROUTES.PROJECT.url}/${slug}`;
           return (
-            <ProjectItemWrapper>
+            <ProjectItemWrapper key={slug}>
               <div>
                 <p><img src={heroImage.fixed.src} alt={title} /></p>
               </div>

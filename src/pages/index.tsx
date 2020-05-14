@@ -16,12 +16,14 @@ const HomePage = (props: HomePageProps) => {
   } = props.data;
 
   return (
-    <Layout showWelcomeText>
-      <SEO title="Naruth Kongurai" />
-      {/* <HomePageProjectsListing items={rawProjectsData.edges} />
-      <HomePageBlogListing items={rawBlogPostsData.edges} /> */}
-      <MovingProfilePicture />
-    </Layout>
+    <>
+      <Layout showWelcomeText>
+        <SEO title="Naruth Kongurai" />
+        {/* <HomePageProjectsListing items={rawProjectsData.edges} />
+        <HomePageBlogListing items={rawBlogPostsData.edges} /> */}
+        <MovingProfilePicture />
+      </Layout>
+    </>
   );
 };
 

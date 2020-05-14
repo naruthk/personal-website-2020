@@ -52,6 +52,9 @@ const ProgressContainer = styled.progress`
   left: 0;
   width: 100%;
   height: 2px;
+  ${mediaQuery[2]} {
+    height: 5px;
+  }
   border: none;
   background: none;
   -webkit-appearance: none;
@@ -68,22 +71,26 @@ const FloatingHeader = ({ title, sharingStructData, pathName }) => {
   const [isActive, setIsActive] = useState(false);
   const [currentScrollingPositionY, setCurrentScrollingPositionY] = useState(0);
 
+  const updateScrollActivity = () => {
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const currentlyScrolledPercentage = (scrollTop / height) * 100;
+
+    setIsActive(currentlyScrolledPercentage > 0);
+    setCurrentScrollingPositionY(currentlyScrolledPercentage);
+  };
+
   useEffect(() => {
     if (!document) return;
-
-    window.addEventListener("scroll", () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const currentlyScrolledPercentage = (winScroll / height) * 100;
   
-      setIsActive(currentlyScrolledPercentage > 0);
-      setCurrentScrollingPositionY(currentlyScrolledPercentage);
-    });
+    window.addEventListener("scroll", updateScrollActivity);
 
     return () => {
-      window.removeEventListener("scroll", () => setIsActive(false));
+      window.removeEventListener("scroll", updateScrollActivity);
+      setIsActive(false);
+      setCurrentScrollingPositionY(0);
     };
-  }, [setIsActive]);
+  }, []);
 
   return (
     <FloatingHeaderWrapper isActive={isActive}>

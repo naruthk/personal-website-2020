@@ -58,7 +58,7 @@ const Wrapper = styled.section`
     :last-child {
       margin-right: 0;
     }
-    ${({ isFloatingHeader }) => isFloatingHeader &&
+    ${({ isFloatingHeaderComponent }) => isFloatingHeaderComponent &&
       css`color: ${colors.mediumGrey}`
     }
   }
@@ -140,16 +140,16 @@ const renderArticleSharingLinks = url => {
   );
 };
 
-const SocialNetworkSharing = ({ isDark, isFloatingHeader, pathName }) => {
+const SocialNetworkSharing = ({ isFloatingHeader, pathName }) => {
   const { siteUrl } = useSiteMetadata();
   const currentPageUrl = `${siteUrl}${pathName}`;
 
   return (
-    <Wrapper isDark={isDark} isFloatingHeader={isFloatingHeader}>
+    <Wrapper isFloatingHeaderComponent={isFloatingHeader}>
       {isFloatingHeader ? renderArticleSharingLinks(currentPageUrl) : (
         <ul>
         {Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
-          <li>
+          <li key={link.name}>
             <OutboundLink href={link.url} title={`Naruth Kongurai's ${link.name}`}>{link.icon}</OutboundLink>
           </li>
         ))}
@@ -160,13 +160,11 @@ const SocialNetworkSharing = ({ isDark, isFloatingHeader, pathName }) => {
 };
 
 SocialNetworkSharing.propTypes = {
-  isDark: PropTypes.bool,
   isFloatingHeader: PropTypes.bool,
   pathName: PropTypes.string.isRequired
 };
 
 SocialNetworkSharing.propTypes = {
-  isDark: false,
   isFloatingHeader: false
 };
 
