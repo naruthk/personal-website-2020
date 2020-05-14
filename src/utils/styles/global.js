@@ -69,23 +69,40 @@ export const globalStyles = css`
     }
   }
 
+  /**
+    TYPOGRAPHY
+   */
   h1, h2, h3, h4, h5, h6, p {
     margin-top: 0;
   }
 
   h1 {
-    font-size: ${responsiveFontSizes.xlarge};
-    letter-spacing: -0.033em;
-  }
-  h2 {
     font-size: ${responsiveFontSizes.large};
   }
-  h3 {
+  h2 {
     font-size: ${responsiveFontSizes.medium};
   }
+  h3 {
+    font-size: ${responsiveFontSizes.normal};
+    font-weight: 500;
+  }
+
   p {
     font-size: ${responsiveFontSizes.normal};
     line-height: 1.7em;
+  }
+
+  ${mediaQuery[2]} {
+    h1 {
+      font-size: ${responsiveFontSizes.xlarge};
+      letter-spacing: -0.033em;
+    }
+    h2 {
+      font-size: ${responsiveFontSizes.large};
+    }
+    h3 {
+      font-size: ${responsiveFontSizes.medium};
+    }
   }
 
   .react-icons {

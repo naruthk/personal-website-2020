@@ -6,32 +6,54 @@ import SEO from "../components/seo";
 import Container from "../components/container";
 
 import { ROUTES } from "../utils/routes";
-import { prettyPrintDate } from "../utils/dates";
 import { BlogPostsPageProps } from "../utils/types";
-import { colors } from "../utils/styles";
+import { colors, mediaQuery } from "../utils/styles";
 
 import styled from '@emotion/styled';
 
-const Section = styled.article`
-  margin: 20px 0;
+const PADDED_SPACE_MOBILE = "10px";
+const PADDED_SPACE_DESKTOP = "1em";
+
+const PostsListWrapper = styled.div`
+  ${mediaQuery[2]} {
+    margin: 20px 0 0 -${PADDED_SPACE_MOBILE};
+  }
+  margin: 20px 0 0 -${PADDED_SPACE_DESKTOP};
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
+`;
+
+const PostItemWrapper = styled.article`
+  width: 100%;
+  ${mediaQuery[1]} {
+    width: 50%;
+  }
+  ${mediaQuery[2]} {
+    width: 33.3%;
+  }
+
+  padding-left: ${PADDED_SPACE_MOBILE};
+  margin-bottom: ${PADDED_SPACE_MOBILE};
+
+  ${mediaQuery[2]} {
+    padding-left: ${PADDED_SPACE_DESKTOP};
+    margin-bottom: ${PADDED_SPACE_DESKTOP};
+  }
 
   img {
-    max-width: 200px;
-    width: 100%;
-    margin-right: 20px;
+    box-shadow: 0 0 7px ${colors.lightGrey};
+    border: 0.3em solid white;
   }
+  :hover {
+    img {
+      border: 0.3em solid ${colors.dark};
+  }
+
 `;
 
 const Title = styled.h2`
-  margin-top: 0;
-`;
-
-const Date = styled.span`
-  margin-right: 20px;
-  border-right: 1px solid ${colors.yellow};
-  padding-right: 20px;
+  margin-top: ${PADDED_SPACE_DESKTOP};
+  font-weight: 500;
 `;
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
@@ -42,26 +64,22 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
       <SEO title="Blog Posts" />
       <Container bg={colors.white}>
         <h1>Blog</h1>
-        {posts.map(post => {
-          const { title, slug, excerpt, createdAt } = post.node;
-          const url = `${ROUTES.BLOG.url}/${slug}`;
-          return (
-            <Section key={slug}>
-              <div>
+        <PostsListWrapper>
+          {posts.map(post => {
+            const { title, slug, excerpt, heroImage } = post.node;
+            const url = `${ROUTES.BLOG.url}/${slug}`;
+    
+            return (
+              <PostItemWrapper key={slug}>
                 <Link to={url} title={title}>
+                  <img src={heroImage.fixed.src} alt={title} />
                   <Title>{title}</Title>
                 </Link>
                 <p>{excerpt.excerpt}</p>
-                <p>
-                  <Date>{prettyPrintDate({ timestamp: createdAt })}</Date>
-                  <Link to={url} title="Read more">
-                    Read more
-                  </Link> ->
-                </p>
-              </div>
-            </Section>
-          )
-        })}
+              </PostItemWrapper>
+            )
+          })}
+        </PostsListWrapper>
       </Container>
     </Layout>
   );
@@ -81,6 +99,8 @@ export const pageQuery = graphql`
         heroImage {
           fixed {
             src
+            width
+            height
           }
         }
         excerpt {
