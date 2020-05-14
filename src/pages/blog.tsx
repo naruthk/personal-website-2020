@@ -48,7 +48,6 @@ const PostItemWrapper = styled.article`
     img {
       border: 0.3em solid ${colors.dark};
   }
-
 `;
 
 const Title = styled.h2`
