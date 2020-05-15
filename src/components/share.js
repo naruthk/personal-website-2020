@@ -110,7 +110,7 @@ const renderArticleSharingLinks = url => {
   return (
     <ArticleSharingWrapper>
       <span className="label">Share:</span>
-      <button
+      <Link
         className="facebook"
         onClick={e => {
           e.preventDefault();
@@ -122,8 +122,8 @@ const renderArticleSharingLinks = url => {
         }}
       >
         <FaFacebook />
-      </button>
-      <button
+      </Link>
+      <Link
         className="twitter"
         onClick={e => {
           e.preventDefault();
@@ -135,7 +135,7 @@ const renderArticleSharingLinks = url => {
         }}
       >
         <FaTwitter />
-      </button>
+      </Link>
     </ArticleSharingWrapper>
   );
 };

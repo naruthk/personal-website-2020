@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Link as GatsbyLink } from "gatsby";
-import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { OutboundLink, trackCustomEvent } from "gatsby-plugin-google-analytics";
 
-const Link = ({ children, isExternal, href, title, className }) => {
+const Link = ({ children, isExternal, href, title, onClick, className }) => {
   if (isExternal) return (
     <OutboundLink
       href={href}
@@ -17,6 +17,24 @@ const Link = ({ children, isExternal, href, title, className }) => {
     </OutboundLink>
   );
 
+  if (onClick) return (
+    <button
+      className={className}
+      aria-label={title}
+      onClick={() => {
+        trackCustomEvent({
+          category: "click",
+          action: "Click",
+          label: "button_click",
+          value: title
+        });
+        onClick();
+      }}
+    >
+      {children}
+    </button>
+  )
+
   return (
     <GatsbyLink className={className} to={href}>
       {children}
@@ -26,15 +44,18 @@ const Link = ({ children, isExternal, href, title, className }) => {
 
 Link.propTypes = {
   children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   isExternal: PropTypes.bool,
   className: PropTypes.string
 }
 
 Link.defaultProps = {
   isExternal: false,
-  className: null
+  href: "#",
+  className: null,
+  onClick: null
 };
 
 export default Link;

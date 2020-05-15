@@ -9,7 +9,6 @@ import Modal from "./ui/modal";
 import { ROUTES } from "../utils/routes";
 import { colors, mediaQuery } from "../utils/styles";
 
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import styled from '@emotion/styled';
 import { FiMenu } from 'react-icons/fi';
 
@@ -107,30 +106,26 @@ const Header = () => {
               <Link
                 key={item.name}
                 className="desktop-only"
-                href={item.url}>
+                href={item.url}
+                title={item.name}
+              >
                 {item.name}
               </Link>
             )}
-            <button
+            <Link
               className="desktop-only"
-              onClick={() => {
-                trackCustomEvent({
-                  category: "click",
-                  action: "Click",
-                  label: "Contact Button",
-                  value: "ContactButton"
-                });
-                setShowModalOverlay(true);
-              }}
+              title="Contact"
+              onClick={() => setShowModalOverlay(true)}
             >
               {ROUTES.CONTACT.name}
-            </button>
-            <button
+            </Link>
+            <Link
               className="mobile-only"
+              title="Hamburger Menu"
               onClick={() => setShowModalOverlay(true)}
             >
               <FiMenu />
-            </button>
+            </Link>
           </Nav>
         </NavWrapper>
       </Container>
