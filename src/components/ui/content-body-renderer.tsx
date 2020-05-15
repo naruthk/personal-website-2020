@@ -17,14 +17,20 @@ const ContentBodyRendererWrapper = styled.div`
 
   h1, h2, h3, h4 {
     margin-top: 1.6em;
-    font-weight: 500;
+    font-weight: 600;
   }
-
 
   img {
     width: auto;
     max-width: 100%;
     text-align: center;
+  }
+
+  a, a:visited {
+    color: ${colors.blue};
+    :hover {
+      color: ${colors.lightBlue};
+    }
   }
 `;
 

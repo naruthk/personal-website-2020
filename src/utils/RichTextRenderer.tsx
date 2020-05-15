@@ -9,7 +9,10 @@ const UIList = styled.ul`
   margin: 0;
   padding: 0;
   li {
-    margin-left: 20px;
+    margin-left: 40px;
+    padding-left: 10px;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
   }
 `;
 

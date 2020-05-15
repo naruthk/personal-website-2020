@@ -30,6 +30,17 @@ const ContentWrapper = styled.div`
       padding: 0 30px 0 0;
     }
   }
+
+  .content_wrapper---link {
+    background-color: ${colors.orange};
+    color: ${colors.white};
+    padding: .1rem .3rem .2rem;
+    border-radius: .2rem;
+
+    :hover {
+      background-color: ${colors.blue};
+    }
+  }
 `;
 
 const Meta = styled.div`
@@ -37,24 +48,16 @@ const Meta = styled.div`
     text-align: right;
   }
   h4 {
-    span {
-      display: block;
-      font-size: smaller;
-      color: ${colors.yellowDark};
-      padding-top: 10px;
-      margin-top: 10px;
-      border-top: 1px solid ${colors.yellow};
-    }
+    margin-bottom: 0;
   }
-`;
-
-const PostContentWrapper = styled.div`
-  .post_content---body {
-      h1, h2, h3, h4 {
-        margin-top: 1.6em;
-        font-weight: 600;
-      }
-    }
+  span.date {
+    display: inline-flex;
+    font-size: smaller;
+    color: ${colors.yellowDark};
+    padding-top: 10px;
+    margin: 10px 0;
+    border-top: 1px solid ${colors.yellow};
+  }
 `;
 
 const Project = ({ location, data }) => {
@@ -89,13 +92,23 @@ const Project = ({ location, data }) => {
             <h2>{title}</h2>
             <p>{excerpt.excerpt}</p>
             <p>
-              <Link isExternal href={sourceCodeUrl} title={`${title} - GitHub`}>
+              <Link
+                isExternal
+                className="content_wrapper---link"
+                href={sourceCodeUrl}
+                title={`${title} - GitHub`}
+              >
                 View source code on GitHub ->
               </Link>
             </p>
             {demoUrl && (
               <p>
-                <Link isExternal href={demoUrl} title={`${title} - Demo`}>
+                <Link
+                  isExternal
+                  className="content_wrapper---link"
+                  href={demoUrl}
+                  title={`${title} - Demo`}
+                >
                   Demo ->
                 </Link>
               </p>
@@ -104,8 +117,8 @@ const Project = ({ location, data }) => {
           <Meta>
             <h4>
               {prettyPrintDate({ timestamp: initialStartDate })} - {prettyPrintDate({ timestamp: completionDate })}
-              <span>Date of Completion</span>
             </h4>
+            <span className="date">Date of Completion</span>
             <Tags items={category} />
           </Meta>
         </ContentWrapper>
