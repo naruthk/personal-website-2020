@@ -60,12 +60,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `naruth.dev`,
+        short_name: `Naruth`,
+        lang: 'en',
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `rgb(250, 250, 250)`,
+        theme_color: `#feae00`,
         display: `minimal-ui`,
+        icon: `src/images/logo.png`
       },
     },
     {

@@ -10,6 +10,7 @@ const FooterWrapper = styled.footer`
   width: 100%;
   min-height: 200px;
   text-align: center;
+  margin-top: 20px;
   p { margin-top: 20px; }
 `;
 
@@ -24,6 +25,8 @@ const Footer = () => (
         <OutboundLink href="https://www.gatsbyjs.org" title="Gatsby.js">
           gatsby.js
         </OutboundLink>
+        <br/>
+        Developed by Naruth Kongurai
       </p>
     </Container>
   </FooterWrapper>

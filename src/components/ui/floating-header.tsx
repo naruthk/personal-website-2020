@@ -8,12 +8,17 @@ import { colors, mediaQuery } from "../../utils/styles";
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
 
+export const FLOATING_HEADER_HEIGHT = {
+  mobile: "50px",
+  desktop: "60px"
+};
+
 const FloatingHeaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  height: 40px;
+  height: ${FLOATING_HEADER_HEIGHT.mobile};
   ${mediaQuery[2]} {
-    height: 60px;
+    height: ${FLOATING_HEADER_HEIGHT.desktop};
   }
 
   > div {
@@ -67,7 +72,7 @@ const PostTitleWrapper = styled.div`
   white-space: nowrap;
 `;
 
-const FloatingHeader = ({ title, sharingStructData, pathName }) => {
+const FloatingHeader = ({ title, pathName }) => {
   const [isActive, setIsActive] = useState(false);
   const [currentScrollingPositionY, setCurrentScrollingPositionY] = useState(0);
 
@@ -106,11 +111,9 @@ export default FloatingHeader;
 
 FloatingHeader.propTypes = {
   title: PropTypes.string,
-  sharingStructData: PropTypes.object,
   pathName: PropTypes.string.isRequired
 }
 
 FloatingHeader.defaultProps = {
- title: "",
- sharingStructData: null
+ title: ""
 };

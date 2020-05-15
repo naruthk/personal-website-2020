@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 import Link from "./link";
@@ -6,7 +5,6 @@ import Container from "./container";
 import Logo from "./ui/logo";
 import Share from "./share";
 import Modal from "./ui/modal";
-import WelcomeText from "./welcome-text";
 
 import { ROUTES } from "../utils/routes";
 import { colors, mediaQuery } from "../utils/styles";
@@ -41,13 +39,13 @@ const NavWrapper = styled.div`
 
   .desktop-only {
     display: none;
-    ${mediaQuery[1]} {
+    ${mediaQuery[2]} {
       cursor: pointer;
       display: inline;
     }
   }
   .mobile-only {
-    ${mediaQuery[1]} {
+    ${mediaQuery[2]} {
       display: none;
     }
   }
@@ -95,9 +93,8 @@ const MenuOverlayLink = styled.span`
   }
 `;
 
-const Header = ({ showWelcomeText }) => {
+const Header = () => {
   const [showModalOverlay, setShowModalOverlay] = useState(false);
-
   const navOrder = [ROUTES.BLOG, ROUTES.PROJECT, ROUTES.ABOUT];
 
   return (
@@ -136,7 +133,6 @@ const Header = ({ showWelcomeText }) => {
             </button>
           </Nav>
         </NavWrapper>
-        {showWelcomeText && <WelcomeText />}
       </Container>
 
       {/* Modal expands full screen on mobile screen size */}
@@ -167,13 +163,5 @@ const Header = ({ showWelcomeText }) => {
     </>
   );
 };
-
-Header.propTypes = {
-  showWelcomeText: PropTypes.bool
-}
-
-Header.defaultProps = {
-  showWelcomeText: false
-}
 
 export default Header;

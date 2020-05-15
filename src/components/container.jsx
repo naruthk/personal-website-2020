@@ -24,13 +24,11 @@ const ContainerWrapper = styled.section`
 
 const Container = ({
   children,
-  width,
   isFlex,
   bg,
   isFullWidth
 }) => (
   <ContainerWrapper
-    // maxWidth={width}
     isFullWidth={isFullWidth}
     isFlex={isFlex}
     bg={bg}
@@ -41,7 +39,6 @@ const Container = ({
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
-  width: PropTypes.number,
   isFlex: PropTypes.bool,
   isCentered: PropTypes.bool,
   bg: PropTypes.string,
@@ -49,7 +46,7 @@ Container.propTypes = {
 }
 
 Container.defaultProps = {
-  isFlex: true,
+  isFlex: false,
   bg: null,
   isFullWidth: false
 };

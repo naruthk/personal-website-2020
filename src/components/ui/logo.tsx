@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "gatsby";
 
-import Container from "../container";
+import Link from "../link";
+import { FLOATING_HEADER_HEIGHT } from "./floating-header";
 
 import { colors, mediaQuery } from "../../utils/styles";
-import styled from '@emotion/styled';
 
-const LENGTH_MOBILE = "40px";
-const LENGTH_DESKTOP = "60px"; /* to align with Floating Header */
+import styled from '@emotion/styled';
 
 const SiteLogo = styled.div`
   text-align: center;
@@ -17,24 +15,23 @@ const SiteLogo = styled.div`
   font-weight: 700;
   transition: 1s all;
 
-  width: ${LENGTH_MOBILE};
-  height: ${LENGTH_MOBILE};
-  line-height: ${LENGTH_MOBILE};
+  width: ${FLOATING_HEADER_HEIGHT.mobile};
+  height: ${FLOATING_HEADER_HEIGHT.mobile};
+  line-height: ${FLOATING_HEADER_HEIGHT.mobile};
   
   ${mediaQuery[2]} {
-    width: ${LENGTH_DESKTOP};
-    height: ${LENGTH_DESKTOP};
-    line-height: ${LENGTH_DESKTOP};
+    width: ${FLOATING_HEADER_HEIGHT.desktop};
+    height: ${FLOATING_HEADER_HEIGHT.desktop};
+    line-height: ${FLOATING_HEADER_HEIGHT.desktop};
   }
 
   :hover {
-    /* border-radius: 25px; */
     background-color: ${colors.orange};
   }
 `;
 
 const Logo = ({ showWelcomeText }) => (
-  <Link to="/">
+  <Link href="/" title="Home">
     <SiteLogo>NK</SiteLogo>
   </Link>
 );

@@ -47,6 +47,15 @@ const Meta = styled.div`
   }
 `;
 
+const PostContentWrapper = styled.div`
+  .post_content---body {
+      h1, h2, h3, h4 {
+        margin-top: 1.6em;
+        font-weight: 600;
+      }
+    }
+`;
+
 const Project = ({ location, data }) => {
   const {
     title,
@@ -101,12 +110,14 @@ const Project = ({ location, data }) => {
         </ContentWrapper>
       </Container>
       <Container bg={colors.white}>
-        <div
-          className="post_content---body"
-          dangerouslySetInnerHTML={{
-            __html: body.childMarkdownRemark.html,
-          }}
-        />
+        <PostContentWrapper>
+          <div
+            className="post_content---body"
+            dangerouslySetInnerHTML={{
+              __html: body.childMarkdownRemark.html,
+            }}
+          />
+        </PostContentWrapper>
       </Container>
     </Layout>
   )

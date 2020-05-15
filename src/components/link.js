@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import { Link as GatsbyLink } from "gatsby";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-const Link = ({ children, isExternal, href, title, classNames }) => {
+const Link = ({ children, isExternal, href, title, className }) => {
   if (isExternal) return (
     <OutboundLink
       href={href}
       title={title}
-      className={classNames}
+      className={className}
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -18,7 +18,7 @@ const Link = ({ children, isExternal, href, title, classNames }) => {
   );
 
   return (
-    <GatsbyLink className={classNames} to={href}>
+    <GatsbyLink className={className} to={href}>
       {children}
     </GatsbyLink>
   );

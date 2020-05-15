@@ -27,11 +27,18 @@ const PostInformationContainer = styled.div`
 
 const PostContentContainer = styled.article`
   h1, h2, h3, h4 {
-    padding-top: 30px;
+    margin-top: 1.6em;
     font-weight: 500;
   }
   padding: 20px;
   background-color: ${colors.white};
+
+  .post_content---body {
+    img {
+      width: auto;
+      text-align: center;
+    }
+  }
 
   p.post_content---date {
     text-align: center;
@@ -76,8 +83,6 @@ const BlogPost = ({ location, data }) => {
             __html: body.childMarkdownRemark.html,
           }}
         />
-        <hr />
-        <p className="post_content---date">{prettyPrintDate({ timestamp: createdAt })}</p>
       </PostContentContainer>
       <Container>
          <AuthorProfile />
