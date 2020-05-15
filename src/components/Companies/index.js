@@ -1,1 +1,0 @@
-export { default as CompaniesListing } from "./CompaniesListing";

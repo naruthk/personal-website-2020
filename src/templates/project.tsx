@@ -2,16 +2,15 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
+import Link from "../components/link";
 import SEO from "../components/seo";
 import Container from "../components/container";
-import Share from "../components/share";
 import Tags from "../components/tags";
 import FloatingHeader from "../components/ui/floating-header";
 
 import { prettyPrintDate } from "../utils/dates";
-import { renderRichTextContent } from "../utils/RichTextRenderer";
-
 import { colors, mediaQuery } from "../utils/styles";
+
 import styled from "@emotion/styled";
 
 const ContentWrapper = styled.div`
@@ -52,9 +51,10 @@ const Project = ({ location, data }) => {
   const {
     title,
     category,
-    url,
-    description,
+    body,
     excerpt,
+    sourceCodeUrl,
+    demoUrl,
     heroImage,
     initialStartDate,
     completionDate
@@ -79,10 +79,17 @@ const Project = ({ location, data }) => {
             <h2>{title}</h2>
             <p>{excerpt.excerpt}</p>
             <p>
-              <a href={url} title={`${title} - GitHub`}>
+              <Link isExternal href={sourceCodeUrl} title={`${title} - GitHub`}>
                 View source code on GitHub ->
-              </a>
+              </Link>
             </p>
+            {demoUrl && (
+              <p>
+                <Link isExternal href={demoUrl} title={`${title} - Demo`}>
+                  Demo ->
+                </Link>
+              </p>
+            )}
           </div>
           <Meta>
             <h4>
@@ -94,9 +101,12 @@ const Project = ({ location, data }) => {
         </ContentWrapper>
       </Container>
       <Container bg={colors.white}>
-        <section>
-          {renderRichTextContent(description.json)}
-        </section>
+        <div
+          className="post_content---body"
+          dangerouslySetInnerHTML={{
+            __html: body.childMarkdownRemark.html,
+          }}
+        />
       </Container>
     </Layout>
   )
@@ -109,9 +119,10 @@ export const pageQuery = graphql`
   contentfulProjects(slug: { eq: $slug }) {
     title
     category
-    url
-    description {
-      json
+    body {
+      childMarkdownRemark {
+        html
+      }
     }
     excerpt {
       excerpt
@@ -123,6 +134,8 @@ export const pageQuery = graphql`
         height
       }
     }
+    sourceCodeUrl
+    demoUrl
     initialStartDate
     completionDate
   }

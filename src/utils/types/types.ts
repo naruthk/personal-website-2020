@@ -15,12 +15,16 @@ export interface Tags {
   items: [string];
 }
 
+export interface HTMLFromMarkdown {
+  childMarkdownRemark: {
+    html: object
+  }
+};
+
 export interface BlogPostItem {
   slug: string;
   title: string;
-  content: {
-    json: object;
-  };
+  body: HTMLFromMarkdown;
   heroImage: ContentfulImage;
   excerpt: {
     excerpt: string;
@@ -32,18 +36,17 @@ export interface BlogPostItem {
 
 export interface ProjectItem {
   title: string;
-  isActive: boolean;
-  initialStartDate: string;
-  completionDate: string;
-  category: [Tags];
-  url: string;
-  heroImage: ContentfulImage;
+  slug: string;
   excerpt: {
     excerpt: string;
   }
-  description: {
-    json: JSON;
-  }
+  body: HTMLFromMarkdown;
+  heroImage: ContentfulImage;
+  initialStartDate: string;
+  completionDate: string;
+  sourceCodeUrl: string;
+  demoUrl: string;
+  category: [Tags];
 };
 
 export interface CompanyItem {

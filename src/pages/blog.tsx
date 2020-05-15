@@ -1,6 +1,7 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 
+import Link from "../components/link";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Container from "../components/container";
@@ -70,7 +71,7 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
     
             return (
               <PostItemWrapper key={slug}>
-                <Link to={url} title={title}>
+                <Link href={url} title={title}>
                   <img src={heroImage.fixed.src} alt={title} />
                   <Title>{title}</Title>
                 </Link>

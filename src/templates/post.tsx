@@ -9,17 +9,14 @@ import AuthorProfile from "../components/author-profile";
 
 import { prettyPrintDate } from "../utils/dates";
 import { mediaQuery, colors, MAX_WIDTH} from "../utils/styles";
-import MD from 'react-markdown'
+
 import styled from "@emotion/styled";
 
 const PostInformationContainer = styled.div`
   text-align: center;
   h1 {
-    font-weight: 300;
-    padding: 10px;
-  }
-  .post_information_center---label {
-    font-style: italic;
+    font-weight: 400;
+    padding: 0 10px;
   }
   ${mediaQuery[2]} {
     width: 80%;
@@ -49,13 +46,12 @@ const PostContentContainer = styled.article`
 `;
 
 const BlogPost = ({ location, data }) => {
-
   const {
     title,
     excerpt,
     heroImage,
     createdAt,
-    content
+    body
   } = data.contentfulBlogPosts;
 
   return (
@@ -68,12 +64,18 @@ const BlogPost = ({ location, data }) => {
       />
       <FloatingHeader title={title} pathName={location.pathname}/>
       <PostInformationContainer>
+      <p className="post_content---date">{prettyPrintDate({ timestamp: createdAt })}</p>
         <h1>{title}</h1>
         <p className="post_information_center---label">{excerpt.excerpt}</p>
         <img src={heroImage.resize.src} alt={heroImage.title} />
       </PostInformationContainer>
       <PostContentContainer>
-        <MD source={content.content} />
+        <div
+          className="post_content---body"
+          dangerouslySetInnerHTML={{
+            __html: body.childMarkdownRemark.html,
+          }}
+        />
         <hr />
         <p className="post_content---date">{prettyPrintDate({ timestamp: createdAt })}</p>
       </PostContentContainer>
@@ -92,8 +94,10 @@ export const pageQuery = graphql`
     createdAt
     slug
     title
-    content {
-      content
+    body {
+      childMarkdownRemark {
+        html
+      }
     }
     excerpt {
       excerpt

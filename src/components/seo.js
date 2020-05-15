@@ -36,6 +36,10 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
           content: metaDescription,
         },
         {
+          name: `google-site-verification`,
+          content: process.env.GOOGLE_SITE_VERIFICATION_KEY
+        },
+        {
           property: `og:title`,
           content: title,
         },
@@ -82,6 +86,10 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
                 {
                   name: "twitter:card",
                   content: "summary_large_image",
+                },
+                {
+                  name: "twitter:image",
+                  content: image,
                 },
               ]
             : [

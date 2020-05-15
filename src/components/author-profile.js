@@ -1,6 +1,6 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image";
+// import { useStaticQuery, graphql } from "gatsby"
+// import Img from "gatsby-image";
 
 import WelcomeText from "./welcome-text";
 import { mediaQuery } from "../utils/styles";
@@ -30,45 +30,45 @@ const AuthorProfileWrapper = styled.div`
   }
 `;
 
-const ProfilePhotoWrapper = styled.div`
-  margin: auto;
-  ${mediaQuery[2]} {
-    margin-left: 15px;
-  }
-	width: 100px;
-	border: 5px white solid;
-	border-radius: 50%;
-	overflow: hidden;
-	box-shadow: 0 5px 15px 0px rgba(174, 174, 174, 0.6);
-	transform: translatey(0px);
+// const ProfilePhotoWrapper = styled.div`
+//   margin: auto;
+//   ${mediaQuery[2]} {
+//     margin-left: 15px;
+//   }
+// 	width: 100px;
+// 	border: 5px white solid;
+// 	border-radius: 50%;
+// 	overflow: hidden;
+// 	box-shadow: 0 5px 15px 0px rgba(174, 174, 174, 0.6);
+// 	transform: translatey(0px);
 
-	img {
-    width: 100%;
-    height: auto; 
-  }
-`;
+// 	img {
+//     width: 100%;
+//     height: auto; 
+//   }
+// `;
 
 const AuthorProfile = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      authorProfileImage: file(relativePath: { eq: "me.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 100) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     authorProfileImage: file(relativePath: { eq: "me.png" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 100) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
   return (
     <AuthorProfileWrapper>
-      <ProfilePhotoWrapper>
+      {/* <ProfilePhotoWrapper>
         <Img
           fluid={data.authorProfileImage.childImageSharp.fluid}
           alt="Avatar"
         />
-      </ProfilePhotoWrapper>
+      </ProfilePhotoWrapper> */}
       <div className="profile_info">
         <WelcomeText />
       </div>

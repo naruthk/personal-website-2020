@@ -119,4 +119,14 @@ export const globalStyles = css`
     -webkit-background-clip: unset;
     -webkit-text-fill-color: ${colors.white};
   }
+
+  /* Prism.js */
+  pre {
+    padding: 20px 24px;
+    border-bottom: 10px solid ${colors.yellow};
+    border-radius: 10px;
+    code {
+      font-size: 12px !important;
+    }
+  }
 `;
