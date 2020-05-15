@@ -3,12 +3,11 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import Container from "../components/container";
 import FloatingHeader from "../components/ui/floating-header";
-import AuthorProfile from "../components/author-profile";
+import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
 
 import { prettyPrintDate } from "../utils/dates";
-import { mediaQuery, colors, MAX_WIDTH} from "../utils/styles";
+import { mediaQuery } from "../utils/styles";
 
 import styled from "@emotion/styled";
 
@@ -22,33 +21,6 @@ const PostInformationContainer = styled.div`
     width: 80%;
     padding: 20px;
     margin: auto;
-  }
-`;
-
-const PostContentContainer = styled.article`
-  h1, h2, h3, h4 {
-    margin-top: 1.6em;
-    font-weight: 500;
-  }
-  padding: 20px;
-  background-color: ${colors.white};
-
-  .post_content---body {
-    img {
-      width: auto;
-      text-align: center;
-    }
-  }
-
-  p.post_content---date {
-    text-align: center;
-  }
-
-  ${mediaQuery[2]} {
-    width: 70%;
-    max-width: ${MAX_WIDTH};
-    padding: 40px;
-    margin: -100px auto 0 auto;
   }
 `;
 
@@ -76,14 +48,7 @@ const BlogPost = ({ location, data }) => {
         <p className="post_information_center---label">{excerpt.excerpt}</p>
         <img src={heroImage.resize.src} alt={heroImage.title} />
       </PostInformationContainer>
-      <PostContentContainer>
-        <div
-          className="post_content---body"
-          dangerouslySetInnerHTML={{
-            __html: body.childMarkdownRemark.html,
-          }}
-        />
-      </PostContentContainer>
+      <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
     </Layout>
   )
 };

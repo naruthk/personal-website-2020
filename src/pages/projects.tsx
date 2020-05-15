@@ -47,10 +47,11 @@ const ProjectsListingPage = ({ data }) => {
         {posts.map(post => {
           const { title, excerpt, heroImage, slug, sourceCodeUrl } = post.node;
           const projectPageUrl = `${ROUTES.PROJECT.url}/${slug}`;
+
           return (
             <ProjectItemWrapper key={slug}>
               <div>
-                <p><img src={heroImage.fixed.src} alt={title} /></p>
+                <p><Link href={projectPageUrl} title={title}><img src={heroImage.fixed.src} alt={title} /></Link></p>
               </div>
               <div>
                 <h2><Link href={projectPageUrl}>{title}</Link></h2>

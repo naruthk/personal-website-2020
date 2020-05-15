@@ -7,6 +7,7 @@ import SEO from "../components/seo";
 import Container from "../components/container";
 import Tags from "../components/tags";
 import FloatingHeader from "../components/ui/floating-header";
+import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
 
 import { prettyPrintDate } from "../utils/dates";
 import { colors, mediaQuery } from "../utils/styles";
@@ -109,16 +110,7 @@ const Project = ({ location, data }) => {
           </Meta>
         </ContentWrapper>
       </Container>
-      <Container bg={colors.white}>
-        <PostContentWrapper>
-          <div
-            className="post_content---body"
-            dangerouslySetInnerHTML={{
-              __html: body.childMarkdownRemark.html,
-            }}
-          />
-        </PostContentWrapper>
-      </Container>
+      <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
     </Layout>
   )
 };

@@ -29,12 +29,12 @@ Link.propTypes = {
   href: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isExternal: PropTypes.bool,
-  classNames: PropTypes.string
+  className: PropTypes.string
 }
 
 Link.defaultProps = {
   isExternal: false,
-  classNames: ""
+  className: null
 };
 
 export default Link;
