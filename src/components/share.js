@@ -80,7 +80,7 @@ const ArticleSharingWrapper = styled.div`
   }
   > * {
     vertical-align: sub;
-    margin: 5px;
+    margin: 0 5px;
     ${mediaQuery[2]} {
       margin: 10px;
     }}

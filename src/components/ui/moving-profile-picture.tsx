@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   }
 
   #movable_object {
-    width: 50%;
+    width: 60%;
     ${mediaQuery[2]} {
       width: 60%;
     }

@@ -84,9 +84,6 @@ const BlogPost = ({ location, data }) => {
           }}
         />
       </PostContentContainer>
-      <Container>
-         <AuthorProfile />
-      </Container>
     </Layout>
   )
 };

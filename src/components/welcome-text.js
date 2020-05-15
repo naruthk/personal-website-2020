@@ -23,7 +23,7 @@ const WelcomeTextWrapper = styled.div`
 
 const WelcomeText = () => (
   <WelcomeTextWrapper>
-    <h1>Hi, I'm <span>Naruth</span>. I design and create web apps that is aimed towards <span>bridging the gap</span> between <span>people</span> and <span>technology</span>.</h1>
+    <h1>Hi, I'm <span>Naruth</span>. I design and create web apps not just for fun but to try and <span>bridge the gap</span> between <span>people</span> and <span>technology</span>.</h1>
   </WelcomeTextWrapper>
 );
 
