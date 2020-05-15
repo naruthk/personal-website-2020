@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import useSiteMetadata from '../hooks/use-site-metadata';
 
+import Link from "./link";
 import {
   responsiveFontSizes,
   colors,
@@ -17,7 +18,6 @@ import {
   FaLinkedin,
   FaCodepen
 } from 'react-icons/fa';
-import { OutboundLink } from "gatsby-plugin-google-analytics";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
@@ -40,7 +40,7 @@ const SOCIAL_NETWORK_LINKS_MAP = {
   codepen: {
     name: "CodePen",
     icon: <FaCodepen />,
-    url: "https://www.codepen.io/nkongurai"
+    url: "https://www.codepen.io/naruthk"
   }
 };
 
@@ -150,7 +150,9 @@ const SocialNetworkSharing = ({ isFloatingHeader, pathName }) => {
         <ul>
         {Object.values(SOCIAL_NETWORK_LINKS_MAP).map(link => (
           <li key={link.name}>
-            <OutboundLink href={link.url} title={`Naruth Kongurai's ${link.name}`}>{link.icon}</OutboundLink>
+            <Link isExternal href={link.url} title={`Naruth Kongurai's ${link.name}`}>
+              {link.icon}
+            </Link>
           </li>
         ))}
         </ul>

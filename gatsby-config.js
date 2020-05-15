@@ -5,9 +5,9 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Naruth Kongurai Personal Website`,
-    description: `Full Stack Web Developer building awesome and exciting web applications with JavaScript.`,
+    description: `Web Developer building awesome and exciting web applications with JavaScript`,
     author: `Naruth Kongurai`,
-    siteUrl: `https://www.naruth.com`
+    siteUrl: `https://naruth.dev`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

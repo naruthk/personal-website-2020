@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Link } from "gatsby";
 
+import Link from "./link";
 import Container from "./container";
 import Logo from "./ui/logo";
 import Share from "./share";
@@ -110,7 +110,7 @@ const Header = ({ showWelcomeText }) => {
               <Link
                 key={item.name}
                 className="desktop-only"
-                to={item.url}>
+                href={item.url}>
                 {item.name}
               </Link>
             )}
@@ -146,7 +146,7 @@ const Header = ({ showWelcomeText }) => {
             {navOrder.map(item => 
               <MenuOverlayLink key={item.name}>
                 <h1>
-                  <Link to={item.url}>
+                  <Link href={item.url} title={item.name}>
                     {item.name}
                   </Link>
                 </h1>
@@ -156,7 +156,9 @@ const Header = ({ showWelcomeText }) => {
           <div>
             <p>Send your message to</p>
             <h2>
-              <a href="mailto:nkongurai@gmail.com" title="Send a message">nkongurai@gmail.com</a>
+              <Link isExternal href="mailto:nkongurai@gmail.com" title="Send a message">
+                nkongurai@gmail.com
+              </Link>
             </h2>
           </div>
           <Share />
