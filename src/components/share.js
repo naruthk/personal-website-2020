@@ -90,16 +90,17 @@ const ArticleSharingWrapper = styled.div`
     padding: 0;
     border: none;
     outline: none;
-    color: ${colors.dark};
+    color: ${colors.blue};
     font-size: ${responsiveFontSizes.normal};
+    cursor: pointer;
   }
   button:hover {
-    color: ${colors.blue};
+    opacity: 0.6;
   }
   span {
     font-size: ${responsiveFontSizes.small};
     vertical-align: middle;
-    color: ${colors.mediumGrey};
+    color: ${colors.dark};
   }
 `;
 

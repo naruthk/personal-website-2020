@@ -1,13 +1,10 @@
 import React from "react";
 
-import { colors, transition, mediaQuery } from "../utils/styles";
+import { colors, transition } from "../utils/styles";
 import styled from "@emotion/styled";
 
 const WelcomeTextWrapper = styled.div`
-  margin: 20px auto 0 auto;
-  ${mediaQuery[2]} {
-    margin-top: 40px;
-  }
+  margin: auto;
   max-width: 650px;
   cursor: default;
   
@@ -23,7 +20,7 @@ const WelcomeTextWrapper = styled.div`
 
 const WelcomeText = () => (
   <WelcomeTextWrapper>
-    <h1>Hi, I'm <span>Naruth</span>. I design and create web apps not just for fun but to try and <span>bridge the gap</span> between <span>people</span> and <span>technology</span>.</h1>
+    <h1>I'm Naruth, a Web Developer from Bangkok on an <span>endless journey</span> to <span>learn</span>, <span>create</span>, and <span>bridge the gap</span> between people and technology.</h1>
   </WelcomeTextWrapper>
 );
 

@@ -9,7 +9,7 @@ import styled from '@emotion/styled';
 import ProfilePhoto from "../../images/profile_photo_naruth.svg";
 
 const Wrapper = styled.div`
-  margin: 10px auto;
+  margin: 50px auto 10px auto;
   position: relative;
   width: 100%;
   height: 60vmin;

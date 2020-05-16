@@ -2,10 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { colors, mediaQuery, MAX_WIDTH } from "../../utils/styles";
+
 import styled from '@emotion/styled';
 
 const ContentBodyRendererWrapper = styled.div`
-  padding: 20px;
+  padding: 50px 7%;
+  ${mediaQuery[2]} {
+    padding: 50px 16.66%;
+  }
   background-color: ${colors.white};
 
   ${mediaQuery[2]} {
@@ -45,8 +49,7 @@ const ContentBodyRenderer = ({ html }) => (
     dangerouslySetInnerHTML={{
       __html: html,
     }}
-  >
-  </ContentBodyRendererWrapper>
+  />
 );
 
 export default ContentBodyRenderer;
