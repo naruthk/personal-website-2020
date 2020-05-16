@@ -27,8 +27,8 @@ export const globalStyles = css`
 
   * {
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto !important;
+    /* overflow-x: hidden;
+    overflow-y: auto !important; */
   }
 
   #___gatsby > div {
@@ -87,7 +87,7 @@ export const globalStyles = css`
     font-weight: 500;
   }
 
-  p {
+  p, ul, li, ol {
     font-size: ${responsiveFontSizes.normal};
     line-height: 1.7em;
   }
@@ -128,5 +128,17 @@ export const globalStyles = css`
     code {
       font-size: 12px !important;
     }
+  }
+
+  /* Override prism's default */
+  code.language-text {
+    background-color: ${colors.mediumGrey} !important;
+    padding: 1px 5px !important;
+    margin: 0 2px;
+    vertical-align: middle;
+    color: ${colors.dark};
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    border-radius: .2rem;
   }
 `;

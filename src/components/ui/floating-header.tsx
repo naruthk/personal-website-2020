@@ -53,10 +53,10 @@ const FloatingHeaderWrapper = styled.div`
 const ProgressContainer = styled.progress`
   position: absolute;
   right: 0;
-  bottom: 0px;
+  bottom: -1px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   ${mediaQuery[2]} {
     height: 5px;
   }
@@ -69,6 +69,7 @@ const ProgressContainer = styled.progress`
 const PostTitleWrapper = styled.div`
   flex: 1;
   text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
 `;
 

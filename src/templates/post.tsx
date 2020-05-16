@@ -30,7 +30,8 @@ const BlogPost = ({ location, data }) => {
     excerpt,
     heroImage,
     createdAt,
-    body
+    body,
+    tableOfContents
   } = data.contentfulBlogPosts;
 
   return (
@@ -64,6 +65,7 @@ export const pageQuery = graphql`
     body {
       childMarkdownRemark {
         html
+        tableOfContents(absolute: false, maxDepth: 10)
       }
     }
     excerpt {

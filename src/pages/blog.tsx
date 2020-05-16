@@ -41,13 +41,25 @@ const PostItemWrapper = styled.article`
     margin-bottom: ${PADDED_SPACE_DESKTOP};
   }
 
+  .image_wrapper {
+    width: 100%;
+    height: 150px;
+    position: relative;
+  }
+
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
     box-shadow: 0 0 7px ${colors.lightGrey};
     border: 0.3em solid white;
-  }
-  :hover {
-    img {
+
+    :hover {
       border: 0.3em solid ${colors.dark};
+    }
   }
 `;
 
@@ -71,10 +83,12 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
     
             return (
               <PostItemWrapper key={slug}>
-                <Link href={url} title={title}>
-                  <img src={heroImage.fixed.src} alt={title} />
-                  <Title>{title}</Title>
-                </Link>
+                <div className="image_wrapper">
+                  <Link href={url} title={title}>
+                    <img src={heroImage.fixed.src} alt={title} />
+                  </Link>
+                </div>
+                <Link href={url} title={title}><Title>{title}</Title></Link>
                 <p>{excerpt.excerpt}</p>
               </PostItemWrapper>
             )

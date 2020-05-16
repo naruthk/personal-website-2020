@@ -32,6 +32,12 @@ const ContentBodyRendererWrapper = styled.div`
       color: ${colors.lightBlue};
     }
   }
+
+  blockquote {
+    border-left: 5px solid ${colors.yellowDark};
+    padding-left: 20px;
+    margin: 40px 0;
+  }
 `;
 
 const ContentBodyRenderer = ({ html }) => (
