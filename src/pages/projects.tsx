@@ -1,37 +1,43 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Link from "../components/link";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
 import Container from "../components/container";
+import Layout from "../components/layout";
+import Link from "../components/link";
+import SEO from "../components/seo";
 
 import { ROUTES } from "../utils/routes";
-import { colors, mediaQuery } from "../utils/styles";
+import { colors } from "../utils/styles";
 
 import styled from "@emotion/styled";
 import { FaGithub } from 'react-icons/fa';
+import tw from "twin.macro";
 
 const ProjectItemWrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  margin: 30px 0;
-
-  ${mediaQuery[2]} {
-    > div {
-      width: 50%;
-      padding: 0 30px 0 0;
+  ${tw`flex flex-wrap my-8`}
+  div {
+    ${tw`sm:w-full md:flex-1 md:pr-6`}
+  }
+  img {
+    ${tw`w-full md:mx-0 shadow-lg md:border-white md:border-8 md:border-solid`}
+    :hover {
+      ${tw`shadow-xl`}
     }
   }
-`;
-
-const LinksWrapper = styled.p`
-  a {
-    margin-right: 20px;
+  .cta {
+    ${tw`mr-6 inline-flex opacity-75`}
     :first-of-type {
       border-right: 1px solid ${colors.yellow};
-      padding-right: 20px;
-      vertical-align: middle;
+      ${tw`pr-4 align-middle`}
+    }
+    :hover {
+      ${tw`opacity-100`}
+    }
+  }
+  .read-more {
+    &::after {
+      content: "->";
+      ${tw`pl-2`}
     }
   }
 `;
@@ -54,16 +60,14 @@ const ProjectsListingPage = ({ data }) => {
                 <p><Link href={projectPageUrl} title={title}><img src={heroImage.fixed.src} alt={title} /></Link></p>
               </div>
               <div>
-                <h2><Link href={projectPageUrl}>{title}</Link></h2>
+                <h1><Link href={projectPageUrl}>{title}</Link></h1>
                 <p>{excerpt.excerpt}</p>
-                <LinksWrapper>
-                  <Link isExternal href={sourceCodeUrl} title={title}>
+                <Link className="cta" isExternal href={sourceCodeUrl} title={title}>
                     <FaGithub />
-                  </Link>
-                  <Link href={projectPageUrl} title="Read more">
-                    Read more ->
-                  </Link>
-                </LinksWrapper>
+                </Link>
+                <Link className="cta read-more" href={projectPageUrl} title="Read more">
+                  Read more
+                </Link>
               </div>
             </ProjectItemWrapper>
           )

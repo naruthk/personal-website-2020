@@ -21,14 +21,14 @@ const Link = ({ children, isExternal, href, title, onClick, className }) => {
     <button
       className={className}
       aria-label={title}
-      onClick={() => {
+      onClick={e => {
         trackCustomEvent({
           category: "click",
           action: "Click",
           label: "button_click",
           value: title
         });
-        onClick();
+        onClick(e);
       }}
     >
       {children}

@@ -1,94 +1,49 @@
 import React, { useState } from "react";
 
-import Link from "./link";
 import Container from "./container";
+import Link from "./link";
 import Logo from "./ui/logo";
-import Share from "./share";
+import Share from "./share/share";
 import Modal from "./ui/modal";
 
 import { ROUTES } from "../utils/routes";
-import { colors, mediaQuery } from "../utils/styles";
 
 import styled from '@emotion/styled';
 import { FiMenu } from 'react-icons/fi';
+import tw from "twin.macro";
 
-const LENGTH_MOBILE = "40px";
-const LENGTH_DESKTOP = "80px";
-
-const NavWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  line-height: ${LENGTH_MOBILE};
-
-  ${mediaQuery[2]} {
-    margin: -15px 0;
-    line-height: ${LENGTH_DESKTOP};
-  }
-  
-  margin-bottom: 30px;
-
-  button {
-    background: none;
-    border: none;
-    outline: 0;
-    color: ${colors.dark};
-    font-size: inherit;
-  }
-
-  .desktop-only {
-    display: none;
-    ${mediaQuery[2]} {
-      cursor: pointer;
-      display: inline;
-    }
-  }
-  .mobile-only {
-    ${mediaQuery[2]} {
-      display: none;
-    }
-  }
+const NavWrapper = styled.nav`
+  ${tw`flex flex-row justify-between`}
 `;
 
-const Nav = styled.nav`
+const SiteNavLinks = styled.div`
   button, a {
-    font-weight: 300 !important;
-  }
-  a {
-    margin-left: 30px;
-    padding: 5px 10px;
-    margin: 5px;
+    ${tw`mx-4 px-2 py-4`}
   }
   a[aria-current="page"] {
-    background-color: ${colors.yellowDark};
-    color: ${colors.white};
-    font-weight: 700;
+    ${tw`border-b-2 border-solid border-gray-900 font-bold`}
+  }
+  .desktop-only {
+    ${tw`hidden md:inline-block cursor-pointer`}
+  }
+  .mobile-only {
+    ${tw`md:hidden`}
   }
 `;
 
 const MenuOverlayContent = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  height: 90%;
-
-  h3 {
-    font-weight: 400;
-    color: ${colors.lightGrey};
-  }
+  ${tw`flex flex-col flex-wrap justify-around h-full mx-4`}
   a, a:visited {
-    color: ${colors.white};
+    ${tw`text-white`}
   }
-`;
-
-const MenuOverlayLink = styled.span`
-  text-align: center;
-  transition: 0.7s all;
-  a {
-    font-weight: 400;
-    :hover {
-      color: ${colors.yellowDark};
-    }
+  .cta-message {
+    ${tw`block text-gray-600 leading-normal md:text-left text-base xl:text-lg font-semibold mb-6`}
+  }
+  .email-link {
+    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
+  }
+  .sharing-navigation {
+    ${tw`pt-2 border-t-2 border-solid border-gray-900`}
   }
 `;
 
@@ -98,10 +53,10 @@ const Header = () => {
 
   return (
     <>
-      <Container isFlex={true} isCentered={true}>
+      <Container>
         <NavWrapper>
           <Logo />
-          <Nav>
+          <SiteNavLinks>
             {navOrder.map(item => 
               <Link
                 key={item.name}
@@ -126,7 +81,7 @@ const Header = () => {
             >
               <FiMenu />
             </Link>
-          </Nav>
+          </SiteNavLinks>
         </NavWrapper>
       </Container>
 
@@ -135,24 +90,24 @@ const Header = () => {
         <MenuOverlayContent>
           <div>
             {navOrder.map(item => 
-              <MenuOverlayLink key={item.name}>
-                <h1>
-                  <Link href={item.url} title={item.name}>
-                    {item.name}
-                  </Link>
-                </h1>
-              </MenuOverlayLink>
+              <h1 key={item.name}>
+                <Link href={item.url} title={item.name}>
+                  {item.name}
+                </Link>
+              </h1>
             )}
           </div>
           <div>
-            <p>Send your message to</p>
-            <h2>
+            <p className="cta-message">Send your message to</p>
+            <p className="email-link">
               <Link isExternal href="mailto:nkongurai@gmail.com" title="Send a message">
                 nkongurai@gmail.com
               </Link>
-            </h2>
+            </p>
           </div>
-          <Share />
+          <div className="sharing-navigation">
+            <Share />
+          </div>
         </MenuOverlayContent>
       </Modal>
     </>

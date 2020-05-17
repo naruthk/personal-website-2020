@@ -1,42 +1,24 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import Share from "../share";
+import Share from "../share/share";
 import Logo from "../ui/logo";
 
-import { colors, mediaQuery } from "../../utils/styles";
+import { colors } from "../../utils/styles";
+
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
-
-export const FLOATING_HEADER_HEIGHT = {
-  mobile: "50px",
-  desktop: "60px"
-};
+import tw from "twin.macro";
 
 const FloatingHeaderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: ${FLOATING_HEADER_HEIGHT.mobile};
-  ${mediaQuery[2]} {
-    height: ${FLOATING_HEADER_HEIGHT.desktop};
-  }
+  ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
+  ${tw`border-b-2 border-solid`}
+  border-color: ${colors.yellow};
+  height: 50px;
 
-  > div {
-    margin-left: 20px;
-  }
-
-  position: fixed;
-  top: 0;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 10; /* Must not overpower Modal */
-
-  background-color: ${colors.white};
-  border-bottom: 1px solid ${colors.yellow};
+  /* Animation Effect */
   transition: all .5s cubic-bezier(.19,1,.22,1);
   transform: translate3d(0,-120%,0);
-
   ${({ isActive }) =>
     isActive && css`
       visibility: visible;
@@ -44,33 +26,22 @@ const FloatingHeaderWrapper = styled.div`
       transform: translateZ(0);
     `
   }
+  /* End animation effect */
 
-  progress[value]::-moz-progress-bar {
+  progress[value]::-moz-progress-bar,
+  progress[value]::-webkit-progress-bar {
     background-color: ${colors.yellow};
   }
 `;
 
 const ProgressContainer = styled.progress`
-  position: absolute;
-  right: 0;
+  ${tw`absolute inset-x-0 w-full border-none bg-transparent appearance-none`}
   bottom: -1px;
-  left: 0;
-  width: 100%;
   height: 3px;
-  ${mediaQuery[2]} {
-    height: 5px;
-  }
-  border: none;
-  background: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 `;
 
 const PostTitleWrapper = styled.div`
-  flex: 1;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  ${tw`overflow-hidden truncate flex-1 ml-4`}
 `;
 
 const FloatingHeader = ({ title, pathName }) => {

@@ -37,7 +37,7 @@ const Wrapper = styled.div`
     margin: auto;
     
     border: 10px solid ${colors.dark};
-    box-shadow: 0px 0px 0px 80px ${colors.bgLight};
+    box-shadow: 0px 0px 0px 60px ${colors.white};
     box-sizing: border-box;
     
     ${mediaQuery[2]} {

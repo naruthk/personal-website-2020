@@ -34,7 +34,9 @@
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "tailwindcss": "^1.4.6",
+    "twin.macro": "^1.0.0"
   },
   "keywords": [
     "gatsby"

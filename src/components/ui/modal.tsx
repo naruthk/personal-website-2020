@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { css } from "@emotion/core";
-import styled from '@emotion/styled';
 import { colors, mediaQuery} from "../../utils/styles";
+
+import styled from '@emotion/styled';
+import { css } from "@emotion/core";
 
 const ModalWrapper = styled.div`
   color: ${colors.white};

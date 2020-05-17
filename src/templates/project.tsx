@@ -4,59 +4,49 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
-import Container from "../components/container";
 import Tags from "../components/tags";
 import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
 
 import { prettyPrintDate } from "../utils/dates";
-import { colors, mediaQuery } from "../utils/styles";
 
 import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 const ContentWrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  margin-bottom: 50px;
-  width: 100%;
-
-  > div {
-    margin: 20px 0;
+  ${tw`md:my-4 w-full bg-gray-100`}
+  .container {
+    ${tw`max-w-screen-lg mx-auto pt-8 pb-8 px-4 sm:mt-0 md:mt-6 flex flex-row flex-wrap`}
   }
-
-  ${mediaQuery[2]} {
-    > div {
-      width: 50%;
-      padding: 0 30px 0 0;
-    }
+  div {
+    ${tw`sm:w-full md:flex-1 my-4`}
   }
-
-  .content_wrapper---link {
-    background-color: ${colors.orange};
-    color: ${colors.white};
-    padding: .1rem .3rem .2rem;
-    border-radius: .2rem;
-
-    :hover {
-      background-color: ${colors.blue};
+  .title {
+    ${tw`text-gray-900`}
+  }
+  .excerpt {
+    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal`}
+  }
+  .link {
+    ${tw`text-blue-600 opacity-100`}
+    &::after {
+      content: "->";
+      ${tw`pl-2`}
     }
   }
 `;
 
+const HeroImage = styled.img`
+  ${tw`shadow-md sm:mb-2`}
+`;
+
 const Meta = styled.div`
-  ${mediaQuery[2]} {
-    text-align: right;
+  ${tw`md:text-right`}
+  .date-label {
+    ${tw`inline-flex text-sm pt-1 mb-1 text-gray-600 uppercase`}
   }
-  h4 {
-    margin-bottom: 0;
-  }
-  span.date {
-    display: inline-flex;
-    font-size: smaller;
-    color: ${colors.yellowDark};
-    padding-top: 10px;
-    margin: 10px 0;
-    border-top: 1px solid ${colors.yellow};
+  .date {
+    ${tw`mb-4`}
   }
 `;
 
@@ -82,47 +72,44 @@ const Project = ({ location, data }) => {
         pathName={location.pathname}
       />
       <FloatingHeader title={title} pathName={location.pathname}/>
-      <Container>
-        <h1>{title}</h1>
-      </Container>
-      <img src={heroImage.resize.src} alt={heroImage.title} />
-      <Container>
-        <ContentWrapper>
+      <HeroImage className="hero-image" src={heroImage.resize.src} alt={heroImage.title} />
+      <ContentWrapper>
+        <div className="container">
           <div>
-            <h2>{title}</h2>
-            <p>{excerpt.excerpt}</p>
+            <h1 className="title">{title}</h1>
+            <p className="excerpt">{excerpt.excerpt}</p>
             <p>
               <Link
                 isExternal
-                className="content_wrapper---link"
+                className="link"
                 href={sourceCodeUrl}
                 title={`${title} - GitHub`}
               >
-                View source code on GitHub ->
+                View source code on GitHub
               </Link>
             </p>
             {demoUrl && (
               <p>
                 <Link
                   isExternal
-                  className="content_wrapper---link"
+                  className="link"
                   href={demoUrl}
                   title={`${title} - Demo`}
                 >
-                  Demo ->
+                  Demo
                 </Link>
               </p>
             )}
           </div>
           <Meta>
-            <h4>
+            <p className="date-label">Date of Completion</p>
+            <p className="date">
               {prettyPrintDate({ timestamp: initialStartDate })} - {prettyPrintDate({ timestamp: completionDate })}
-            </h4>
-            <span className="date">Date of Completion</span>
+            </p>
             <Tags items={category} />
           </Meta>
-        </ContentWrapper>
-      </Container>
+        </div>
+      </ContentWrapper>
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
     </Layout>
   )

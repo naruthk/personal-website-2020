@@ -1,54 +1,21 @@
-
 import React from "react";
 import PropTypes from "prop-types";
 
-import { layout, mediaQuery } from "../utils/styles";
-
 import styled from '@emotion/styled';
-import { css } from "@emotion/core";
+import tw from "twin.macro";
 
 const ContainerWrapper = styled.section`
-  ${layout};
-  padding: 15px 30px;
-  ${mediaQuery[2]} {
-    padding: 50px 16.66%;
-  }
-  ${({ isFlex }) =>
-    isFlex && css`
-      display: flex;
-      flex-direction: column;`
-  }
-  ${({ bg }) => bg && css`background-color: ${bg}`}
-  ${({ isFullWidth }) => isFullWidth && css`width: 100vw;`}
+  ${tw`max-w-screen-lg mx-auto pt-8 pb-8 px-4`}
 `;
 
-const Container = ({
-  children,
-  isFlex,
-  bg,
-  isFullWidth
-}) => (
-  <ContainerWrapper
-    isFullWidth={isFullWidth}
-    isFlex={isFlex}
-    bg={bg}
-  >
+const Container = ({ children }) => (
+  <ContainerWrapper>
     {children}
   </ContainerWrapper>
 );
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
-  isFlex: PropTypes.bool,
-  isCentered: PropTypes.bool,
-  bg: PropTypes.string,
-  isFullWidth: PropTypes.bool
 }
-
-Container.defaultProps = {
-  isFlex: false,
-  bg: null,
-  isFullWidth: false
-};
 
 export default Container;

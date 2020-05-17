@@ -2,8 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
 import Container from "../components/container";
+import SEO from "../components/seo";
 
 import { colors } from "../utils/styles";
 import { prettyPrintDate } from "../utils/dates";

@@ -1,33 +1,40 @@
 import React from "react";
 
-import Social from "../components/share";
+import Share from "./share/share";
 import Container from "../components/container";
 
-import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 const FooterWrapper = styled.footer`
-  width: 100%;
-  min-height: 200px;
-  text-align: center;
-  margin-top: 20px;
-  p { margin-top: 20px; }
+  ${tw`mt-16 pt-8 w-full bg-gray-900`}
+  p {
+    ${tw`text-white text-center`}
+  }
+  span {
+    ${tw`font-bold`}
+  }
+  nav {
+    ${tw`flex items-center justify-between flex-wrap`}
+
+    .site-wide-navigation {
+      ${tw`flex items-center flex-shrink-0 text-white mr-6 mb-6`}
+    }
+  }
 `;
 
 const Footer = () => (
   <FooterWrapper>
     <Container>
-      <Social />
-      <p>
-        © {new Date().getFullYear()}
-        <br/>
-        Powered by {" "}
-        <OutboundLink href="https://www.gatsbyjs.org" title="Gatsby.js">
-          gatsby.js
-        </OutboundLink>
-        <br/>
-        Developed by Naruth Kongurai
-      </p>
+      <nav>
+        <div className="site-wide-navigation">
+          © {new Date().getFullYear()}<br />
+          Built with Gatsby.js + React 🎸 
+        </div>
+        <div>
+          <Share />
+        </div>
+      </nav>
     </Container>
   </FooterWrapper>
 );

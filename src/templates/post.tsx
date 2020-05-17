@@ -2,25 +2,25 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
+import Container from "../components/container";
 import SEO from "../components/seo";
 import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
 
 import { prettyPrintDate } from "../utils/dates";
-import { mediaQuery } from "../utils/styles";
 
 import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 const PostInformationContainer = styled.div`
-  text-align: center;
   h1 {
-    font-weight: 400;
-    padding: 0 10px;
+    ${tw`lg:block font-semibold text-left md:text-left text-3xl md:text-2xl lg:text-3xl xl:text-5xl font-display leading-none mb-6 xl:mb-8`}
   }
-  ${mediaQuery[2]} {
-    width: 80%;
-    padding: 20px;
-    margin: auto;
+  .date {
+    ${tw`uppercase lg:block tracking-wide uppercase font-bold text-lg xl:text-xl mb-4 opacity-75`}
+  }
+  .excerpt {
+    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
   }
 `;
 
@@ -30,8 +30,7 @@ const BlogPost = ({ location, data }) => {
     excerpt,
     heroImage,
     createdAt,
-    body,
-    tableOfContents
+    body
   } = data.contentfulBlogPosts;
 
   return (
@@ -43,12 +42,14 @@ const BlogPost = ({ location, data }) => {
         pathName={location.pathname}
       />
       <FloatingHeader title={title} pathName={location.pathname}/>
-      <PostInformationContainer>
-      <p className="post_content---date">{prettyPrintDate({ timestamp: createdAt })}</p>
-        <h1>{title}</h1>
-        <p className="post_information_center---label">{excerpt.excerpt}</p>
-        <img src={heroImage.resize.src} alt={heroImage.title} />
-      </PostInformationContainer>
+      <Container>
+        <PostInformationContainer>
+          <p className="date">{prettyPrintDate({ timestamp: createdAt })}</p>
+          <h1>{title}</h1>
+          <p className="excerpt">{excerpt.excerpt}</p>
+          <img className="hero-image" src={heroImage.resize.src} alt={heroImage.title} />
+        </PostInformationContainer>
+      </Container>
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
     </Layout>
   )
@@ -65,7 +66,6 @@ export const pageQuery = graphql`
     body {
       childMarkdownRemark {
         html
-        tableOfContents(absolute: false, maxDepth: 10)
       }
     }
     excerpt {

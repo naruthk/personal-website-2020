@@ -1,25 +1,21 @@
 import React from "react";
 import styled from '@emotion/styled';
-import { colors, responsiveFontSizes } from "../utils/styles";
 
 import { Tags } from "../utils/types";
 
 import { DiJavascript1, DiHtml5, DiBootstrap, DiReact } from 'react-icons/di';
+import tw from "twin.macro";
 
 const TagsWrapper = styled.section`
   span {
-    padding: 5px 10px;
-    border: 1px solid ${colors.yellow};
-    margin-right: 5px;
-    display: inline-block;
-    font-size: ${responsiveFontSizes.small};
-    cursor: default;
+    ${tw`py-1 px-2 mr-1 inline-flex cursor-default align-middle items-center text-sm`}
+    ${tw`border border-solid`}
     :last-child {
-      margin: 0;
+      ${tw`m-0`}
     }
   }
   svg {
-    vertical-align: middle;
+    ${tw`mr-2`}
   }
 `;
 

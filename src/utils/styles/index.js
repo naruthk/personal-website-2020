@@ -8,9 +8,6 @@ export { layout, flexbox };
 export {
   colors,
   fonts,
-  MAX_WIDTH,
-  responsiveFontSizes,
-  shadow,
   mediaQuery,
   transition
 } from "./constants";
