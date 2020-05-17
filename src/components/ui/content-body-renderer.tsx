@@ -37,6 +37,10 @@ const ContentBodyRendererWrapper = styled.div`
     }
   }
 
+  p {
+    word-wrap: break-word;
+  }
+
   blockquote {
     border-left: 5px solid ${colors.yellowDark};
     padding-left: 20px;
