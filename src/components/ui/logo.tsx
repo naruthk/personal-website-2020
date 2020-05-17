@@ -26,7 +26,7 @@ const SiteLogo = styled.div`
   }
 
   :hover {
-    background-color: ${colors.orange};
+    opacity: 0.7;
   }
 `;
 
