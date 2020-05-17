@@ -1,88 +1,49 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { colors, mediaQuery} from "../../utils/styles";
+import { mediaQuery} from "../../utils/styles";
 
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
+import tw from "twin.macro";
 
 const ModalWrapper = styled.div`
-  color: ${colors.white};
+  ${tw`text-white`}
 
   .active {
-    opacity: 1;
-    ${mediaQuery[2]} {
-      top: 0;
-      right: 0;
-      width: 50%;
-      padding: 46px 65px;
-      height: 100%;
-    }
-    bottom: 0;
-    height: 100%;
-    pointer-events: all;
-    -webkit-transition: all .7s;
-    transition: all .7s;
+    ${tw`opacity-100 h-full pointer-events-auto bottom-0`}
+    ${tw`md:top-0 md:right-0 md:w-1/2`}\
+    ${tw`transition-all duration-700`}
   }
 `;
 
 const Portal = styled.div`
   ${({ isActive }) =>
     isActive && css`
-      opacity: 0.5;
-      pointer-events: all;
-      -webkit-transition: all .7s;
-      transition: all .7s;
-      z-index: 2;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      background-color: ${colors.dark};
-      overflow: hidden;
-      color: ${colors.white};
-      overflow-y: hidden !important;
+      ${tw`fixed w-full h-full opacity-50 top-0 left-0 z-10 bg-black text-white`}
+      ${tw`overflow-hidden overflow-y-hidden  pointer-events-auto`}
+      ${tw`transition-all duration-700`}
     `
   }
 `;
 
 const ContentWrapper = styled.div`
-  position: fixed;
+  ${tw`fixed w-full p-4 md:p-12 md:w-1/2 md:h-full md:top-0`}
+  ${tw`transition-all duration-700`}
+  ${tw`bg-black z-20 pointer-events-auto`}
   ${mediaQuery[2]} {
-    top: 0;
     right: -50%;
-    width: 50%;
-    padding: 46px 65px;
-    height: 100%;
   }
   bottom: -200%;
-  width: 100%;
-  padding: 20px;
-  background-color: #000;
-  z-index: 990;
-  pointer-events: none;
-  -webkit-transition: all .7s;
-  transition: all .7s;
 `;
 
 const CloseButton = styled.span`
-  text-align: right;
-  cursor: pointer;
-  display: block;
-  margin: 0 20px 40px 0;
-  text-transform: uppercase;
-
+  ${tw`text-right cursor-pointer block uppercase mr-6`}
   a, a:visited {
-    -webkit-transition: all .7s;
-    transition: all .7s;
-    font-weight: 300;
-    opacity: 0.7;
-    color: ${colors.lightGrey};
+    ${tw`transition-all duration-700 opacity-75 text-gray-800`}
   }
   a:hover {
-    color: ${colors.white};
-    opacity: 1.0;
+    ${tw`opacity-100`}
   }
 `;
 
