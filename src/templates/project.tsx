@@ -60,7 +60,8 @@ const Project = ({ location, data }) => {
     demoUrl,
     heroImage,
     initialStartDate,
-    completionDate
+    completionDate,
+    isCurrentlyActive
   } = data.contentfulProjects;
 
   return (
@@ -104,7 +105,9 @@ const Project = ({ location, data }) => {
           <Meta>
             <p className="date-label">Date of Completion</p>
             <p className="date">
-              {prettyPrintDate({ timestamp: initialStartDate })} - {prettyPrintDate({ timestamp: completionDate })}
+              {prettyPrintDate({ timestamp: initialStartDate })}
+              {" - "}
+              {isCurrentlyActive ? "Present" : prettyPrintDate({ timestamp: completionDate })}
             </p>
             <Tags items={category} />
           </Meta>
@@ -141,6 +144,7 @@ export const pageQuery = graphql`
     demoUrl
     initialStartDate
     completionDate
+    isCurrentlyActive
   }
 }
 `;
