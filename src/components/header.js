@@ -19,13 +19,10 @@ const NavWrapper = styled.nav`
 
 const SiteNavLinks = styled.div`
   button, a {
-    ${tw`mx-4 px-2 py-4`}
+    ${tw`mx-4 px-2 py-4 text-gray-500`}
   }
   a[aria-current="page"],a.active {
-    ${tw`border-b-2 border-solid border-gray-900 font-bold`}
-  }
-  a:hover, button:hover {
-    ${tw`border-b-2 border-solid border-gray-300`}
+    ${tw`border-b-2 border-solid border-gray-900 text-gray-900`}
   }
   .desktop-only {
     ${tw`hidden md:inline-block cursor-pointer`}

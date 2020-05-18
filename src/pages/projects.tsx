@@ -9,6 +9,7 @@ import SEO from "../components/seo";
 import { ROUTES } from "../utils/routes";
 import { colors } from "../utils/styles";
 
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { FaGithub } from 'react-icons/fa';
 import tw from "twin.macro";
@@ -49,7 +50,7 @@ const ProjectsListingPage = ({ data }) => {
     <Layout>
       <SEO title="Projects" />
       <Container>
-        <h1>Projects</h1>
+        <h2 css={css`${tw`mt-0`}`}>Projects</h2>
         {posts.map(post => {
           const { title, excerpt, heroImage, slug, sourceCodeUrl } = post.node;
           const projectPageUrl = `${ROUTES.PROJECTS.url}/${slug}`;

@@ -14,6 +14,7 @@ import styled from "@emotion/styled";
 import tw from "twin.macro";
 
 const PostInformationContainer = styled.div`
+  ${tw`md:mb-6`}
   h1 {
     ${tw`lg:block font-semibold text-left md:text-left text-3xl md:text-2xl lg:text-3xl xl:text-5xl leading-none mb-6 xl:mb-8`}
   }

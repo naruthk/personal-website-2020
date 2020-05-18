@@ -4,8 +4,12 @@ import Link from "../link";
 import styled from '@emotion/styled';
 import tw from "twin.macro";
 
-const SiteLogo = styled.div`
-  ${tw`text-center text-white font-medium text-base px-4 py-2 block bg-black`}
+const SiteLogo = styled.p`
+  ${tw`block text-center text-white font-medium text-base block bg-black rounded`}
+  ${tw`py-2 w-16 align-middle mb-0`}
+  :hover {
+    ${tw`rounded-lg`}
+  }
   transition: 1s all;
 `;
 

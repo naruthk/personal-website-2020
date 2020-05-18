@@ -9,6 +9,7 @@ import Container from "../components/container";
 import { ROUTES } from "../utils/routes";
 import { BlogPostsPageProps } from "../utils/types";
 
+import { css } from "@emotion/core";
 import styled from '@emotion/styled';
 import tw from "twin.macro";
 
@@ -25,7 +26,7 @@ const FeaturedPost = styled.div`
   }
 
   .information {
-    ${tw`px-2 md:px-6 py-4`}
+    ${tw`px-2 sm:px-4 md:px-6 py-4`}
 
     .title {
       ${tw`font-bold text-lg mb-2`}
@@ -37,8 +38,16 @@ const FeaturedPost = styled.div`
   }
 `;
 
-const RemainingPostTitle = styled.h1`
-  ${tw`text-base md:text-left xl:text-2xl text-gray900 leading-normal mt-6`}
+const RemainingPostsWrapper = styled.div`
+  > div {
+    ${tw`mb-4 md:mb-8`}
+  }
+  .title {
+    ${tw`text-base md:text-left xl:text-lg text-gray900 leading-normal mt-6 mb-1`}
+  }
+  p { 
+    ${tw`text-gray-700 text-base`}
+  }
 `;
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
@@ -49,8 +58,8 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
     <Layout>
       <SEO title="Blog Posts" />
       <Container>
-        <h1>Blog</h1>
-        <p>I mostly write on topics related to web development and best practices with content about trending news and stories thrown into the mix occasionally. 😉</p>
+        <h2 css={css`${tw`mt-0`}`}>Blog</h2>
+        <p css={css`${tw`mb-12`}`}>I mostly write on topics related to web development and best practices with content about trending news and stories thrown into the mix occasionally.</p>
         <FeaturedPostsWrapper>
           {posts.slice(0, NUMBER_OF_FEATURED_POSTS)
             .map(post => {
@@ -71,7 +80,7 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
             })}
         </FeaturedPostsWrapper>
         <hr />
-        <div>
+        <RemainingPostsWrapper>
           {posts.slice(NUMBER_OF_FEATURED_POSTS)
             .map(post => {
               const { title, slug, excerpt } = post.node;
@@ -80,15 +89,13 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
               return (
                 <div key={slug}>
                   <Link href={url} title={title}>
-                    <div className="information">
-                      <RemainingPostTitle>{title}</RemainingPostTitle>
-                      <p>{excerpt.excerpt}</p>
-                    </div>
+                    <h1 className="title">{title}</h1>
                   </Link>
+                  <p>{excerpt.excerpt}</p>
                 </div>
               )
             })}
-        </div>
+        </RemainingPostsWrapper>
       </Container>
     </Layout>
   );

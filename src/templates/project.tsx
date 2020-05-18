@@ -14,7 +14,7 @@ import styled from "@emotion/styled";
 import tw from "twin.macro";
 
 const ContentWrapper = styled.div`
-  ${tw`md:my-4 w-full bg-gray-100`}
+  ${tw`md:my-4 w-full border-b-8 border-solid border-gray-100`}
   .container {
     ${tw`max-w-screen-lg mx-auto pt-8 pb-8 px-4 sm:mt-0 md:mt-6 flex flex-row flex-wrap`}
   }
@@ -37,13 +37,13 @@ const ContentWrapper = styled.div`
 `;
 
 const HeroImage = styled.img`
-  ${tw`shadow-md sm:mb-2`}
+  ${tw`shadow-lg sm:mb-2 mb-6`}
 `;
 
 const Meta = styled.div`
   ${tw`md:text-right`}
   .date-label {
-    ${tw`inline-flex text-sm pt-1 mb-1 text-gray-600 uppercase`}
+    ${tw`inline-flex text-xs pt-1 mb-1 text-gray-600 uppercase`}
   }
   .date {
     ${tw`mb-4`}
@@ -73,7 +73,7 @@ const Project = ({ location, data }) => {
         pathName={location.pathname}
       />
       <FloatingHeader title={title} pathName={location.pathname}/>
-      <HeroImage className="hero-image" src={heroImage.resize.src} alt={heroImage.title} />
+      <HeroImage src={heroImage.resize.src} alt={heroImage.title} />
       <ContentWrapper>
         <div className="container">
           <div>
