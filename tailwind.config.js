@@ -21,11 +21,11 @@ module.exports = {
       '6xl': '4rem',
       '7xl': '5rem',
     },
-    inset: {
-      '0': '0',
-      '-1/2': '-50%',
+    extend: {
+      inset: {
+        '-1/2': '-50%',
+      }
     },
-    extend: {},
   },
   variants: {},
   plugins: [],
