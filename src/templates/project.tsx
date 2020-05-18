@@ -65,7 +65,7 @@ const Project = ({ location, data }) => {
   } = data.contentfulProjects;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         title={title}
         description={excerpt.excerpt}

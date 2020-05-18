@@ -22,5 +22,5 @@ const ContentBodyRenderer = ({ html }) => (
 export default ContentBodyRenderer;
 
 ContentBodyRenderer.propTypes = {
-  html: PropTypes.object.isRequired
+  html: PropTypes.string.isRequired
 }

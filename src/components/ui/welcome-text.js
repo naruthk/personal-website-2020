@@ -28,7 +28,7 @@ const WelcomeText = () => (
     <div className="greeting">Hello</div>
     <div className="headline">I'm Naruth.</div>
     <p className="tagline">
-      I'm a Web Developer from Bangkok 🇹🇭 on an endless journey to <span className="highlighted">learn</span>, <span className="highlighted">create</span>, and <span className="highlighted">bridge the gap</span> between <span className="highlighted">people and technology</span>.</p>
+      I'm a Web Developer from Bangkok <span role="img" aria-label="thailand flag">🇹🇭</span> on an endless journey to <span className="highlighted">learn</span>, <span className="highlighted">create</span>, and <span className="highlighted">bridge the gap</span> between <span className="highlighted">people and technology</span>.</p>
     <div>Currently coding using: <span className="current-status">
       <TypeWritingText>JavaScript, React.js, Next.js <span role="img" aria-label="fire emoji">🔥</span> <span role="img" aria-label="guitar emoji">🎸</span></TypeWritingText></span>
     </div>

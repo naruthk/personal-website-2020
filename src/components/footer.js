@@ -11,15 +11,14 @@ const FooterWrapper = styled.footer`
   p {
     ${tw`text-white text-center`}
   }
-  span {
-    ${tw`font-bold`}
-  }
   nav {
     ${tw`flex items-center justify-between flex-wrap`}
-
-    .site-wide-navigation {
-      ${tw`flex items-center flex-shrink-0 text-white mr-6 mb-6`}
-    }
+  }
+  .site-wide-navigation {
+    ${tw`text-white mr-6`}
+  }
+  .powered-by-gatsby {
+    ${tw`text-sm text-left text-gray-600`}
   }
 `;
 
@@ -28,8 +27,8 @@ const Footer = () => (
     <Container>
       <nav>
         <div className="site-wide-navigation">
-          © {new Date().getFullYear()}<br />
-          Built with Gatsby.js + React 🎸 
+          © {new Date().getFullYear()} - Naruth Kongurai  🎸 <br />
+          <p className="powered-by-gatsby">Powered by Gatsby.js</p>
         </div>
         <div>
           <Share />

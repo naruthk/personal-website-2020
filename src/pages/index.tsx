@@ -9,7 +9,7 @@ import MovingProfilePicture from "../components/ui/moving-profile-picture";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 
-const HomePage = () => (
+const HomePage = ({ location }) => (
   <Layout showWelcomeText>
     <SEO title="Naruth Kongurai" />
     <Container>

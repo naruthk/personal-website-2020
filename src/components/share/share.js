@@ -49,6 +49,7 @@ const renderArticleSharingLinks = url => {
     <ArticleSharingWrapper>
       <Link
         className="facebook"
+        title="Share on Facebook"
         onClick={e => {
           e.preventDefault();
           window.open(
@@ -62,6 +63,7 @@ const renderArticleSharingLinks = url => {
       </Link>
       <Link
         className="twitter"
+        title="Share on Twitter"
         onClick={e => {
           e.preventDefault();
           window.open(

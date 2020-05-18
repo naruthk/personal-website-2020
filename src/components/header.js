@@ -10,6 +10,7 @@ import { ROUTES } from "../utils/routes";
 
 import styled from '@emotion/styled';
 import { FiMenu } from 'react-icons/fi';
+import cx from 'classnames';
 import tw from "twin.macro";
 
 const NavWrapper = styled.nav`
@@ -20,7 +21,7 @@ const SiteNavLinks = styled.div`
   button, a {
     ${tw`mx-4 px-2 py-4`}
   }
-  a[aria-current="page"] {
+  a[aria-current="page"],a.active {
     ${tw`border-b-2 border-solid border-gray-900 font-bold`}
   }
   a:hover {
@@ -50,9 +51,18 @@ const MenuOverlayContent = styled.div`
   }
 `;
 
-const Header = () => {
+const getActiveRouteEntity = (location) => {
+  if (!location) return null;
+
+  const splitPath = location.pathname.split("/");
+  return ROUTES[splitPath[1].toUpperCase()] || null;
+};
+
+const Header = ({ location }) => {
   const [showModalOverlay, setShowModalOverlay] = useState(false);
-  const navOrder = [ROUTES.BLOG, ROUTES.PROJECT, ROUTES.ABOUT];
+  const activeRoute = getActiveRouteEntity(location);
+
+  const navOrder = [ROUTES.BLOG, ROUTES.PROJECTS, ROUTES.ABOUT];
 
   return (
     <>
@@ -63,7 +73,11 @@ const Header = () => {
             {navOrder.map(item => 
               <Link
                 key={item.name}
-                className="desktop-only"
+                className={
+                  cx("desktop-only", {
+                    "active": activeRoute && activeRoute.name === item.name
+                  })
+                }
                 href={item.url}
                 title={item.name}
               >

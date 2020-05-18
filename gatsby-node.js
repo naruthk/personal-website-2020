@@ -37,7 +37,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: `/blog/${edge.node.slug}`,
       component: blogPostTemplate,
       context: {
-        slug: edge.node.slug,
+        slug: edge.node.slug
       },
     })
   })
@@ -47,7 +47,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: `/projects/${edge.node.slug}`,
       component: projectTemplate,
       context: {
-        slug: edge.node.slug,
+        slug: edge.node.slug
       },
     })
   })

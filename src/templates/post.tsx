@@ -23,9 +23,12 @@ const PostInformationContainer = styled.div`
   .excerpt {
     ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
   }
+  .hero-image {
+    ${tw`shadow-lg`}
+  }
 `;
 
-const BlogPost = ({ location, data }) => {
+const BlogPost = ({ data, location }) => {
   const {
     title,
     excerpt,
@@ -36,7 +39,7 @@ const BlogPost = ({ location, data }) => {
   } = data.contentfulBlogPosts;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         title={title}
         description={excerpt.excerpt}

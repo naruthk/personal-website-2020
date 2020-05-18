@@ -11,7 +11,7 @@ export const ROUTES = {
     name: "Blog",
     url: "/blog"
   },
-  PROJECT: {
+  PROJECTS: {
     name: "Projects",
     url: "/projects"
   },

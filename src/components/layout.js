@@ -8,7 +8,7 @@ import Footer from "./footer";
 import { globalStyles } from "../utils/styles";
 import { Global } from '@emotion/core';
 
-const Layout = ({ children, showWelcomeText }) => {
+const Layout = ({ children, showWelcomeText, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,6 +24,7 @@ const Layout = ({ children, showWelcomeText }) => {
       <Global styles={globalStyles} />
       <Header
         siteTitle={data.site.siteMetadata.title}
+        location={location}
         showWelcomeText={showWelcomeText}
       />
       {children}
@@ -34,11 +35,13 @@ const Layout = ({ children, showWelcomeText }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.object,
   showWelcomeText: PropTypes.bool
 }
 
 Layout.defaultProps = {
-  showWelcomeText: false
+  showWelcomeText: false,
+  location: null
 };
 
 export default Layout

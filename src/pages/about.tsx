@@ -9,11 +9,11 @@ import { colors } from "../utils/styles";
 import { prettyPrintDate } from "../utils/dates";
 import { renderRichTextContent } from "../utils/RichTextRenderer";
 
-const AboutPage = ({ data }) => {
+const AboutPage = ({ data, location }) => {
   const { title, updatedAt, content } = data.contentfulSinglePages;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="About" />
       <Container bg={colors.white}>
         <h1>{title}</h1>
