@@ -13,13 +13,16 @@ const WelcomeTextWrapper = styled.section`
     ${tw`lg:block font-semibold text-left md:text-left text-3xl md:text-2xl lg:text-3xl xl:text-5xl leading-none mb-6 xl:mb-8`}
   }
   .tagline {
-    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal relative`}
+    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal relative`}
+    ${tw`-mx-4 -mr-4 md:px-6 md:py-4 lg:-mx-6`}
+    ${tw`px-4 py-4`}
+    ${tw`bg-blue-600 md:rounded-lg text-blue-200`}
+  }
+  .highlighted {
+    ${tw`text-white font-semibold pl-1 pr-1 uppercase`}
   }
   .current-status {
     ${tw`block text-gray-900 leading-normal md:text-left text-base xl:text-lg font-semibold mb-6`}
-  }
-  .highlighted {
-    ${tw`text-gray-900 font-semibold pl-1 pr-1 uppercase`}
   }
 `;
 

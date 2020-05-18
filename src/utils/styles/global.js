@@ -47,19 +47,10 @@ export const globalStyles = css`
     ${tw`no-underline text-gray-800 font-medium`}
   }
   blockquote {
-    ${tw`pl-8 mt-8 mb-8`}
-    border-left: 5px solid ${colors.yellowDark};
+    ${tw`pl-8 mt-8 mb-8 border-l-4 border-solid border-yellow-400`}
   }
   hr {
-    ${tw`mt-8 mb-8 md:mt-12 md:mb-12 border-none`}
-    border: none;
-    border-top: 1px solid ${colors.lightGrey};
-  }
-  ::-moz-selection, ::selection {
-    ${tw`text-white`}
-    background: ${colors.yellowDark};
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: ${colors.white};
+    ${tw`mt-8 mb-8 md:mt-12 md:mb-12 border-t-2 border-solid border-gray-100`}
   }
 
   /*  LAYOUT */
@@ -69,27 +60,30 @@ export const globalStyles = css`
   
   
   /* MISCELLANEOUS ITEMS */
+  ::-moz-selection, ::selection {
+    ${tw`text-white bg-blue-400`}
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: ${colors.white};
+  }
+
   .react-icons {
-    vertical-align: middle;
+    ${tw`align-middle`}
   }
+
   .gatsby-highlight {
-    ${tw`mb-6`}
+    ${tw`mb-6 -ml-4 -mr-4`}
   }
-  pre { /* Pair with Prism.js */
-    border-bottom: 10px solid ${colors.yellow};
-    border-radius: 10px;
+
+  pre {
+    ${tw`border-b-8 border-solid border-yellow-400 md:rounded-lg`}
     code {
-      font-size: 12px !important;
+      font-size: 14px !important;
     }
   }
-  code.language-text { /* Override prism's default */
+  code.language-text {
     background-color: ${colors.mediumGrey} !important;
-    padding: 1px 5px !important;
-    margin: 0 2px;
-    vertical-align: middle;
-    color: ${colors.dark};
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    border-radius: .2rem;
+    font-size: 14px !important;
+    padding: 2px 6px !important;
+    ${tw`mx-0 my-2 align-middle text-gray-800 rounded-sm break-words`}
   }
 `;

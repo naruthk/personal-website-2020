@@ -9,13 +9,13 @@ import MovingProfilePicture from "../components/ui/moving-profile-picture";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 
-const HomePage = ({ location }) => (
+const HomePage = () => (
   <Layout showWelcomeText>
     <SEO title="Naruth Kongurai" />
     <Container>
       <div css={css` ${tw`sm:flex`}`}>
         <WelcomeText />
-        <MovingProfilePicture />
+        {/* <MovingProfilePicture /> */}
       </div>
     </Container>
   </Layout>
