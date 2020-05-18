@@ -6,6 +6,7 @@ import Container from "../components/container";
 import SEO from "../components/seo";
 import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
+import Tags from "../components/tags";
 
 import { prettyPrintDate } from "../utils/dates";
 
@@ -30,7 +31,8 @@ const BlogPost = ({ location, data }) => {
     excerpt,
     heroImage,
     createdAt,
-    body
+    body,
+    category
   } = data.contentfulBlogPosts;
 
   return (
@@ -51,6 +53,9 @@ const BlogPost = ({ location, data }) => {
         </PostInformationContainer>
       </Container>
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
+      <Container>
+        <Tags items={category} />
+      </Container>
     </Layout>
   )
 };
