@@ -12,19 +12,16 @@ import { BlogPostsPageProps } from "../utils/types";
 import styled from '@emotion/styled';
 import tw from "twin.macro";
 
-const Wrapper = styled.div`
+const FeaturedPostsWrapper = styled.div`
   ${tw`flex flex-wrap`}
 `;
 
-const Title = styled.h1`
-  ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray900 leading-normal mt-6`}
-`;
-
-const Post = styled.div`
-  ${tw`w-full sm:w-1/2 md:w-1/3 md:mr-4 mb-6 rounded overflow-hidden shadow-lg`}
+const FeaturedPost = styled.div`
+  ${tw`w-full sm:w-1/2 md:w-1/3 mb-6 rounded overflow-hidden shadow-lg`}
 
   .hero-image {
     ${tw`w-full object-cover h-32 md:h-48`}
+    ${tw`md:border-solid md:border-white md:border-4`}
   }
 
   .information {
@@ -40,37 +37,58 @@ const Post = styled.div`
   }
 `;
 
+const RemainingPostTitle = styled.h1`
+  ${tw`text-base md:text-left xl:text-2xl text-gray900 leading-normal mt-6`}
+`;
+
 const BlogsListingPage = (props: BlogPostsPageProps) => {
   const posts = props.data.allContentfulBlogPosts.edges;
+  const NUMBER_OF_FEATURED_POSTS = 3;
 
   return (
     <Layout>
       <SEO title="Blog Posts" />
       <Container>
         <h1>Blog</h1>
-        <Wrapper>
-          {posts.map(post => {
-            const { title, slug, excerpt, heroImage } = post.node;
-            const url = `${ROUTES.BLOG.url}/${slug}`;
-    
-            return (
-              <Post key={slug}>
-                <div className="hero-image" style={{ backgroundImage: `url(${heroImage.fixed.src})` }} />
-                <div className="information">
-                  <div className="title">{title}</div>
-                  <p>{excerpt.excerpt}</p>
-                </div>
-                {/* <ImageWrapper>
+        <p>I mostly write on topics related to web development and best practices with content about trending news and stories thrown into the mix occasionally. 😉</p>
+        <FeaturedPostsWrapper>
+          {posts.slice(0, NUMBER_OF_FEATURED_POSTS)
+            .map(post => {
+              const { title, slug, excerpt, heroImage } = post.node;
+              const url = `${ROUTES.BLOG.url}/${slug}`;
+      
+              return (
+                <FeaturedPost key={slug}>
                   <Link href={url} title={title}>
-                    <img src={heroImage.fixed.src} alt={title} />
+                    <div className="hero-image" style={{ backgroundImage: `url(${heroImage.fixed.src})` }} />
+                    <div className="information">
+                      <div className="title">{title}</div>
+                      <p>{excerpt.excerpt}</p>
+                    </div>
                   </Link>
-                </ImageWrapper>
-                <Link href={url} title={title}><Title>{title}</Title></Link>
-                <p>{excerpt.excerpt}</p> */}
-              </Post>
-            )
-          })}
-        </Wrapper>
+                </FeaturedPost>
+              )
+            })}
+        </FeaturedPostsWrapper>
+        <hr />
+        <div>
+          {posts.slice(NUMBER_OF_FEATURED_POSTS)
+            .map(post => {
+              const { title, slug, excerpt } = post.node;
+              const url = `${ROUTES.BLOG.url}/${slug}`;
+      
+              return (
+                <div key={slug}>
+                  <Link href={url} title={title}>
+                    <div className="information">
+                      <RemainingPostTitle>{title}</RemainingPostTitle>
+                      <p>{excerpt.excerpt}</p>
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
+        </div>
       </Container>
     </Layout>
   );
