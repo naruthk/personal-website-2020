@@ -23,6 +23,9 @@ const SiteNavLinks = styled.div`
   a[aria-current="page"] {
     ${tw`border-b-2 border-solid border-gray-900 font-bold`}
   }
+  a:hover {
+    ${tw`underline`}
+  }
   .desktop-only {
     ${tw`hidden md:inline-block cursor-pointer`}
   }
@@ -35,7 +38,7 @@ const MenuOverlayContent = styled.div`
   ${tw`flex flex-col flex-wrap justify-around h-full mx-4`}
   a, a:visited {
     ${tw`text-white`}
-  }
+  },
   .cta-message {
     ${tw`block text-gray-600 leading-normal md:text-left text-base xl:text-lg font-semibold mb-6`}
   }

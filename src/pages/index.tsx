@@ -6,13 +6,18 @@ import SEO from "../components/seo";
 import WelcomeText from "../components/ui/welcome-text";
 import MovingProfilePicture from "../components/ui/moving-profile-picture";
 
+import { css } from "@emotion/core";
+import tw from "twin.macro";
+
 const HomePage = () => (
   <Layout showWelcomeText>
     <SEO title="Naruth Kongurai" />
     <Container>
-      <WelcomeText />
+      <div css={css` ${tw`sm:flex`}`}>
+        <WelcomeText />
+        <MovingProfilePicture />
+      </div>
     </Container>
-    <MovingProfilePicture />
   </Layout>
 );
 
