@@ -14,7 +14,7 @@ import { FaGithub } from 'react-icons/fa';
 import tw from "twin.macro";
 
 const ProjectItemWrapper = styled.div`
-  ${tw`flex flex-wrap my-8`}
+  ${tw`flex flex-wrap mb-12`}
   div {
     ${tw`sm:w-full md:flex-1 md:pr-6`}
   }
@@ -48,7 +48,7 @@ const ProjectsListingPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Projects" />
-      <Container bg={colors.white}>
+      <Container>
         <h1>Projects</h1>
         {posts.map(post => {
           const { title, excerpt, heroImage, slug, sourceCodeUrl } = post.node;

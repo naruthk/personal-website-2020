@@ -11,8 +11,8 @@ const ModalWrapper = styled.div`
   ${tw`text-white`}
 
   .active {
-    ${tw`opacity-100 h-full pointer-events-auto bottom-0`}
-    ${tw`md:top-0 md:right-0 md:w-1/2`}\
+    ${tw`opacity-100 h-full pointer-events-auto`}
+    ${tw`sm:top-0 sm:right-0 md:top-0 md:right-0 bottom-0 md:w-1/2`}
     ${tw`transition-all duration-700`}
   }
 `;
@@ -20,20 +20,19 @@ const ModalWrapper = styled.div`
 const Portal = styled.div`
   ${({ isActive }) =>
     isActive && css`
-      ${tw`fixed w-full h-full opacity-50 top-0 left-0 z-10 bg-black text-white`}
-      ${tw`overflow-hidden overflow-y-hidden  pointer-events-auto`}
+      ${tw`fixed w-full h-full top-0 left-0`}
+      ${tw`z-10 bg-black text-white opacity-50 `}
+      ${tw`overflow-hidden overflow-y-hidden pointer-events-auto`}
       ${tw`transition-all duration-700`}
     `
   }
 `;
 
 const ContentWrapper = styled.div`
-  ${tw`fixed w-full p-4 md:p-12 md:w-1/2 md:h-full md:top-0`}
+  ${tw`fixed w-full md:w-1/2 p-4 md:p-12 md:h-full`}
+  ${tw`md:-right-1/2 md:top-0`}
   ${tw`transition-all duration-700`}
   ${tw`bg-black z-20 pointer-events-auto`}
-  ${mediaQuery[2]} {
-    right: -50%;
-  }
   bottom: -200%;
 `;
 
@@ -43,7 +42,7 @@ const CloseButton = styled.span`
     ${tw`transition-all duration-700 opacity-75 text-gray-800`}
   }
   a:hover {
-    ${tw`opacity-100`}
+    ${tw`opacity-100 text-white`}
   }
 `;
 
