@@ -51,8 +51,7 @@ const RemainingPostsWrapper = styled.div`
 `;
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
-  const raw = props.data.allContentfulBlogPosts.edges;
-  const posts = [...raw, ...raw, ...raw]
+  const posts = props.data.allContentfulBlogPosts.edges;
   const NUMBER_OF_FEATURED_POSTS = 3;
 
   return (
