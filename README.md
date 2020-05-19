@@ -14,3 +14,9 @@ Please [check out this blog post](https://www.naruth.dev/blog/it-is-time-for-a-r
 - React.js
 - Contentful (Headless CMS)
 - TypeScript
+
+## Resources
+
+SVG vectors used throughout the sites are from the following resources:
+
+- [Line Vectors](https://www.vecteezy.com/free-vector/line) by Vecteezy

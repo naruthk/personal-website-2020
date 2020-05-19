@@ -17,7 +17,7 @@ const ShareWrapper = styled.section`
   .footer-social-navigation {
     ${tw`text-center`}
     ul {
-      ${tw`flex list-none`}
+      ${tw`flex list-none flex-wrap`}
     }
     li {
       ${tw`mr-6 ml-0`}
