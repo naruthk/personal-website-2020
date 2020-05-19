@@ -13,10 +13,11 @@ const WelcomeTextWrapper = styled.section`
     ${tw`lg:block font-semibold text-left md:text-left text-3xl md:text-2xl lg:text-3xl xl:text-5xl leading-none mb-6 xl:mb-8`}
   }
   .tagline {
-    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal relative`}
-    ${tw`-mx-4 -mr-4 md:px-6 md:py-4 lg:-mx-6`}
+    ${tw`text-xl text-blue-200 md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal relative`}
+    ${tw`max-w-2xl -mx-4 md:mx-0 md:px-6 md:py-4`}
+    ${tw`lg:-mx-6`}
     ${tw`px-4 py-4`}
-    ${tw`bg-blue-600 md:rounded-lg text-blue-200`}
+    ${tw`bg-blue-600 border-blue-200 border-b-8 md:rounded-md`}
   }
   .highlighted {
     ${tw`text-white font-semibold pl-1 pr-1 uppercase`}

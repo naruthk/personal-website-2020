@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Container from "./container";
 import Link from "./link";
 import Logo from "./ui/logo";
 import Share from "./share/share";
@@ -22,7 +21,7 @@ const SiteNavLinks = styled.div`
   button, a {
     ${tw`mx-4 px-2 py-4 text-gray-500`}
   }
-  a[aria-current="page"],a.active {
+  a[aria-current="page"], .active {
     ${tw`border-b-2 border-solid border-gray-900 text-gray-900`}
   }
   .desktop-only {

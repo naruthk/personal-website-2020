@@ -18,7 +18,7 @@ const FeaturedPostsWrapper = styled.div`
 `;
 
 const FeaturedPost = styled.div`
-  ${tw`w-full sm:w-1/2 md:w-1/3 mb-6 rounded overflow-hidden md:shadow-lg`}
+  ${tw`w-full sm:w-1/3 md:w-1/3 md:rounded overflow-hidden sm:shadow-md`}
 
   .hero-image {
     ${tw`w-full object-cover h-32 md:h-48`}
@@ -26,7 +26,7 @@ const FeaturedPost = styled.div`
   }
 
   .information {
-    ${tw`sm:px-4 md:px-6 py-4`}
+    ${tw`sm:px-4 md:px-6 py-4 px-4`}
 
     .title {
       ${tw`font-bold text-lg mb-2`}
@@ -50,6 +50,10 @@ const RemainingPostsWrapper = styled.div`
   }
 `;
 
+const BlogComponentWrapper = styled.div`
+  ${tw`max-w-screen-lg mx-auto`}
+`;
+
 const BlogsListingPage = (props: BlogPostsPageProps) => {
   const posts = props.data.allContentfulBlogPosts.edges;
   const NUMBER_OF_FEATURED_POSTS = 3;
@@ -59,7 +63,9 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
       <SEO title="Blog Posts" />
       <Container>
         <h2 css={css`${tw`mt-0`}`}>Blog</h2>
-        <p css={css`${tw`mb-12`}`}>I mostly write on topics related to web development and best practices with content about trending news and stories thrown into the mix occasionally.</p>
+        <p css={css`${tw`md:mb-6`}`}>I mostly write on topics related to web development and best practices with content about trending news and stories thrown into the mix occasionally.</p>
+      </Container>
+      <BlogComponentWrapper>
         <FeaturedPostsWrapper>
           {posts.slice(0, NUMBER_OF_FEATURED_POSTS)
             .map(post => {
@@ -100,7 +106,7 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
             </RemainingPostsWrapper>
           </>
         )}
-      </Container>
+      </BlogComponentWrapper>
     </Layout>
   );
 };

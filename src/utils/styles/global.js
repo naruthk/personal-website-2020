@@ -26,7 +26,7 @@ export const globalStyles = css`
     ${tw`leading-relaxed mb-6 break-words`}
   }
   p, ol, li, ul {
-    ${tw`text-gray-600 text-base`}
+    ${tw`text-gray-700 text-base`}
   }
   li {
     ${tw`mb-2`}
