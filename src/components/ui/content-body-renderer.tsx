@@ -10,7 +10,7 @@ const ContentBodyRendererWrapper = styled.div`
     ${tw`no-underline text-blue-700 font-medium`}
   }
   img {
-    ${tw`w-auto md:py-12 max-w-full`}
+    ${tw`md:py-12 mx-auto block object-cover`}
   }
 `;
 

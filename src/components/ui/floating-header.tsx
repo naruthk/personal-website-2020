@@ -4,16 +4,12 @@ import PropTypes from "prop-types";
 import Share from "../share/share";
 import Logo from "../ui/logo";
 
-import { colors } from "../../utils/styles";
-
 import styled from '@emotion/styled';
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 
 const FloatingHeaderWrapper = styled.div`
   ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
-  ${tw`border-b-2 border-solid`}
-  border-color: ${colors.yellow};
   height: 50px;
 
   /* Animation Effect */
@@ -27,21 +23,21 @@ const FloatingHeaderWrapper = styled.div`
     `
   }
   /* End animation effect */
-
-  progress[value]::-moz-progress-bar,
-  progress[value]::-webkit-progress-bar {
-    background-color: ${colors.yellow};
-  }
 `;
 
-const ProgressContainer = styled.progress`
-  ${tw`absolute inset-x-0 w-full border-none bg-transparent appearance-none`}
-  bottom: -1px;
+const ProgressContainer = styled.div`
+  ${tw`absolute bottom-0 bg-red-400`}
   height: 3px;
+
+  ${({ width }) =>
+  width && css`
+    width: ${width}%;
+  `}
 `;
 
 const PostTitleWrapper = styled.div`
-  ${tw`overflow-hidden truncate flex-1 ml-4`}
+  ${tw`overflow-hidden truncate flex-1 ml-4 text-gray-300 text-sm sm:text-base`}
+  ${tw`md:border-l-2 border-solid border-gray-900 md:pl-6`}
 `;
 
 const FloatingHeader = ({ title, pathName }) => {
@@ -74,7 +70,7 @@ const FloatingHeader = ({ title, pathName }) => {
       <Logo />
       <PostTitleWrapper>{title}</PostTitleWrapper>
       <Share isFloatingHeader={true} pathName={pathName} />
-      <ProgressContainer value={currentScrollingPositionY} max="100" />
+      <ProgressContainer width={currentScrollingPositionY} />
     </FloatingHeaderWrapper>
   )
 };

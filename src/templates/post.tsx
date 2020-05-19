@@ -25,7 +25,7 @@ const PostInformationContainer = styled.div`
     ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
   }
   .hero-image {
-    ${tw`shadow-lg`}
+    ${tw`shadow-lg w-full`}
   }
 `;
 
@@ -53,9 +53,9 @@ const BlogPost = ({ data, location }) => {
           <p className="date">{prettyPrintDate({ timestamp: createdAt })}</p>
           <h1>{title}</h1>
           <p className="excerpt">{excerpt.excerpt}</p>
-          <img className="hero-image" src={heroImage.resize.src} alt={heroImage.title} />
         </PostInformationContainer>
       </Container>
+      <img className="hero-image" src={heroImage.resize.src} alt={heroImage.title} />
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
       <Container>
         <Tags items={category} />
