@@ -70,20 +70,19 @@ export const globalStyles = css`
     ${tw`align-middle`}
   }
 
+  /* Override Prism's styling */
   .gatsby-highlight {
-    ${tw`mb-6 -ml-4 -mr-4`}
+    ${tw`mb-6 lg:-mx-4`}
   }
-
   pre {
-    ${tw`border-b-8 border-solid border-yellow-400 md:rounded-lg`}
+    ${tw`border-b-8 border-solid border-yellow-400 rounded-lg`}
     code {
       font-size: 14px !important;
     }
   }
-  code.language-text {
-    background-color: ${colors.mediumGrey} !important;
-    font-size: 14px !important;
-    padding: 2px 6px !important;
-    ${tw`mx-0 my-2 align-middle text-gray-800 rounded-sm break-words`}
+  p > code.language-text { /* for markdown content outside Prism */
+    ${tw`mx-0 my-2 align-middle text-yellow-900 text-sm rounded-sm break-words`}
+    ${tw`bg-yellow-100 border-b-2 border-yellow-400`}
+    ${tw`px-2 py-1`}
   }
 `;

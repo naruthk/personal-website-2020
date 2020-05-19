@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import tw from "twin.macro";
 
 const ContainerWrapper = styled.section`
-  ${tw`max-w-screen-lg mx-auto pt-8 pb-8 px-4`}
+  ${tw`max-w-screen-md mx-auto pt-8 pb-8 px-4`}
 `;
 
 const Container = ({ children }) => (

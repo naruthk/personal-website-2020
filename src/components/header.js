@@ -18,7 +18,7 @@ const NavWrapper = styled.nav`
 `;
 
 const SiteNavLinks = styled.div`
-  button, a {
+  button, a, a:visited {
     ${tw`mx-4 px-2 py-4 text-gray-500`}
   }
   a[aria-current="page"], .active {
