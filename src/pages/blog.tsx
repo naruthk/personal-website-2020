@@ -18,7 +18,7 @@ const FeaturedPostsWrapper = styled.div`
 `;
 
 const FeaturedPost = styled.div`
-  ${tw`w-full sm:w-1/2 md:w-1/3 mb-6 rounded overflow-hidden shadow-lg`}
+  ${tw`w-full sm:w-1/2 md:w-1/3 mb-6 rounded overflow-hidden md:shadow-lg`}
 
   .hero-image {
     ${tw`w-full object-cover h-32 md:h-48`}
@@ -26,14 +26,14 @@ const FeaturedPost = styled.div`
   }
 
   .information {
-    ${tw`px-2 sm:px-4 md:px-6 py-4`}
+    ${tw`sm:px-4 md:px-6 py-4`}
 
     .title {
       ${tw`font-bold text-lg mb-2`}
     }
 
     p { 
-      ${tw`text-gray-700 md:text-base`}
+      ${tw`text-gray-600 md:text-base`}
     }
   }
 `;
@@ -46,12 +46,13 @@ const RemainingPostsWrapper = styled.div`
     ${tw`text-base md:text-left xl:text-lg text-gray900 leading-normal mt-6 mb-1`}
   }
   p { 
-    ${tw`text-gray-700 text-base`}
+    ${tw`text-gray-600 text-base`}
   }
 `;
 
 const BlogsListingPage = (props: BlogPostsPageProps) => {
-  const posts = props.data.allContentfulBlogPosts.edges;
+  const raw = props.data.allContentfulBlogPosts.edges;
+  const posts = [...raw, ...raw, ...raw]
   const NUMBER_OF_FEATURED_POSTS = 3;
 
   return (
@@ -79,23 +80,27 @@ const BlogsListingPage = (props: BlogPostsPageProps) => {
               )
             })}
         </FeaturedPostsWrapper>
-        <hr />
-        <RemainingPostsWrapper>
-          {posts.slice(NUMBER_OF_FEATURED_POSTS)
-            .map(post => {
-              const { title, slug, excerpt } = post.node;
-              const url = `${ROUTES.BLOG.url}/${slug}`;
-      
-              return (
-                <div key={slug}>
-                  <Link href={url} title={title}>
-                    <h1 className="title">{title}</h1>
-                  </Link>
-                  <p>{excerpt.excerpt}</p>
-                </div>
-              )
-            })}
-        </RemainingPostsWrapper>
+        {posts.length > NUMBER_OF_FEATURED_POSTS && (
+          <>
+            <hr />
+            <RemainingPostsWrapper>
+              {posts.slice(NUMBER_OF_FEATURED_POSTS)
+                .map(post => {
+                  const { title, slug, excerpt } = post.node;
+                  const url = `${ROUTES.BLOG.url}/${slug}`;
+          
+                  return (
+                    <div key={slug}>
+                      <Link href={url} title={title}>
+                        <h1 className="title">{title}</h1>
+                      </Link>
+                      <p>{excerpt.excerpt}</p>
+                    </div>
+                  )
+                })}
+            </RemainingPostsWrapper>
+          </>
+        )}
       </Container>
     </Layout>
   );

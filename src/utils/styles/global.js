@@ -23,10 +23,10 @@ export const globalStyles = css`
     ${tw`text-xl font-medium mt-8`}
   }
   p {
-    ${tw`text-base leading-relaxed mb-6 break-words`}
+    ${tw`leading-relaxed mb-6 break-words`}
   }
   p, ol, li, ul {
-    ${tw`text-gray-800 font-light`}
+    ${tw`text-gray-600 text-base`}
   }
   li {
     ${tw`mb-2`}

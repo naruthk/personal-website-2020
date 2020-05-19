@@ -12,6 +12,7 @@ import { prettyPrintDate } from "../utils/dates";
 
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+import { BsCalendar } from 'react-icons/bs';
 
 const ContentWrapper = styled.div`
   ${tw`md:my-4 w-full border-b-8 border-solid border-gray-100`}
@@ -43,7 +44,10 @@ const HeroImage = styled.img`
 const Meta = styled.div`
   ${tw`md:text-right`}
   .date-label {
-    ${tw`inline-flex text-xs pt-1 mb-1 text-gray-600 uppercase`}
+    ${tw`inline-flex text-xs pt-1 mb-1 text-gray-500 uppercase`}
+  }
+  .icon {
+    ${tw`mr-3 self-center text-gray-400`}
   }
   .date {
     ${tw`mb-4`}
@@ -103,7 +107,10 @@ const Project = ({ location, data }) => {
             )}
           </div>
           <Meta>
-            <p className="date-label">Date of Completion</p>
+            <p className="date-label">
+              <span className="icon"><BsCalendar /></span>
+              Date of Completion
+            </p>
             <p className="date">
               {prettyPrintDate({ timestamp: initialStartDate })}
               {" - "}

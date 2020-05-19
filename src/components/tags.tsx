@@ -9,7 +9,7 @@ import tw from "twin.macro";
 const TagsWrapper = styled.section`
   span {
     ${tw`inline-flex mr-2 align-middle items-center`}
-    ${tw`bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700`}
+    ${tw`bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-500`}
     :last-child {
       ${tw`m-0`}
     }

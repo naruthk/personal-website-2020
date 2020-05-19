@@ -14,6 +14,7 @@ import cx from 'classnames';
 import tw from "twin.macro";
 
 const NavWrapper = styled.nav`
+  ${tw`max-w-screen-lg mx-auto py-2 md:py-8 px-4`}
   ${tw`flex flex-row justify-between`}
 `;
 
@@ -63,41 +64,39 @@ const Header = ({ location }) => {
 
   return (
     <>
-      <Container>
-        <NavWrapper>
-          <Logo />
-          <SiteNavLinks>
-            {navOrder.map(item => 
-              <Link
-                key={item.name}
-                className={
-                  cx("desktop-only", {
-                    "active": activeRoute && activeRoute.name === item.name
-                  })
-                }
-                href={item.url}
-                title={item.name}
-              >
-                {item.name}
-              </Link>
-            )}
+      <NavWrapper>
+        <Logo />
+        <SiteNavLinks>
+          {navOrder.map(item => 
             <Link
-              className="desktop-only"
-              title="Contact"
-              onClick={() => setShowModalOverlay(true)}
+              key={item.name}
+              className={
+                cx("desktop-only", {
+                  "active": activeRoute && activeRoute.name === item.name
+                })
+              }
+              href={item.url}
+              title={item.name}
             >
-              {ROUTES.CONTACT.name}
+              {item.name}
             </Link>
-            <Link
-              className="mobile-only"
-              title="Hamburger Menu"
-              onClick={() => setShowModalOverlay(true)}
-            >
-              <FiMenu />
-            </Link>
-          </SiteNavLinks>
-        </NavWrapper>
-      </Container>
+          )}
+          <Link
+            className="desktop-only"
+            title="Contact"
+            onClick={() => setShowModalOverlay(true)}
+          >
+            {ROUTES.CONTACT.name}
+          </Link>
+          <Link
+            className="mobile-only"
+            title="Hamburger Menu"
+            onClick={() => setShowModalOverlay(true)}
+          >
+            <FiMenu />
+          </Link>
+        </SiteNavLinks>
+      </NavWrapper>
 
       {/* Modal expands full screen on mobile screen size */}
       <Modal isActive={showModalOverlay} setActive={setShowModalOverlay}>

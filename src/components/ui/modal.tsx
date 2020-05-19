@@ -39,7 +39,7 @@ const ContentWrapper = styled.div`
 const CloseButton = styled.span`
   ${tw`text-right cursor-pointer block uppercase mr-6`}
   a, a:visited {
-    ${tw`transition-all duration-700 opacity-75 text-gray-800`}
+    ${tw`transition-all duration-700 opacity-75 text-gray-600`}
   }
   a:hover {
     ${tw`opacity-100 text-white`}
