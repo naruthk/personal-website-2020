@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 import { BsCalendar } from "react-icons/bs";
+import GatsbyImage from "gatsby-image";
 
 import Layout from "../components/layout";
 import Link from "../components/link";
@@ -36,8 +37,8 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const HeroImage = styled.img`
-  ${tw`shadow-lg sm:mb-2 mb-6`}
+const HeroImage = styled.div`
+  ${tw`shadow-lg w-full sm:max-w-screen-lg mb-6 md:rounded-lg mx-auto`}
 `;
 
 const Meta = styled.div`
@@ -76,7 +77,9 @@ const Project = ({ location, data }) => {
         pathName={location.pathname}
       />
       <FloatingHeader title={title} pathName={location.pathname} />
-      <HeroImage src={heroImage.resize.src} alt={heroImage.title} />
+      <HeroImage>
+        <GatsbyImage fluid={heroImage.fluid} alt={heroImage.title} />
+      </HeroImage>
       <ContentWrapper>
         <div className="container">
           <div>
@@ -149,10 +152,8 @@ export const pageQuery = graphql`
         excerpt
       }
       heroImage {
-        resize(width: 1200) {
-          src
-          width
-          height
+        fluid(maxWidth: 1024) {
+          ...GatsbyContentfulFluid
         }
       }
       sourceCodeUrl

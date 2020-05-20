@@ -5,6 +5,7 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { FaGithub } from "react-icons/fa";
 import tw from "twin.macro";
+import GatsbyImage from "gatsby-image";
 
 import Container from "../components/container";
 import Layout from "../components/layout";
@@ -17,13 +18,13 @@ import { ProjectItem } from "../utils/types";
 const ProjectItemWrapper = styled.div`
   ${tw`flex flex-wrap mb-12`}
   div {
-    ${tw`sm:w-full md:flex-1 md:pr-6`}
+    ${tw`w-full sm:flex-1 md:flex-1 md:pr-6`}
   }
-  img {
-    ${tw`w-full md:mx-0 shadow-lg md:border-white md:border-8 md:border-solid`}
-    :hover {
-      ${tw`shadow-xl`}
-    }
+  .title {
+    ${tw`lg:text-2xl text-xl mb-2`}
+  }
+  .excerpt {
+    ${tw`text-gray-500 text-sm sm:text-base leading-tight`}
   }
   .cta {
     ${tw`mr-6 inline-flex opacity-75`}
@@ -40,6 +41,13 @@ const ProjectItemWrapper = styled.div`
       content: "->";
       ${tw`pl-2`}
     }
+  }
+`;
+
+const HeroImageWrapper = styled.div`
+  ${tw`w-full mb-4 md:mb-0 sm:mr-4`}
+  img {
+    ${tw`shadow-lg`}
   }
 `;
 
@@ -63,20 +71,18 @@ const ProjectsListingPage = ({ data }) => {
 
           return (
             <ProjectItemWrapper key={slug}>
+              <HeroImageWrapper>
+                <Link href={projectPageUrl} title={title}>
+                  <GatsbyImage fluid={heroImage.fluid} alt={title} />
+                </Link>
+              </HeroImageWrapper>
               <div>
-                <p>
-                  <Link href={projectPageUrl} title={title}>
-                    <img src={heroImage.fixed.src} alt={title} />
-                  </Link>
-                </p>
-              </div>
-              <div>
-                <h1>
+                <h1 className="title">
                   <Link href={projectPageUrl} title={title}>
                     {title}
                   </Link>
                 </h1>
-                <p>{excerpt.excerpt}</p>
+                <p className="excerpt">{excerpt.excerpt}</p>
                 <Link
                   className="cta"
                   isExternal
@@ -122,8 +128,8 @@ export const pageQuery = graphql`
             excerpt
           }
           heroImage {
-            fixed {
-              src
+            fluid(maxWidth: 600) {
+              ...GatsbyContentfulFluid
             }
           }
           sourceCodeUrl

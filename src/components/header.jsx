@@ -14,7 +14,7 @@ import Share from "./share/share";
 import Modal from "./ui/modal";
 
 const NavWrapper = styled.nav`
-  ${tw`max-w-screen-lg mx-auto py-2 md:py-8 px-4`}
+  ${tw`max-w-screen-lg mx-auto pt-4 pb-2 md:py-8 px-4`}
   ${tw`flex flex-row justify-between`}
 `;
 

@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+import GatsbyImage from "gatsby-image";
 
 import Layout from "../components/layout";
 import Container from "../components/container";
@@ -25,8 +26,8 @@ const PostInformationContainer = styled.div`
   }
 `;
 
-const HeroImage = styled.img`
-  ${tw`shadow-lg w-full sm:max-w-screen-lg mb-6 md:rounded-lg`}
+const HeroImage = styled.div`
+  ${tw`shadow-lg w-full sm:max-w-screen-lg mb-6 md:rounded-lg mx-auto`}
 `;
 
 const BlogPost = ({ data, location }) => {
@@ -55,7 +56,9 @@ const BlogPost = ({ data, location }) => {
           <p className="excerpt">{excerpt.excerpt}</p>
         </PostInformationContainer>
       </Container>
-      <HeroImage src={heroImage.resize.src} alt={heroImage.title} />
+      <HeroImage>
+        <GatsbyImage fluid={heroImage.fluid} alt={heroImage.title} />
+      </HeroImage>
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
       <Container>
         <Tags items={category} />
@@ -86,10 +89,8 @@ export const pageQuery = graphql`
         excerpt
       }
       heroImage {
-        resize(width: 1200) {
-          src
-          width
-          height
+        fluid(maxWidth: 1024) {
+          ...GatsbyContentfulFluid
         }
       }
       category

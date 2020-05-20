@@ -1,13 +1,13 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
     title: `Naruth Kongurai Personal Website`,
     description: `I'm a Web Developer from Bangkok on an endless journey to create, inspire, and bridge the gap between people and technology.`,
     author: `Naruth Kongurai`,
-    siteUrl: `https://naruth.dev`
+    siteUrl: `https://naruth.dev`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -58,18 +58,25 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 75,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `naruth.dev`,
         short_name: `Naruth`,
-        lang: 'en',
+        lang: "en",
         start_url: `/`,
         background_color: `rgb(250, 250, 250)`,
         theme_color: `#feae00`,
         display: `minimal-ui`,
-        icon: `src/images/logo.png`
+        icon: `src/images/logo.png`,
       },
     },
     {
@@ -83,9 +90,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTIC_TRACKING_ID
+        trackingId: process.env.GOOGLE_ANALYTIC_TRACKING_ID,
       },
     },
     `gatsby-plugin-sitemap`,
   ],
-}
+};

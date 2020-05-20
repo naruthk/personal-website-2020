@@ -24,6 +24,7 @@ const FeaturedPost = styled.div`
   .hero-image {
     ${tw`w-full object-cover h-32 md:h-48`}
     ${tw`md:border-solid md:border-white md:border-4`}
+    ${tw`bg-center bg-cover bg-no-repeat`}
   }
 
   .information {
