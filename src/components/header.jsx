@@ -22,7 +22,7 @@ const SiteNavLinks = styled.div`
   button,
   a,
   a:visited {
-    ${tw`mx-4 px-2 py-4 text-gray-500`}
+    ${tw`mx-4 px-2 py-4 text-gray-600`}
   }
   a[aria-current="page"],
   .active {
