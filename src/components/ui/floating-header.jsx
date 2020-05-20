@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 
+import useIsScrollingHook from "../../hooks/use-is-scrolling";
 import Share from "../share/share";
 
 import Logo from "./logo";
@@ -41,39 +42,25 @@ const PostTitleWrapper = styled.div`
 `;
 
 const FloatingHeader = ({ title, pathName }) => {
-  const [isActive, setIsActive] = useState(false);
-  const [currentScrollingPositionY, setCurrentScrollingPositionY] = useState(0);
+  const { isActive, scrolledPosition } = useIsScrollingHook();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const updateScrollActivity = () => {
-    const scrollTop =
-      document.body.scrollTop || document.documentElement.scrollTop;
+  useEffect(() => {
+    if (!document) return;
+
     const height =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
-    const currentlyScrolledPercentage = (scrollTop / height) * 100;
-
-    setIsActive(currentlyScrolledPercentage > 0);
-    setCurrentScrollingPositionY(currentlyScrolledPercentage);
-  };
-
-  useEffect(() => {
-    if (!document) return {};
-
-    window.addEventListener("scroll", updateScrollActivity);
-
-    return () => {
-      window.removeEventListener("scroll", updateScrollActivity);
-      setIsActive(false);
-      setCurrentScrollingPositionY(0);
-    };
-  }, []);
+    const percentagedScrolled = (scrolledPosition / height) * 100;
+    setScrollProgress(percentagedScrolled);
+  }, [scrolledPosition]);
 
   return (
     <FloatingHeaderWrapper isActive={isActive}>
       <Logo />
       <PostTitleWrapper>{title}</PostTitleWrapper>
       <Share isFloatingHeader pathName={pathName} />
-      <ProgressContainer width={currentScrollingPositionY} />
+      <ProgressContainer width={scrollProgress} />
     </FloatingHeaderWrapper>
   );
 };

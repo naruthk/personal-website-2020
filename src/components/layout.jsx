@@ -9,7 +9,7 @@ import { LocationPropTypes } from "../utils/types";
 import Header from "./header";
 import Footer from "./footer";
 
-const Layout = ({ children, showWelcomeText, location }) => {
+const Layout = ({ children, showWelcomeText, displayNavigation, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,11 +23,13 @@ const Layout = ({ children, showWelcomeText, location }) => {
   return (
     <>
       <Global styles={globalStyles} />
-      <Header
-        siteTitle={data.site.siteMetadata.title}
-        location={location}
-        showWelcomeText={showWelcomeText}
-      />
+      {displayNavigation && (
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          location={location}
+          showWelcomeText={showWelcomeText}
+        />
+      )}
       {children}
       <Footer />
     </>
@@ -38,10 +40,12 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   location: LocationPropTypes,
   showWelcomeText: PropTypes.bool,
+  displayNavigation: PropTypes.bool,
 };
 
 Layout.defaultProps = {
   showWelcomeText: false,
+  displayNavigation: true,
   location: null,
 };
 
