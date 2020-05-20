@@ -1,16 +1,17 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
+import styled from "@emotion/styled";
+import { FiMenu } from "react-icons/fi";
+import cx from "classnames";
+import tw from "twin.macro";
+
+import { ROUTES } from "../utils/routes";
+import { LocationPropTypes } from "../utils/types";
 
 import Link from "./link";
 import Logo from "./ui/logo";
 import Share from "./share/share";
 import Modal from "./ui/modal";
-
-import { ROUTES } from "../utils/routes";
-
-import styled from '@emotion/styled';
-import { FiMenu } from 'react-icons/fi';
-import cx from 'classnames';
-import tw from "twin.macro";
 
 const NavWrapper = styled.nav`
   ${tw`max-w-screen-lg mx-auto py-2 md:py-8 px-4`}
@@ -18,10 +19,13 @@ const NavWrapper = styled.nav`
 `;
 
 const SiteNavLinks = styled.div`
-  button, a, a:visited {
+  button,
+  a,
+  a:visited {
     ${tw`mx-4 px-2 py-4 text-gray-500`}
   }
-  a[aria-current="page"], .active {
+  a[aria-current="page"],
+  .active {
     ${tw`border-b-2 border-solid border-gray-900 text-gray-900`}
   }
   .desktop-only {
@@ -48,7 +52,7 @@ const MenuOverlayContent = styled.div`
   }
 `;
 
-const getActiveRouteEntity = (location) => {
+const getActiveRouteEntity = location => {
   if (!location) return null;
 
   const splitPath = location.pathname.split("/");
@@ -66,20 +70,18 @@ const Header = ({ location }) => {
       <NavWrapper>
         <Logo />
         <SiteNavLinks>
-          {navOrder.map(item => 
+          {navOrder.map(item => (
             <Link
               key={item.name}
-              className={
-                cx("desktop-only", {
-                  "active": activeRoute && activeRoute.name === item.name
-                })
-              }
+              className={cx("desktop-only", {
+                active: activeRoute && activeRoute.name === item.name,
+              })}
               href={item.url}
               title={item.name}
             >
               {item.name}
             </Link>
-          )}
+          ))}
           <Link
             className="desktop-only"
             title="Contact"
@@ -101,18 +103,22 @@ const Header = ({ location }) => {
       <Modal isActive={showModalOverlay} setActive={setShowModalOverlay}>
         <MenuOverlayContent>
           <div>
-            {navOrder.map(item => 
+            {navOrder.map(item => (
               <h1 key={item.name}>
                 <Link href={item.url} title={item.name}>
                   {item.name}
                 </Link>
               </h1>
-            )}
+            ))}
           </div>
           <div>
             <p className="cta-message">Send your message to</p>
             <p className="email-link">
-              <Link isExternal href="mailto:nkongurai@gmail.com" title="Send a message">
+              <Link
+                isExternal
+                href="mailto:nkongurai@gmail.com"
+                title="Send a message"
+              >
                 nkongurai@gmail.com
               </Link>
             </p>
@@ -124,6 +130,14 @@ const Header = ({ location }) => {
       </Modal>
     </>
   );
+};
+
+Header.propTypes = {
+  location: LocationPropTypes,
+};
+
+Header.defaultProps = {
+  location: null,
 };
 
 export default Header;

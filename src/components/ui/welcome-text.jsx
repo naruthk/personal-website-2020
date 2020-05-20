@@ -1,9 +1,8 @@
 import React from "react";
-
-import TypeWritingText from "./typewriting-text";
-
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+
+import TypeWritingText from "./typewriting-text";
 
 const WelcomeTextWrapper = styled.section`
   .greeting {
@@ -30,11 +29,30 @@ const WelcomeTextWrapper = styled.section`
 const WelcomeText = () => (
   <WelcomeTextWrapper>
     <div className="greeting">Hello</div>
-    <div className="headline">I'm Naruth.</div>
+    <div className="headline">I&apos;m Naruth.</div>
     <p className="tagline">
-      I'm a Web Developer from Bangkok <span role="img" aria-label="thailand flag">🇹🇭</span> on an endless journey to <span className="highlighted">create</span>, <span className="highlighted">inspire</span>, and <span className="highlighted">bridge the gap</span> between <span className="highlighted">people and technology</span>.</p>
-    <div>Currently coding using: <span className="current-status">
-      <TypeWritingText>JavaScript, React.js, Next.js <span role="img" aria-label="fire emoji">🔥</span> <span role="img" aria-label="guitar emoji">🎸</span></TypeWritingText></span>
+      A Web Developer from Bangkok{" "}
+      <span role="img" aria-label="thailand flag">
+        🇹🇭
+      </span>{" "}
+      on an endless journey to <span className="highlighted">create</span>,{" "}
+      <span className="highlighted">inspire</span>, and{" "}
+      <span className="highlighted">bridge the gap</span> between{" "}
+      <span className="highlighted">people and technology</span>.
+    </p>
+    <div>
+      Currently coding using:{" "}
+      <span className="current-status">
+        <TypeWritingText>
+          JavaScript, React.js, Next.js{" "}
+          <span role="img" aria-label="fire emoji">
+            🔥
+          </span>{" "}
+          <span role="img" aria-label="guitar emoji">
+            🎸
+          </span>
+        </TypeWritingText>
+      </span>
     </div>
   </WelcomeTextWrapper>
 );

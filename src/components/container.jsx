@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import tw from "twin.macro";
 
 const ContainerWrapper = styled.section`
@@ -9,13 +8,11 @@ const ContainerWrapper = styled.section`
 `;
 
 const Container = ({ children }) => (
-  <ContainerWrapper>
-    {children}
-  </ContainerWrapper>
+  <ContainerWrapper>{children}</ContainerWrapper>
 );
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export default Container;

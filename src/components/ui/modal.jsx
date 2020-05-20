@@ -1,11 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-
-import { mediaQuery} from "../../utils/styles";
-
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
+
+import Link from "../link";
 
 const ModalWrapper = styled.div`
   ${tw`text-white`}
@@ -19,13 +19,13 @@ const ModalWrapper = styled.div`
 
 const Portal = styled.div`
   ${({ isActive }) =>
-    isActive && css`
+    isActive &&
+    css`
       ${tw`fixed w-full h-full top-0 left-0`}
       ${tw`z-10 bg-black text-white opacity-50 `}
       ${tw`overflow-hidden overflow-y-hidden pointer-events-auto`}
       ${tw`transition-all duration-700`}
-    `
-  }
+    `}
 `;
 
 const ContentWrapper = styled.div`
@@ -38,10 +38,10 @@ const ContentWrapper = styled.div`
 
 const CloseButton = styled.span`
   ${tw`text-right cursor-pointer block uppercase mr-6`}
-  a, a:visited {
+  button {
     ${tw`transition-all duration-700 opacity-75 text-gray-600`}
   }
-  a:hover {
+  button:hover {
     ${tw`opacity-100 text-white`}
   }
 `;
@@ -59,9 +59,11 @@ const Modal = ({ children, isActive, setActive }) => {
   return (
     <>
       <ModalWrapper>
-        <ContentWrapper className={isActive && "active" || ""}>
+        <ContentWrapper className={(isActive && "active") || ""}>
           <CloseButton>
-            <a onClick={() => setActive(!isActive)}>Close X</a>
+            <Link title="Close" onClick={() => setActive(!isActive)}>
+              Close X
+            </Link>
           </CloseButton>
           {children}
         </ContentWrapper>
@@ -75,10 +77,11 @@ export default Modal;
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
+  setActive: PropTypes.func,
 };
 
 Modal.defaultProps = {
   isActive: false,
-  setActive: () => {}
+  setActive: () => {},
 };

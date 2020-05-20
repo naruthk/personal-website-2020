@@ -1,12 +1,11 @@
-
 import React from "react";
 import {
   FaFacebook,
   FaTwitter,
   FaGithub,
   FaLinkedin,
-  FaCodepen
-} from 'react-icons/fa';
+  FaCodepen,
+} from "react-icons/fa";
 
 export const SOCIAL_NETWORK_PROFILE_MAP = {
   twitter: {
@@ -27,17 +26,17 @@ export const SOCIAL_NETWORK_PROFILE_MAP = {
   codepen: {
     name: "CodePen",
     icon: <FaCodepen />,
-    url: "https://www.codepen.io/naruthk"
-  }
+    url: "https://www.codepen.io/naruthk",
+  },
 };
 
 export const ARTICLE_SHARE_INFO_MAP = {
   facebook: {
     url: `https://www.facebook.com/sharer/sharer.php?u=`,
-    icon: <FaFacebook />
+    icon: <FaFacebook />,
   },
   twitter: {
     url: `https://twitter.com/intent/tweet?url=`,
-    icon: <FaTwitter />
-  }
+    icon: <FaTwitter />,
+  },
 };

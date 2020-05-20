@@ -1,18 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import { FaGithub } from "react-icons/fa";
+import tw from "twin.macro";
 
 import Container from "../components/container";
 import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
-
 import { ROUTES } from "../utils/routes";
 import { colors } from "../utils/styles";
-
-import { css } from "@emotion/core";
-import styled from "@emotion/styled";
-import { FaGithub } from 'react-icons/fa';
-import tw from "twin.macro";
+import { ProjectItem } from "../utils/types";
 
 const ProjectItemWrapper = styled.div`
   ${tw`flex flex-wrap mb-12`}
@@ -50,7 +50,13 @@ const ProjectsListingPage = ({ data }) => {
     <Layout>
       <SEO title="Projects" />
       <Container>
-        <h2 css={css`${tw`mt-0`}`}>Projects</h2>
+        <h2
+          css={css`
+            ${tw`mt-0`}
+          `}
+        >
+          Projects
+        </h2>
         {posts.map(post => {
           const { title, excerpt, heroImage, slug, sourceCodeUrl } = post.node;
           const projectPageUrl = `${ROUTES.PROJECTS.url}/${slug}`;
@@ -58,20 +64,37 @@ const ProjectsListingPage = ({ data }) => {
           return (
             <ProjectItemWrapper key={slug}>
               <div>
-                <p><Link href={projectPageUrl} title={title}><img src={heroImage.fixed.src} alt={title} /></Link></p>
+                <p>
+                  <Link href={projectPageUrl} title={title}>
+                    <img src={heroImage.fixed.src} alt={title} />
+                  </Link>
+                </p>
               </div>
               <div>
-                <h1><Link href={projectPageUrl}>{title}</Link></h1>
+                <h1>
+                  <Link href={projectPageUrl} title={title}>
+                    {title}
+                  </Link>
+                </h1>
                 <p>{excerpt.excerpt}</p>
-                <Link className="cta" isExternal href={sourceCodeUrl} title={title}>
-                    <FaGithub />
+                <Link
+                  className="cta"
+                  isExternal
+                  href={sourceCodeUrl}
+                  title={title}
+                >
+                  <FaGithub />
                 </Link>
-                <Link className="cta read-more" href={projectPageUrl} title="Read more">
+                <Link
+                  className="cta read-more"
+                  href={projectPageUrl}
+                  title="Read more"
+                >
                   Read more
                 </Link>
               </div>
             </ProjectItemWrapper>
-          )
+          );
         })}
       </Container>
     </Layout>
@@ -80,28 +103,36 @@ const ProjectsListingPage = ({ data }) => {
 
 export default ProjectsListingPage;
 
+ProjectsListingPage.propTypes = {
+  data: PropTypes.shape({
+    allContentfulProjects: PropTypes.shape({
+      edges: PropTypes.arrayOf(ProjectItem),
+    }),
+  }).isRequired,
+};
+
 export const pageQuery = graphql`
-{
-  allContentfulProjects(sort: {order: DESC, fields: initialStartDate}) {
-    edges {
-      node {
-        slug
-        title
-        excerpt {
-          excerpt
-        }
-        heroImage {
-          fixed {
-            src
+  {
+    allContentfulProjects(sort: { order: DESC, fields: initialStartDate }) {
+      edges {
+        node {
+          slug
+          title
+          excerpt {
+            excerpt
           }
+          heroImage {
+            fixed {
+              src
+            }
+          }
+          sourceCodeUrl
+          demoUrl
+          category
+          initialStartDate
+          completionDate
         }
-        sourceCodeUrl
-        demoUrl
-        category
-        initialStartDate
-        completionDate
       }
     }
   }
-}
 `;

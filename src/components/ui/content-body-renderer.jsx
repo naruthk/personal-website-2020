@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import tw from "twin.macro";
 
 const ContentBodyRendererWrapper = styled.div`
@@ -25,5 +24,5 @@ const ContentBodyRenderer = ({ html }) => (
 export default ContentBodyRenderer;
 
 ContentBodyRenderer.propTypes = {
-  html: PropTypes.string.isRequired
-}
+  html: PropTypes.string.isRequired,
+};

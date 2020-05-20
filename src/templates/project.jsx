@@ -1,5 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
+import { BsCalendar } from "react-icons/bs";
 
 import Layout from "../components/layout";
 import Link from "../components/link";
@@ -7,12 +10,8 @@ import SEO from "../components/seo";
 import Tags from "../components/tags";
 import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
-
 import { prettyPrintDate } from "../utils/dates";
-
-import styled from "@emotion/styled";
-import tw from "twin.macro";
-import { BsCalendar } from 'react-icons/bs';
+import { ProjectItem, LocationPropTypes } from "../utils/types";
 
 const ContentWrapper = styled.div`
   ${tw`md:my-4 w-full border-b-8 border-solid border-gray-100`}
@@ -65,7 +64,7 @@ const Project = ({ location, data }) => {
     heroImage,
     initialStartDate,
     completionDate,
-    isCurrentlyActive
+    isCurrentlyActive,
   } = data.contentfulProjects;
 
   return (
@@ -76,7 +75,7 @@ const Project = ({ location, data }) => {
         metaImage={heroImage.resize}
         pathName={location.pathname}
       />
-      <FloatingHeader title={title} pathName={location.pathname}/>
+      <FloatingHeader title={title} pathName={location.pathname} />
       <HeroImage src={heroImage.resize.src} alt={heroImage.title} />
       <ContentWrapper>
         <div className="container">
@@ -108,13 +107,17 @@ const Project = ({ location, data }) => {
           </div>
           <Meta>
             <p className="date-label">
-              <span className="icon"><BsCalendar /></span>
+              <span className="icon">
+                <BsCalendar />
+              </span>
               Date of Completion
             </p>
             <p className="date">
               {prettyPrintDate({ timestamp: initialStartDate })}
               {" - "}
-              {isCurrentlyActive ? "Present" : prettyPrintDate({ timestamp: completionDate })}
+              {isCurrentlyActive
+                ? "Present"
+                : prettyPrintDate({ timestamp: completionDate })}
             </p>
             <Tags items={category} />
           </Meta>
@@ -122,36 +125,41 @@ const Project = ({ location, data }) => {
       </ContentWrapper>
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
     </Layout>
-  )
+  );
 };
 
 export default Project;
 
+Project.propTypes = {
+  data: ProjectItem.isRequired,
+  location: LocationPropTypes.isRequired,
+};
+
 export const pageQuery = graphql`
- query ProjectsBySlug($slug: String!) {
-  contentfulProjects(slug: { eq: $slug }) {
-    title
-    category
-    body {
-      childMarkdownRemark {
-        html
+  query ProjectsBySlug($slug: String!) {
+    contentfulProjects(slug: { eq: $slug }) {
+      title
+      category
+      body {
+        childMarkdownRemark {
+          html
+        }
       }
-    }
-    excerpt {
-      excerpt
-    }
-    heroImage {
-      resize(width: 1200) {
-        src
-        width
-        height
+      excerpt {
+        excerpt
       }
+      heroImage {
+        resize(width: 1200) {
+          src
+          width
+          height
+        }
+      }
+      sourceCodeUrl
+      demoUrl
+      initialStartDate
+      completionDate
+      isCurrentlyActive
     }
-    sourceCodeUrl
-    demoUrl
-    initialStartDate
-    completionDate
-    isCurrentlyActive
   }
-}
 `;

@@ -1,11 +1,11 @@
 import React from "react";
-
-import Share from "./share/share";
-import Container from "../components/container";
-import abstract from "../images/abstract-1.svg";
-
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+
+import abstract from "../images/abstract-1.svg";
+
+import Share from "./share/share";
+import Container from "./container";
 
 const FooterWrapper = styled.footer`
   ${tw`pt-8 w-full bg-gray-900`}
@@ -36,7 +36,7 @@ const Footer = () => (
       <Container>
         <nav>
           <div className="site-wide-navigation">
-            © {new Date().getFullYear()} - Naruth Kongurai  🎸 <br />
+            © {new Date().getFullYear()} - Naruth Kongurai 🎸 <br />
             <p className="powered-by-gatsby">Powered by Gatsby.js</p>
           </div>
           <div>

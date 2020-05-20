@@ -1,7 +1,7 @@
-import css from '@emotion/css';
+import css from "@emotion/css";
 import tw from "twin.macro";
 
-import {fonts, colors } from "./constants";
+import { fonts, colors } from "./constants";
 
 export const globalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');

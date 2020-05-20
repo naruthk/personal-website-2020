@@ -1,5 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 import Layout from "../components/layout";
 import Container from "../components/container";
@@ -7,11 +9,8 @@ import SEO from "../components/seo";
 import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
 import Tags from "../components/tags";
-
 import { prettyPrintDate } from "../utils/dates";
-
-import styled from "@emotion/styled";
-import tw from "twin.macro";
+import { LocationPropTypes, BlogItem } from "../utils/types";
 
 const PostInformationContainer = styled.div`
   ${tw`md:mb-6`}
@@ -24,9 +23,10 @@ const PostInformationContainer = styled.div`
   .excerpt {
     ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
   }
-  .hero-image {
-    ${tw`shadow-lg w-full`}
-  }
+`;
+
+const HeroImage = styled.img`
+  ${tw`shadow-lg w-full sm:max-w-screen-lg mb-6 md:rounded-lg`}
 `;
 
 const BlogPost = ({ data, location }) => {
@@ -36,7 +36,7 @@ const BlogPost = ({ data, location }) => {
     heroImage,
     createdAt,
     body,
-    category
+    category,
   } = data.contentfulBlogPosts;
 
   return (
@@ -47,7 +47,7 @@ const BlogPost = ({ data, location }) => {
         metaImage={heroImage.resize}
         pathName={location.pathname}
       />
-      <FloatingHeader title={title} pathName={location.pathname}/>
+      <FloatingHeader title={title} pathName={location.pathname} />
       <Container>
         <PostInformationContainer>
           <p className="date">{prettyPrintDate({ timestamp: createdAt })}</p>
@@ -55,39 +55,44 @@ const BlogPost = ({ data, location }) => {
           <p className="excerpt">{excerpt.excerpt}</p>
         </PostInformationContainer>
       </Container>
-      <img className="hero-image" src={heroImage.resize.src} alt={heroImage.title} />
+      <HeroImage src={heroImage.resize.src} alt={heroImage.title} />
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
       <Container>
         <Tags items={category} />
       </Container>
     </Layout>
-  )
+  );
 };
 
 export default BlogPost;
 
+BlogPost.propTypes = {
+  data: BlogItem.isRequired,
+  location: LocationPropTypes.isRequired,
+};
+
 export const pageQuery = graphql`
- query BlogPostsBySlug($slug: String!) {
-  contentfulBlogPosts(slug: { eq: $slug }) {
-    createdAt
-    slug
-    title
-    body {
-      childMarkdownRemark {
-        html
+  query BlogPostsBySlug($slug: String!) {
+    contentfulBlogPosts(slug: { eq: $slug }) {
+      createdAt
+      slug
+      title
+      body {
+        childMarkdownRemark {
+          html
+        }
       }
-    }
-    excerpt {
-      excerpt
-    }
-    heroImage {
-      resize(width: 1200) {
-        src
-        width
-        height
+      excerpt {
+        excerpt
       }
+      heroImage {
+        resize(width: 1200) {
+          src
+          width
+          height
+        }
+      }
+      category
     }
-    category
   }
-}
 `;

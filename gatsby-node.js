@@ -1,10 +1,10 @@
-const path = require("path");
+import path from "path";
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  const blogPostTemplate = path.resolve(`src/templates/post.tsx`)
-  const projectTemplate = path.resolve(`src/templates/project.tsx`)
+  const blogPostTemplate = path.resolve(`src/templates/post.jsx`)
+  const projectTemplate = path.resolve(`src/templates/project.jsx`)
 
   const result = await graphql(
     `

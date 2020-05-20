@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import { Global } from "@emotion/core";
+
+import { globalStyles } from "../utils/styles";
+import { LocationPropTypes } from "../utils/types";
 
 import Header from "./header";
 import Footer from "./footer";
-
-import { globalStyles } from "../utils/styles";
-import { Global } from '@emotion/core';
 
 const Layout = ({ children, showWelcomeText, location }) => {
   const data = useStaticQuery(graphql`
@@ -30,18 +31,18 @@ const Layout = ({ children, showWelcomeText, location }) => {
       {children}
       <Footer />
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.object,
-  showWelcomeText: PropTypes.bool
-}
+  location: LocationPropTypes,
+  showWelcomeText: PropTypes.bool,
+};
 
 Layout.defaultProps = {
   showWelcomeText: false,
-  location: null
+  location: null,
 };
 
-export default Layout
+export default Layout;

@@ -1,17 +1,17 @@
-import React from "react"
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 import Link from "../link";
 import { transition } from "../../utils/styles";
-import useSiteMetadata from '../../hooks/use-site-metadata';
+import useSiteMetadata from "../../hooks/use-site-metadata";
 
 import {
   SOCIAL_NETWORK_PROFILE_MAP,
-  ARTICLE_SHARE_INFO_MAP
+  ARTICLE_SHARE_INFO_MAP,
 } from "./constants";
-
-import styled from "@emotion/styled";
-import tw from "twin.macro";
 
 const ShareWrapper = styled.section`
   .footer-social-navigation {
@@ -85,16 +85,22 @@ const SocialNetworkSharing = ({ isFloatingHeader, pathName }) => {
 
   return (
     <ShareWrapper>
-      {isFloatingHeader ? renderArticleSharingLinks(currentPageUrl) : (
+      {isFloatingHeader ? (
+        renderArticleSharingLinks(currentPageUrl)
+      ) : (
         <nav className="footer-social-navigation">
           <ul>
-          {Object.values(SOCIAL_NETWORK_PROFILE_MAP).map(link => (
-            <li key={link.name}>
-              <Link isExternal href={link.url} title={`Naruth Kongurai's ${link.name}`}>
-                {link.icon}
-              </Link>
-            </li>
-          ))}
+            {Object.values(SOCIAL_NETWORK_PROFILE_MAP).map(link => (
+              <li key={link.name}>
+                <Link
+                  isExternal
+                  href={link.url}
+                  title={`Naruth Kongurai's ${link.name}`}
+                >
+                  {link.icon}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       )}
@@ -104,11 +110,12 @@ const SocialNetworkSharing = ({ isFloatingHeader, pathName }) => {
 
 SocialNetworkSharing.propTypes = {
   isFloatingHeader: PropTypes.bool,
-  pathName: PropTypes.string.isRequired
+  pathName: PropTypes.string,
 };
 
-SocialNetworkSharing.propTypes = {
-  isFloatingHeader: false
+SocialNetworkSharing.defaultProps = {
+  isFloatingHeader: false,
+  pathName: "",
 };
 
 export default SocialNetworkSharing;

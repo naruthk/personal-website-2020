@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-
-import Share from "../share/share";
-import Logo from "../ui/logo";
-
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
+
+import Share from "../share/share";
+
+import Logo from "./logo";
 
 const FloatingHeaderWrapper = styled.div`
   ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
   height: 50px;
 
   /* Animation Effect */
-  transition: all .5s cubic-bezier(.19,1,.22,1);
-  transform: translate3d(0,-120%,0);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translate3d(0, -120%, 0);
   ${({ isActive }) =>
-    isActive && css`
+    isActive &&
+    css`
       visibility: visible;
-      transition: all .5s cubic-bezier(.22,1,.27,1);
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.27, 1);
       transform: translateZ(0);
-    `
-  }
-  /* End animation effect */
+    `}/* End animation effect */
 `;
 
 const ProgressContainer = styled.div`
@@ -30,9 +29,10 @@ const ProgressContainer = styled.div`
   height: 3px;
 
   ${({ width }) =>
-  width && css`
-    width: ${width}%;
-  `}
+    width &&
+    css`
+      width: ${width}%;
+    `}
 `;
 
 const PostTitleWrapper = styled.div`
@@ -45,8 +45,11 @@ const FloatingHeader = ({ title, pathName }) => {
   const [currentScrollingPositionY, setCurrentScrollingPositionY] = useState(0);
 
   const updateScrollActivity = () => {
-    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollTop =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
     const currentlyScrolledPercentage = (scrollTop / height) * 100;
 
     setIsActive(currentlyScrolledPercentage > 0);
@@ -54,8 +57,8 @@ const FloatingHeader = ({ title, pathName }) => {
   };
 
   useEffect(() => {
-    if (!document) return;
-  
+    if (!document) return {};
+
     window.addEventListener("scroll", updateScrollActivity);
 
     return () => {
@@ -69,19 +72,19 @@ const FloatingHeader = ({ title, pathName }) => {
     <FloatingHeaderWrapper isActive={isActive}>
       <Logo />
       <PostTitleWrapper>{title}</PostTitleWrapper>
-      <Share isFloatingHeader={true} pathName={pathName} />
+      <Share isFloatingHeader pathName={pathName} />
       <ProgressContainer width={currentScrollingPositionY} />
     </FloatingHeaderWrapper>
-  )
+  );
 };
 
 export default FloatingHeader;
 
 FloatingHeader.propTypes = {
   title: PropTypes.string,
-  pathName: PropTypes.string.isRequired
-}
+  pathName: PropTypes.string.isRequired,
+};
 
 FloatingHeader.defaultProps = {
- title: ""
+  title: "",
 };

@@ -1,8 +1,7 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
 import styled from "@emotion/styled";
 
 const UIList = styled.ul`
@@ -25,8 +24,21 @@ const options = {
   },
   renderNode: {
     [BLOCKS.UL_LIST]: (_, children) => <UIList>{children}</UIList>,
-    [BLOCKS.PARAGRAPH]: (_, children) => <Text>{children}</Text>
+    [BLOCKS.PARAGRAPH]: (_, children) => <Text>{children}</Text>,
   },
 };
 
-export const renderRichTextContent = json => documentToReactComponents(json, options);
+export const renderRichTextContent = json =>
+  documentToReactComponents(json, options);
+
+renderRichTextContent.propTypes = {
+  json: PropTypes.node.isRequired,
+};
+
+Bold.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+Text.propTypes = {
+  children: PropTypes.node.isRequired,
+};

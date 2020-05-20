@@ -1,6 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 
 import useSiteMetadata from "../hooks/use-site-metadata";
 
@@ -9,8 +9,7 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
 
   const metaDescription = description || siteMetadata.description;
   const image =
-    metaImage && metaImage.src
-      && `${siteMetadata.siteUrl}${metaImage.src}`;
+    metaImage && metaImage.src && `${siteMetadata.siteUrl}${metaImage.src}`;
   const canonical = pathName && `${siteMetadata.siteUrl}${pathName}`;
 
   return (
@@ -19,7 +18,7 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s`}
+      titleTemplate="%s"
       link={
         canonical
           ? [
@@ -37,7 +36,7 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
         },
         {
           name: `google-site-verification`,
-          content: "0voIRM1BitryT-MtpQBe5GZdg0olx-6_SDt35T-DKec"
+          content: "0voIRM1BitryT-MtpQBe5GZdg0olx-6_SDt35T-DKec",
         },
         {
           property: `og:title`,
@@ -68,7 +67,7 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
           content: metaDescription,
         },
       ]
-      .concat(
+        .concat(
           metaImage
             ? [
                 {
@@ -99,15 +98,9 @@ function SEO({ title, description, lang, meta, metaImage, pathName }) {
                 },
               ]
         )
-      .concat(meta)}
+        .concat(meta)}
     />
-  )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
+  );
 }
 
 SEO.propTypes = {
@@ -115,12 +108,20 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-  image: PropTypes.shape({
+  metaImage: PropTypes.shape({
     src: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
   }),
-  pathName: PropTypes.string
-}
+  pathName: PropTypes.string,
+};
 
-export default SEO
+SEO.defaultProps = {
+  lang: `en`,
+  meta: [],
+  metaImage: null,
+  description: ``,
+  pathName: "",
+};
+
+export default SEO;
