@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import Container from "../components/container";
 import SEO from "../components/seo";
 import { colors } from "../utils/styles";
-import { prettyPrintDate } from "../utils/dates";
+import { readableDate } from "../utils/dates";
 import { renderRichTextContent } from "../components/ui/rich-text-renderer";
 import {
   LocationPropTypes,
@@ -16,13 +16,13 @@ const AboutPage = ({ data, location }) => {
   const { title, updatedAt, content } = data.contentfulSinglePages;
 
   return (
-    <Layout location={location}>
+    <Layout location={location} pageTitle="About">
       <SEO title="About" />
       <Container bg={colors.white}>
         <h1>{title}</h1>
         <article>{renderRichTextContent(content.json)}</article>
         <hr />
-        <p>Last updated: {prettyPrintDate({ timestamp: updatedAt })}</p>
+        <p>Last updated: {readableDate({ timestamp: updatedAt })}</p>
       </Container>
     </Layout>
   );

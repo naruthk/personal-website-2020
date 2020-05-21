@@ -7,10 +7,9 @@ import GatsbyImage from "gatsby-image";
 import Layout from "../components/layout";
 import Container from "../components/container";
 import SEO from "../components/seo";
-import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
 import Tags from "../components/tags";
-import { prettyPrintDate } from "../utils/dates";
+import { readableDate } from "../utils/dates";
 import { LocationPropTypes, BlogItem } from "../utils/types";
 
 const PostInformationContainer = styled.div`
@@ -41,17 +40,16 @@ const BlogPost = ({ data, location }) => {
   } = data.contentfulBlogPosts;
 
   return (
-    <Layout location={location}>
+    <Layout location={location} pageTitle={title} showStickyHeader>
       <SEO
         title={title}
         description={excerpt.excerpt}
         metaImage={heroImage.resize}
         pathName={location.pathname}
       />
-      <FloatingHeader title={title} pathName={location.pathname} />
       <Container>
         <PostInformationContainer>
-          <p className="date">{prettyPrintDate({ timestamp: createdAt })}</p>
+          <p className="date">{readableDate({ timestamp: createdAt })}</p>
           <h1>{title}</h1>
           <p className="excerpt">{excerpt.excerpt}</p>
         </PostInformationContainer>

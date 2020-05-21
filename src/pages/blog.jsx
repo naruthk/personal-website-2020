@@ -10,7 +10,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Container from "../components/container";
 import { ROUTES } from "../utils/routes";
-import { prettyPrintDate } from "../utils/dates";
+import { readableDate } from "../utils/dates";
 import { BlogItem } from "../utils/types";
 
 const FeaturedPostsWrapper = styled.div`
@@ -65,7 +65,7 @@ const BlogsListingPage = ({ data }) => {
   const NUMBER_OF_FEATURED_POSTS = 3;
 
   return (
-    <Layout>
+    <Layout pageTitle="Blog">
       <SEO title="Blog Posts" />
       <Container>
         <h2
@@ -119,7 +119,7 @@ const BlogsListingPage = ({ data }) => {
                   <Link href={url} title={title} key={slug}>
                     <div>
                       <p className="date">
-                        {prettyPrintDate({ timestamp: createdAt })}
+                        {readableDate({ timestamp: createdAt })}
                       </p>
                       <h1 className="title">{title}</h1>
                       <p className="excerpt">{excerpt.excerpt}</p>

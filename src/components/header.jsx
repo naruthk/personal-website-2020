@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { FiMenu } from "react-icons/fi";
 import cx from "classnames";
@@ -7,8 +8,10 @@ import tw from "twin.macro";
 
 import { ROUTES } from "../utils/routes";
 import { LocationPropTypes } from "../utils/types";
+import useIsScrollingHook from "../hooks/use-is-scrolling";
 
 import Link from "./link";
+import FloatingHeader from "./ui/floating-header";
 import Logo from "./ui/logo";
 import Share from "./share/share";
 import Modal from "./ui/modal/modal";
@@ -22,11 +25,18 @@ const SiteNavLinks = styled.div`
   button,
   a,
   a:visited {
-    ${tw`mx-4 px-2 py-4 text-gray-600`}
+    ${tw`py-4 text-gray-600`}
+  }
+  button {
+    ${tw`pl-2 ml-2`}
+  }
+  a,
+  a:visited {
+    ${tw`px-2 mx-4`}
   }
   a[aria-current="page"],
   .active {
-    ${tw`border-b-2 border-solid border-gray-900 text-gray-900`}
+    ${tw`border-b-2 border-solid border-gray-600 text-gray-900`}
   }
   .desktop-only {
     ${tw`hidden md:inline-block cursor-pointer`}
@@ -62,14 +72,22 @@ const getActiveRouteEntity = location => {
   return ROUTES[splitPath[1].toUpperCase()] || null;
 };
 
-const Header = ({ location }) => {
-  const [showModalOverlay, setShowModalOverlay] = useState(false);
+const Header = ({ location, pageTitle, showStickyHeader }) => {
   const activeRoute = getActiveRouteEntity(location);
-
   const navOrder = [ROUTES.BLOG, ROUTES.PROJECTS, ROUTES.ABOUT];
+
+  const [showModalOverlay, setShowModalOverlay] = useState(false);
+  const { isActive } = useIsScrollingHook();
 
   return (
     <>
+      {showStickyHeader && isActive && (
+        <FloatingHeader
+          title={pageTitle}
+          pathName={location && location.pathname}
+        />
+      )}
+
       <NavWrapper>
         <Logo />
         <SiteNavLinks>
@@ -102,7 +120,6 @@ const Header = ({ location }) => {
         </SiteNavLinks>
       </NavWrapper>
 
-      {/* Modal expands full screen on mobile screen size */}
       <Modal isActive={showModalOverlay} setActive={setShowModalOverlay}>
         <MenuOverlayContent>
           <div>
@@ -137,10 +154,13 @@ const Header = ({ location }) => {
 
 Header.propTypes = {
   location: LocationPropTypes,
+  pageTitle: PropTypes.string.isRequired,
+  showStickyHeader: PropTypes.bool,
 };
 
 Header.defaultProps = {
   location: null,
+  showStickyHeader: false,
 };
 
 export default Header;

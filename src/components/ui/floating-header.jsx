@@ -10,19 +10,19 @@ import Share from "../share/share";
 import Logo from "./logo";
 
 const FloatingHeaderWrapper = styled.div`
-  ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
-  height: 50px;
+  display: none;
 
-  /* Animation Effect */
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translate3d(0, -120%, 0);
   ${({ isActive }) =>
     isActive &&
     css`
+      ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
+      height: 50px;
       visibility: visible;
       transition: all 0.5s cubic-bezier(0.22, 1, 0.27, 1);
       transform: translateZ(0);
-    `}/* End animation effect */
+    `}
 `;
 
 const ProgressContainer = styled.div`
@@ -52,6 +52,7 @@ const FloatingHeader = ({ title, pathName }) => {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
     const percentagedScrolled = (scrolledPosition / height) * 100;
+
     setScrollProgress(percentagedScrolled);
   }, [scrolledPosition]);
 
@@ -59,7 +60,7 @@ const FloatingHeader = ({ title, pathName }) => {
     <FloatingHeaderWrapper isActive={isActive}>
       <Logo />
       <PostTitleWrapper>{title}</PostTitleWrapper>
-      <Share isFloatingHeader pathName={pathName} />
+      {pathName && <Share isFloatingHeader pathName={pathName} />}
       <ProgressContainer width={scrollProgress} />
     </FloatingHeaderWrapper>
   );

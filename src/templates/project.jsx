@@ -9,9 +9,8 @@ import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
 import Tags from "../components/tags";
-import FloatingHeader from "../components/ui/floating-header";
 import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
-import { prettyPrintDate } from "../utils/dates";
+import { printReadbleDateRange } from "../utils/dates";
 import { ProjectItem, LocationPropTypes } from "../utils/types";
 
 const ContentWrapper = styled.div`
@@ -69,14 +68,13 @@ const Project = ({ location, data }) => {
   } = data.contentfulProjects;
 
   return (
-    <Layout location={location}>
+    <Layout location={location} pageTitle={title} showStickyHeader>
       <SEO
         title={title}
         description={excerpt.excerpt}
         metaImage={heroImage.resize}
         pathName={location.pathname}
       />
-      <FloatingHeader title={title} pathName={location.pathname} />
       <HeroImage>
         <GatsbyImage fluid={heroImage.fluid} alt={heroImage.title} />
       </HeroImage>
@@ -116,11 +114,11 @@ const Project = ({ location, data }) => {
               Date of Completion
             </p>
             <p className="date">
-              {prettyPrintDate({ timestamp: initialStartDate })}
-              {" - "}
-              {isCurrentlyActive
-                ? "Present"
-                : prettyPrintDate({ timestamp: completionDate })}
+              {printReadbleDateRange({
+                startDate: initialStartDate,
+                endDate: completionDate,
+                isActive: isCurrentlyActive,
+              })}
             </p>
             <Tags items={category} />
           </Meta>

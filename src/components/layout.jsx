@@ -15,7 +15,14 @@ const ModalRootWrapper = styled.div`
   ${tw`relative z-50`}
 `;
 
-const Layout = ({ children, showWelcomeText, displayNavigation, location }) => {
+const Layout = ({
+  children,
+  pageTitle,
+  showWelcomeText,
+  showStickyHeader,
+  showNavigationBar,
+  location,
+}) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -29,10 +36,12 @@ const Layout = ({ children, showWelcomeText, displayNavigation, location }) => {
   return (
     <>
       <Global styles={globalStyles} />
-      {displayNavigation && (
+      {showNavigationBar && (
         <Header
           siteTitle={data.site.siteMetadata.title}
           location={location}
+          pageTitle={pageTitle}
+          showStickyHeader={showStickyHeader}
           showWelcomeText={showWelcomeText}
         />
       )}
@@ -47,12 +56,15 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   location: LocationPropTypes,
   showWelcomeText: PropTypes.bool,
-  displayNavigation: PropTypes.bool,
+  showStickyHeader: PropTypes.bool,
+  showNavigationBar: PropTypes.bool,
+  pageTitle: PropTypes.string.isRequired,
 };
 
 Layout.defaultProps = {
   showWelcomeText: false,
-  displayNavigation: true,
+  showStickyHeader: false,
+  showNavigationBar: true,
   location: null,
 };
 

@@ -6,10 +6,22 @@ export const DATE_FORMATS = {
   "MMMM-Do-YYYY": "LL",
 };
 
-export function prettyPrintDate({
+export function readableDate({
   timestamp,
   format = DATE_FORMATS["MMMM-Do-YYYY"],
 }) {
   const date = new Date(timestamp);
   return moment(date).format(format);
+}
+
+export function printReadbleDateRange({
+  startDate,
+  endDate,
+  format = DATE_FORMATS["MMMM-Do-YYYY"],
+  isActive = false,
+  isActiveLabel = "Present",
+}) {
+  return `${readableDate({ timestamp: startDate, format })} - ${
+    isActive ? isActiveLabel : readableDate({ timestamp: endDate, format })
+  }`;
 }
