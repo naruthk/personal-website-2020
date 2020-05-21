@@ -47,6 +47,11 @@ function usePortal(selector) {
 }
 
 const Portal = ({ selector, children }) => {
+  if (typeof window === "undefined") return children;
+
+  const targetElement = document.querySelector(selector);
+  if (targetElement === undefined) return null;
+
   const target = usePortal(selector);
   return createPortal(children, target);
 };
