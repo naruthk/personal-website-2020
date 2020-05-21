@@ -5,7 +5,10 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import tw from "twin.macro";
 
-import Link from "../link";
+import Link from "../../link";
+
+import Portal from "./portal";
+import lockBodyScroll from "./lock-body-scroll";
 
 const ModalWrapper = styled.div`
   ${tw`text-white`}
@@ -17,19 +20,19 @@ const ModalWrapper = styled.div`
   }
 `;
 
-const Portal = styled.div`
+const DimLayer = styled.div`
   ${({ isActive }) =>
     isActive &&
     css`
       ${tw`fixed w-full h-full top-0 left-0`}
-      ${tw`z-10 bg-black text-white opacity-50 `}
+      ${tw`z-10 bg-black text-white opacity-75 `}
       ${tw`overflow-hidden overflow-y-hidden pointer-events-auto`}
       ${tw`transition-all duration-700`}
     `}
 `;
 
 const ContentWrapper = styled.div`
-  ${tw`fixed w-full md:w-1/2 p-4 md:p-12 md:h-full`}
+  ${tw`fixed w-full md:w-1/2 p-4 md:p-12 overflow-y-auto`}
   ${tw`md:-right-1/2 md:top-0`}
   ${tw`transition-all duration-700`}
   ${tw`bg-black z-20 pointer-events-auto`}
@@ -48,16 +51,22 @@ const CloseButton = styled.span`
 
 const Modal = ({ children, isActive, setActive }) => {
   useEffect(() => {
+    if (isActive) lockBodyScroll(true);
+
     const body = document.querySelector("body");
     body.addEventListener("keydown", event => {
       if (event.keyCode === 27) setActive(false);
     });
 
-    return () => window.removeEventListener("keydown", null);
-  }, []);
+    return () => {
+      lockBodyScroll(false);
+      window.removeEventListener("keydown", null);
+    };
+  }, [isActive]);
 
   return (
-    <>
+    <Portal selector="#__modal">
+      <DimLayer isActive={isActive} onClick={() => setActive(!isActive)} />
       <ModalWrapper>
         <ContentWrapper className={(isActive && "active") || ""}>
           <CloseButton>
@@ -68,8 +77,7 @@ const Modal = ({ children, isActive, setActive }) => {
           {children}
         </ContentWrapper>
       </ModalWrapper>
-      <Portal isActive={isActive} onClick={() => setActive(!isActive)} />
-    </>
+    </Portal>
   );
 };
 

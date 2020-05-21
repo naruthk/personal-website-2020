@@ -57,11 +57,16 @@ export const globalStyles = css`
   img {
     ${tw`mx-auto block max-w-full`}
   }
-  
+  .scroll-lock {
+    ${tw`fixed`}
+    width: calc(100vw - 14px); /* to offset scrollbar */
+    -webkit-overflow-scrolling: auto !important;
+  }
   
   /* MISCELLANEOUS ITEMS */
   ::-moz-selection, ::selection {
     ${tw`text-white bg-blue-400`}
+    background-clip: unset;
     -webkit-background-clip: unset;
     -webkit-text-fill-color: ${colors.white};
   }

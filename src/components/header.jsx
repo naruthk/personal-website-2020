@@ -11,7 +11,7 @@ import { LocationPropTypes } from "../utils/types";
 import Link from "./link";
 import Logo from "./ui/logo";
 import Share from "./share/share";
-import Modal from "./ui/modal";
+import Modal from "./ui/modal/modal";
 
 const NavWrapper = styled.nav`
   ${tw`max-w-screen-lg mx-auto pt-4 pb-2 md:py-8 px-4`}
@@ -37,8 +37,11 @@ const SiteNavLinks = styled.div`
 `;
 
 const MenuOverlayContent = styled.div`
-  ${tw`flex flex-col flex-wrap justify-around h-full mx-4`}
-  a, a:visited {
+  ${tw`flex flex-col flex-none justify-around mx-4`}
+  height: 90vh; /* this prevents overflow */
+
+  a,
+  a:visited {
     ${tw`text-white`}
   }
   .cta-message {

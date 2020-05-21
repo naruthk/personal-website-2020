@@ -2,12 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import { Global } from "@emotion/core";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
 
 import { globalStyles } from "../utils/styles";
 import { LocationPropTypes } from "../utils/types";
 
 import Header from "./header";
 import Footer from "./footer";
+
+const ModalRootWrapper = styled.div`
+  ${tw`relative z-50`}
+`;
 
 const Layout = ({ children, showWelcomeText, displayNavigation, location }) => {
   const data = useStaticQuery(graphql`
@@ -32,6 +38,7 @@ const Layout = ({ children, showWelcomeText, displayNavigation, location }) => {
       )}
       {children}
       <Footer />
+      <ModalRootWrapper id="__modal" />
     </>
   );
 };
