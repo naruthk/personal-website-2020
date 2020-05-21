@@ -61,7 +61,7 @@ const FloatingHeader = ({ title, pathName }) => {
       <Logo />
       <PostTitleWrapper>{title}</PostTitleWrapper>
       {pathName && <Share isFloatingHeader pathName={pathName} />}
-      <ProgressContainer width={scrollProgress} />
+      <ProgressContainer style={{ width: `${scrollProgress}%` }} />
     </FloatingHeaderWrapper>
   );
 };
