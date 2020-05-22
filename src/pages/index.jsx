@@ -1,16 +1,17 @@
 import React from "react";
 
 import Layout from "../components/layout";
-import Container from "../components/container";
 import SEO from "../components/seo";
-import WelcomeText from "../components/ui/welcome-text";
+import Introduction from "../components/sections/introduction";
+import Employment from "../components/sections/employment";
+// import AnimatedPhoto from "../components/animated-photo";
 
 const HomePage = () => (
   <Layout showWelcomeText>
     <SEO title="Naruth Kongurai" />
-    <Container>
-      <WelcomeText />
-    </Container>
+    <Introduction />
+    <Employment />
+    {/* <AnimatedPhoto /> */}
   </Layout>
 );
 

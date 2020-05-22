@@ -9,12 +9,12 @@ const WelcomeTextWrapper = styled.section`
     ${tw`lg:block tracking-wide uppercase font-bold text-lg xl:text-xl mb-4 opacity-75`}
   }
   .headline {
-    ${tw`lg:block font-semibold text-left md:text-left text-3xl md:text-2xl lg:text-3xl xl:text-5xl leading-none mb-6 xl:mb-8`}
+    ${tw`lg:block font-semibold text-left md:text-left text-3xl md:text-2xl lg:text-3xl xl:text-5xl leading-none mb-6`}
   }
   .tagline {
     ${tw`text-xl text-blue-200 md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal relative`}
-    ${tw`max-w-2xl -mx-4 md:mx-0 md:px-6 md:py-4`}
-    ${tw`lg:-mx-6`}
+    ${tw`-mx-4 sm:-ml-4 sm:mr-2 md:ml-0 md:px-6 md:py-4`}
+    ${tw`lg:-ml-6`}
     ${tw`px-4 py-4`}
     ${tw`bg-blue-600 border-blue-200 border-b-8 md:rounded-md`}
   }
@@ -41,7 +41,7 @@ const WelcomeText = () => (
       <span className="highlighted">people and technology</span>.
     </p>
     <div>
-      Currently coding using:{" "}
+      Currently deep diving into:{" "}
       <span className="current-status">
         <TypeWritingText>
           JavaScript, React.js, Next.js{" "}

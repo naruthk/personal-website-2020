@@ -12,16 +12,12 @@ import Logo from "./logo";
 const FloatingHeaderWrapper = styled.div`
   display: none;
 
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  transform: translate3d(0, -120%, 0);
   ${({ isActive }) =>
     isActive &&
     css`
       ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
       height: 50px;
       visibility: visible;
-      transition: all 0.5s cubic-bezier(0.22, 1, 0.27, 1);
-      transform: translateZ(0);
     `}
 `;
 

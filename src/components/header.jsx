@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 import { FiMenu } from "react-icons/fi";
 import cx from "classnames";
 import tw from "twin.macro";
@@ -19,6 +20,14 @@ import Modal from "./ui/modal/modal";
 const NavWrapper = styled.nav`
   ${tw`max-w-screen-lg mx-auto pt-4 pb-2 md:py-4 lg:py-8 px-4`}
   ${tw`flex flex-row justify-between`}
+
+  ${({ isActive, showStickyHeader }) =>
+    isActive &&
+    showStickyHeader &&
+    css`
+      transition: all 0.7s;
+      ${tw`opacity-0`}
+    `}
 `;
 
 const SiteNavLinks = styled.div`
@@ -88,7 +97,7 @@ const Header = ({ location, pageTitle, showStickyHeader }) => {
         />
       )}
 
-      <NavWrapper>
+      <NavWrapper isActive={isActive} showStickyHeader={showStickyHeader}>
         <Logo />
         <SiteNavLinks>
           {navOrder.map(item => (
@@ -120,34 +129,40 @@ const Header = ({ location, pageTitle, showStickyHeader }) => {
         </SiteNavLinks>
       </NavWrapper>
 
-      <Modal isActive={showModalOverlay} setActive={setShowModalOverlay}>
-        <MenuOverlayContent>
-          <div>
-            {navOrder.map(item => (
-              <h1 key={item.name}>
-                <Link href={item.url} title={item.name}>
-                  {item.name}
+      {showModalOverlay && (
+        <Modal
+          id="contact-overlay"
+          isActive={showModalOverlay}
+          setActive={setShowModalOverlay}
+        >
+          <MenuOverlayContent>
+            <div>
+              {navOrder.map(item => (
+                <h1 key={item.name}>
+                  <Link href={item.url} title={item.name}>
+                    {item.name}
+                  </Link>
+                </h1>
+              ))}
+            </div>
+            <div>
+              <p className="cta-message">Send your message to</p>
+              <p className="email-link">
+                <Link
+                  isExternal
+                  href="mailto:nkongurai@gmail.com"
+                  title="Send a message"
+                >
+                  nkongurai@gmail.com
                 </Link>
-              </h1>
-            ))}
-          </div>
-          <div>
-            <p className="cta-message">Send your message to</p>
-            <p className="email-link">
-              <Link
-                isExternal
-                href="mailto:nkongurai@gmail.com"
-                title="Send a message"
-              >
-                nkongurai@gmail.com
-              </Link>
-            </p>
-          </div>
-          <div className="sharing-navigation">
-            <Share />
-          </div>
-        </MenuOverlayContent>
-      </Modal>
+              </p>
+            </div>
+            <div className="sharing-navigation">
+              <Share />
+            </div>
+          </MenuOverlayContent>
+        </Modal>
+      )}
     </>
   );
 };

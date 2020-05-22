@@ -29,12 +29,17 @@ const HeroImage = styled.div`
   ${tw`shadow-lg w-full sm:max-w-screen-lg mb-6 md:rounded-lg mx-auto`}
 `;
 
+const LastUpdatedAt = styled.p`
+  ${tw`text-sm text-gray-600 my-4`}
+`;
+
 const BlogPost = ({ data, location }) => {
   const {
     title,
     excerpt,
     heroImage,
     createdAt,
+    updatedAt,
     body,
     category,
   } = data.contentfulBlogPosts;
@@ -60,6 +65,9 @@ const BlogPost = ({ data, location }) => {
       <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
       <Container>
         <Tags items={category} />
+        <LastUpdatedAt className="last-updated">
+          Last updated: {readableDate({ timestamp: updatedAt })}
+        </LastUpdatedAt>
       </Container>
     </Layout>
   );
@@ -76,6 +84,7 @@ export const pageQuery = graphql`
   query BlogPostsBySlug($slug: String!) {
     contentfulBlogPosts(slug: { eq: $slug }) {
       createdAt
+      updatedAt
       slug
       title
       body {
