@@ -75,7 +75,7 @@ const Employment = () => {
             isActive
             isInternship
             logo {
-              fluid(maxHeight: 100) {
+              fluid(maxHeight: 200) {
                 ...GatsbyContentfulFluid
               }
             }
