@@ -16,7 +16,7 @@ const ModalWrapper = styled.div`
 const ContentWrapper = styled.div`
   ${tw`w-full h-screen overflow-y-auto mx-auto`}
   ${tw`bg-white`}
-  ${tw`relative z-10`}
+  ${tw`relative z-30`}
 `;
 
 const CloseButton = styled.span`
@@ -41,11 +41,12 @@ const Modal = ({ children, isActive, setActive }) => {
       }
     });
 
-    if (isActive) useIsScrollLock(true);
+    // TO-DO: Fix scorll-lock causing page to scroll to top.
+    // if (isActive) useIsScrollLock(true);
 
     return () => {
       window.removeEventListener("keydown", null);
-      useIsScrollLock(false);
+      // useIsScrollLock(false);
     };
   }, []);
 
