@@ -7,7 +7,7 @@ import GatsbyImage from "gatsby-image";
 import Layout from "../components/layout";
 import Container from "../components/container";
 import SEO from "../components/seo";
-import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
+import MarkdownRenderer from "../components/renderer/markdown";
 import Tags from "../components/tags";
 import { readableDate } from "../utils/dates";
 import { LocationPropTypes, BlogItem } from "../utils/types";
@@ -62,7 +62,7 @@ const BlogPost = ({ data, location }) => {
       <HeroImage>
         <GatsbyImage fluid={heroImage.fluid} alt={heroImage.title} />
       </HeroImage>
-      <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
+      <MarkdownRenderer html={body.childMarkdownRemark.html} />
       <Container>
         <Tags items={category} />
         <LastUpdatedAt className="last-updated">

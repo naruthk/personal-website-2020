@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 
-const ContentBodyRendererWrapper = styled.div`
+const Wrapper = styled.div`
   ${tw`max-w-screen-md mx-auto px-4 pt-4 leading-normal`}
   a, a:visited {
     ${tw`no-underline text-blue-700 font-medium`}
@@ -13,16 +13,16 @@ const ContentBodyRendererWrapper = styled.div`
   }
 `;
 
-const ContentBodyRenderer = ({ html }) => (
-  <ContentBodyRendererWrapper
+const MarkdownRenderer = ({ html }) => (
+  <Wrapper
     dangerouslySetInnerHTML={{
       __html: html,
     }}
   />
 );
 
-export default ContentBodyRenderer;
+export default MarkdownRenderer;
 
-ContentBodyRenderer.propTypes = {
+MarkdownRenderer.propTypes = {
   html: PropTypes.string.isRequired,
 };

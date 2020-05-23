@@ -23,6 +23,7 @@ const Link = ({ children, isExternal, href, title, onClick, className }) => {
         className={className}
         type="button"
         aria-label={title}
+        title={title}
         onClick={e => {
           e.preventDefault();
           trackCustomEvent({

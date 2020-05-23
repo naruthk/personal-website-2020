@@ -6,7 +6,7 @@ import Container from "../components/container";
 import SEO from "../components/seo";
 import { colors } from "../utils/styles";
 import { readableDate } from "../utils/dates";
-import { renderRichTextContent } from "../components/ui/rich-text-renderer";
+import { RichTextRenderer } from "../components/renderer/rich-text";
 import {
   LocationPropTypes,
   SinglePagePropTypes,
@@ -20,7 +20,7 @@ const AboutPage = ({ data, location }) => {
       <SEO title="About" />
       <Container bg={colors.white}>
         <h1>{title}</h1>
-        <article>{renderRichTextContent(content.json)}</article>
+        <article>{RichTextRenderer(content.json)}</article>
         <hr />
         <p>Last updated: {readableDate({ timestamp: updatedAt })}</p>
       </Container>

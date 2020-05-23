@@ -28,10 +28,10 @@ const options = {
   },
 };
 
-export const renderRichTextContent = json =>
+export const RichTextRenderer = json =>
   documentToReactComponents(json, options);
 
-renderRichTextContent.propTypes = {
+RichTextRenderer.propTypes = {
   json: PropTypes.node.isRequired,
 };
 

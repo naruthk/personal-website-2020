@@ -9,7 +9,7 @@ import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
 import Tags from "../components/tags";
-import ContentBodyRendererWrapper from "../components/ui/content-body-renderer";
+import MarkdownRenderer from "../components/renderer/markdown";
 import { printReadbleDateRange } from "../utils/dates";
 import { ProjectItem, LocationPropTypes } from "../utils/types";
 
@@ -124,7 +124,7 @@ const Project = ({ location, data }) => {
           </Meta>
         </div>
       </ContentWrapper>
-      <ContentBodyRendererWrapper html={body.childMarkdownRemark.html} />
+      <MarkdownRenderer html={body.childMarkdownRemark.html} />
     </Layout>
   );
 };

@@ -31,7 +31,7 @@ const WelcomeText = () => (
     <div className="greeting">Hello</div>
     <div className="headline">I&apos;m Naruth.</div>
     <p className="tagline">
-      A Web Developer from Bangkok{" "}
+      A Web Developer from Thailand{" "}
       <span role="img" aria-label="thailand flag">
         🇹🇭
       </span>{" "}

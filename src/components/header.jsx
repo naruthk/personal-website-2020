@@ -15,7 +15,7 @@ import Link from "./link";
 import FloatingHeader from "./ui/floating-header";
 import Logo from "./ui/logo";
 import Share from "./share/share";
-import Modal from "./ui/modal/modal";
+import Modal from "./modal/modal";
 
 const NavWrapper = styled.nav`
   ${tw`max-w-screen-lg mx-auto pt-4 pb-2 md:py-4 lg:py-8 px-4`}
@@ -34,7 +34,7 @@ const SiteNavLinks = styled.div`
   button,
   a,
   a:visited {
-    ${tw`py-4 text-gray-600`}
+    ${tw`py-4 text-gray-600 font-normal`}
   }
   button {
     ${tw`pl-2 ml-2`}
@@ -56,21 +56,30 @@ const SiteNavLinks = styled.div`
 `;
 
 const MenuOverlayContent = styled.div`
-  ${tw`flex flex-col flex-none justify-around mx-4`}
-  height: 90vh; /* this prevents overflow */
-
+  ${tw`flex flex-col flex-none justify-around mx-4 max-w-screen-lg lg:mx-auto`}
+  height: 90vh; /* this allows justify-around to work */
+  ul,
+  li {
+    ${tw`m-0 p-0 list-none`}
+  }
+  h1 {
+    ${tw`m-0 text-4xl font-bold`}
+  }
+  h3 {
+    ${tw`mt-0 mb-8 text-base text-gray-500`}
+  }
   a,
   a:visited {
-    ${tw`text-white`}
+    ${tw`text-black`}
   }
   .cta-message {
-    ${tw`block text-gray-600 leading-normal md:text-left text-base xl:text-lg font-semibold mb-6`}
+    ${tw`block text-gray-600 leading-normal md:text-left text-base xl:text-lg font-thin mb-6`}
   }
   .email-link {
-    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
+    ${tw`text-xl xl:text-2xl text-gray-800 leading-normal`}
   }
   .sharing-navigation {
-    ${tw`pt-2 border-t-2 border-solid border-gray-900`}
+    ${tw`pt-6 border-t-2 border-solid border-gray-300`}
   }
 `;
 
@@ -83,7 +92,7 @@ const getActiveRouteEntity = location => {
 
 const Header = ({ location, pageTitle, showStickyHeader }) => {
   const activeRoute = getActiveRouteEntity(location);
-  const navOrder = [ROUTES.BLOG, ROUTES.PROJECTS, ROUTES.ABOUT];
+  const navLinks = [ROUTES.BLOG, ROUTES.PROJECTS, ROUTES.ABOUT];
 
   const [showModalOverlay, setShowModalOverlay] = useState(false);
   const { isActive } = useIsScrollingHook();
@@ -100,7 +109,7 @@ const Header = ({ location, pageTitle, showStickyHeader }) => {
       <NavWrapper isActive={isActive} showStickyHeader={showStickyHeader}>
         <Logo />
         <SiteNavLinks>
-          {navOrder.map(item => (
+          {navLinks.map(item => (
             <Link
               key={item.name}
               className={cx("desktop-only", {
@@ -136,15 +145,18 @@ const Header = ({ location, pageTitle, showStickyHeader }) => {
           setActive={setShowModalOverlay}
         >
           <MenuOverlayContent>
-            <div>
-              {navOrder.map(item => (
-                <h1 key={item.name}>
-                  <Link href={item.url} title={item.name}>
-                    {item.name}
-                  </Link>
-                </h1>
+            <ul>
+              {navLinks.map(item => (
+                <li key={item.name}>
+                  <h1 key={item.name}>
+                    <Link href={item.url} title={item.name}>
+                      {item.name}
+                    </Link>
+                  </h1>
+                  {item.description && <h3>{item.description}</h3>}
+                </li>
               ))}
-            </div>
+            </ul>
             <div>
               <p className="cta-message">Send your message to</p>
               <p className="email-link">
