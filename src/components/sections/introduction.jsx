@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import GatsbyImage from "gatsby-image";
 import styled from "@emotion/styled";
@@ -20,7 +20,7 @@ const IntroWrapper = styled.div`
 
   .profile-photo {
     ${tw`flex-grow mx-auto mb-8 sm:ml-4 p-1 my-4`}
-    ${tw`rounded-lg shadow-lg text-center`}
+    ${tw`rounded-lg shadow-lg text-center z-0`}
     :hover {
       ${tw`shadow-xl transition-all duration-500`}
     }
@@ -29,26 +29,6 @@ const IntroWrapper = styled.div`
 `;
 
 const IntroductionSection = () => {
-  const calculateCoordinates = e => {
-    const posX = (e.clientX / window.innerWidth - 0.5) * 2.1;
-    const posY = (e.clientY / window.innerHeight - 0.5) * 2.1;
-
-    if (window.innerWidth < 640) return; // disables animation for small screen
-
-    const moveableObject = document.getElementsByClassName("profile-photo")[0];
-
-    if (!moveableObject) return;
-
-    moveableObject.style.transform = `translateZ(10px) rotateY(calc(${posY} * -16deg)) rotateX(calc(${posX} * 16deg))`;
-  };
-
-  useEffect(() => {
-    if (!document) return {};
-    document.addEventListener("mousemove", calculateCoordinates);
-
-    return () => window.removeEventListener("mousemove", calculateCoordinates);
-  }, []);
-
   const data = useStaticQuery(graphql`
     query HomePageQuery {
       file(relativePath: { eq: "profile_photo.png" }) {

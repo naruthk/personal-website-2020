@@ -10,7 +10,7 @@ import useIsScrollLock from "./lock-body-scroll";
 import Portal from "./portal";
 
 const ModalWrapper = styled.div`
-  ${tw`fixed inset-0 overflow-x-hidden overflow-y-auto scrolling-touch`}
+  ${tw`fixed inset-0 overflow-x-hidden overflow-y-auto scrolling-touch z-10`}
 `;
 
 const ContentWrapper = styled.div`
