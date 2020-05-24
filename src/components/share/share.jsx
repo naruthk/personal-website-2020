@@ -23,7 +23,8 @@ const ShareWrapper = styled.section`
       ${tw`mr-6 ml-0`}
     }
     a {
-      ${tw`text-white text-2xl opacity-75`}
+      ${tw`text-2xl opacity-75`}
+      ${tw`text-white`}
       transition: ${transition};
       :hover {
         ${tw`opacity-100`}

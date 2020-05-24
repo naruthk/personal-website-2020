@@ -5,7 +5,8 @@ import tw from "twin.macro";
 import Link from "../link";
 
 const SiteLogo = styled.p`
-  ${tw`block text-center text-white font-medium text-base block bg-black rounded`}
+  ${tw`block text-center font-medium text-base block bg-black rounded`}
+  ${tw`text-white`}
   ${tw`py-2 w-16 align-middle mb-0`}
   :hover {
     ${tw`rounded-lg`}

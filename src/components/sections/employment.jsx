@@ -22,28 +22,34 @@ const ContainerWrapper = styled.section`
 
 const EmploymentInformation = styled.div`
   .position {
-    ${tw`leading-tight text-gray-700 mt-4 mb-1`}
+    ${tw`leading-tight mt-4 mb-1`}
+    ${tw`text-gray-700`}
   }
   .date {
-    ${tw`text-gray-500 text-sm mb-0`}
+    ${tw`text-sm mb-0`}
+    ${tw`text-gray-500`}
   }
 `;
 
 const Company = styled.div`
   ${tw`px-4 py-2 w-full sm:w-1/3 text-center cursor-pointer mt-2`}
-  ${tw`border-b-2 border-solid border-white`}
+  ${tw`border-b-2 border-solid`}
+  ${tw`border-white`}
   ${tw`transition-all duration-500`}
   :hover {
-    ${tw`border-b-2 border-solid border-gray-200`}
+    ${tw`border-b-2 border-solid`}
+    ${tw`border-gray-200`}
   }
   .logo {
     ${tw`w-full bg-contain bg-center bg-no-repeat h-10 sm:h-16`}
   }
   .position {
     ${tw`leading-tight text-gray-700 mt-4 mb-1`}
+    ${tw`text-gray-700`}
   }
   .date {
-    ${tw`text-gray-500 text-sm`}
+    ${tw`text-sm`}
+    ${tw`text-gray-500`}
   }
 `;
 
@@ -55,14 +61,16 @@ const DetailModalContentWrapper = styled.div`
   .information {
     ${tw`mx-4`}
     .caption {
-      ${tw`text-sm text-gray-500`}
+      ${tw`text-sm`}
+      ${tw`text-gray-500`}
     }
   }
   .project-photo {
     ${tw`w-full shadow-lg rounded-lg my-4`}
   }
   .description {
-    ${tw`flex-grow text-sm text-gray-600`}
+    ${tw`flex-grow text-sm`}
+    ${tw`text-gray-600`}
   }
 `;
 

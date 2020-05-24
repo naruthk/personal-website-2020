@@ -16,13 +16,16 @@ const WelcomeTextWrapper = styled.section`
     ${tw`-mx-4 sm:-ml-4 sm:mr-2 md:ml-0 md:px-6 md:py-4`}
     ${tw`lg:-ml-6`}
     ${tw`px-4 py-4`}
-    ${tw`bg-blue-600 border-blue-200 border-b-8 md:rounded-md`}
+    ${tw`border-b-8 md:rounded-md`}
+    ${tw`bg-blue-600 border-blue-200`}
   }
   .highlighted {
-    ${tw`text-white font-semibold pl-1 pr-1 uppercase`}
+    ${tw`font-semibold pl-1 pr-1 uppercase`}
+    ${tw`text-white`}
   }
   .current-status {
-    ${tw`block text-gray-900 leading-normal md:text-left text-base xl:text-lg font-semibold mb-6`}
+    ${tw`block leading-normal md:text-left text-base xl:text-lg font-semibold mb-6`}
+    ${tw`text-gray-900`}
   }
 `;
 

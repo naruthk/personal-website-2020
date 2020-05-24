@@ -3,10 +3,13 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 
+import Container from "../container";
+
 const Wrapper = styled.div`
-  ${tw`max-w-screen-md mx-auto px-4 pt-4 leading-normal`}
+  ${tw`leading-normal`}
   a, a:visited {
-    ${tw`no-underline text-blue-700 font-medium`}
+    ${tw`no-underline font-medium`}
+    ${tw`text-blue-700`}
   }
   img {
     ${tw`md:py-12 mx-auto block object-cover`}
@@ -14,11 +17,13 @@ const Wrapper = styled.div`
 `;
 
 const MarkdownRenderer = ({ html }) => (
-  <Wrapper
-    dangerouslySetInnerHTML={{
-      __html: html,
-    }}
-  />
+  <Container>
+    <Wrapper
+      dangerouslySetInnerHTML={{
+        __html: html,
+      }}
+    />
+  </Container>
 );
 
 export default MarkdownRenderer;

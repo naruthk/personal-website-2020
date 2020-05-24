@@ -14,7 +14,8 @@ import { printReadbleDateRange } from "../utils/dates";
 import { ProjectItem, LocationPropTypes } from "../utils/types";
 
 const ContentWrapper = styled.div`
-  ${tw`md:my-4 w-full border-b-8 border-solid border-gray-100`}
+  ${tw`md:my-4 w-full border-b-8 border-solid`}
+  ${tw`border-gray-100`}
   .container {
     ${tw`max-w-screen-lg mx-auto pt-8 pb-8 px-4 sm:mt-0 md:mt-6 flex flex-row flex-wrap`}
   }
@@ -28,7 +29,8 @@ const ContentWrapper = styled.div`
     ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal`}
   }
   .link {
-    ${tw`text-blue-600 opacity-100`}
+    ${tw`text-blue-600`}
+    ${tw`opacity-100`}
     &::after {
       content: "->";
       ${tw`pl-2`}
@@ -43,10 +45,12 @@ const HeroImage = styled.div`
 const Meta = styled.div`
   ${tw`md:text-right`}
   .date-label {
-    ${tw`inline-flex text-xs pt-1 mb-1 text-gray-500 uppercase`}
+    ${tw`inline-flex text-xs pt-1 mb-1 uppercase`}
+    ${tw`text-gray-500`}
   }
   .icon {
-    ${tw`mr-3 self-center text-gray-400`}
+    ${tw`mr-3 self-center`}
+    ${tw`text-gray-400`}
   }
   .date {
     ${tw`mb-4`}

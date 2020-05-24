@@ -8,18 +8,21 @@ import Share from "./share/share";
 import Container from "./container";
 
 const FooterWrapper = styled.footer`
-  ${tw`pt-8 w-full bg-gray-900`}
+  ${tw`pt-8 w-full`}
+  ${tw`bg-gray-900`}
+  ${tw`text-white`}
   p {
-    ${tw`text-white text-center`}
+    ${tw`text-white`}
   }
   nav {
     ${tw`flex items-center justify-between flex-wrap`}
   }
   .site-wide-navigation {
-    ${tw`text-white mr-6`}
+    ${tw`mr-6`}
   }
   .powered-by-gatsby {
-    ${tw`text-sm text-left text-gray-600`}
+    ${tw`text-sm text-left`}
+    ${tw`text-gray-600`}
   }
 `;
 

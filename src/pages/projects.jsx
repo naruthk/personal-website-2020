@@ -12,7 +12,6 @@ import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
 import { ROUTES } from "../utils/routes";
-import { colors } from "../utils/styles";
 import { ProjectItem } from "../utils/types";
 
 const ProjectItemWrapper = styled.div`
@@ -29,7 +28,7 @@ const ProjectItemWrapper = styled.div`
   .cta {
     ${tw`mr-6 inline-flex opacity-75`}
     :first-of-type {
-      border-right: 1px solid ${colors.yellow};
+      ${tw`border-r-2 border-solid border-yellow-400`}
       ${tw`pr-4 align-middle`}
     }
     :hover {
@@ -57,7 +56,7 @@ const ProjectsListingPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Projects" />
-      <Container>
+      <Container screenSize="lg">
         <h2
           css={css`
             ${tw`mt-0`}

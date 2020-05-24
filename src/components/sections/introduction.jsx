@@ -4,10 +4,11 @@ import GatsbyImage from "gatsby-image";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
 
+import Container from "../container";
 import WelcomeText from "../ui/welcome-text";
 
 const IntroWrapper = styled.div`
-  ${tw`max-w-screen-lg mx-auto pt-8 pb-8 px-4 md:mt-8`}
+  ${tw`md:mt-8`}
   ${tw`flex flex-row flex-wrap items-center`}
 
   > div {
@@ -43,14 +44,16 @@ const IntroductionSection = () => {
   `);
 
   return (
-    <IntroWrapper>
-      <div className="welcome-text">
-        <WelcomeText />
-      </div>
-      <div className="profile-photo">
-        <GatsbyImage fluid={data.file.childImageSharp.fluid} alt="Profile" />
-      </div>
-    </IntroWrapper>
+    <Container screenSize="lg">
+      <IntroWrapper>
+        <div className="welcome-text">
+          <WelcomeText />
+        </div>
+        <div className="profile-photo">
+          <GatsbyImage fluid={data.file.childImageSharp.fluid} alt="Profile" />
+        </div>
+      </IntroWrapper>
+    </Container>
   );
 };
 

@@ -25,8 +25,7 @@ const NavWrapper = styled.nav`
     isActive &&
     showStickyHeader &&
     css`
-      transition: all 0.7s;
-      ${tw`opacity-0`}
+      ${tw`transition-all duration-700 opacity-0`}
     `}
 `;
 
@@ -34,7 +33,8 @@ const SiteNavLinks = styled.div`
   button,
   a,
   a:visited {
-    ${tw`py-4 text-gray-600 font-normal`}
+    ${tw`text-gray-600`}
+    ${tw`py-4 font-normal`}
   }
   button {
     ${tw`pl-2 ml-2`}
@@ -45,7 +45,9 @@ const SiteNavLinks = styled.div`
   }
   a[aria-current="page"],
   .active {
-    ${tw`border-b-2 border-solid border-gray-600 text-gray-900`}
+    ${tw`border-b-2 border-solid`}
+    ${tw`border-gray-600`}
+    ${tw`text-gray-900`}
   }
   .desktop-only {
     ${tw`hidden md:inline-block cursor-pointer`}
@@ -57,7 +59,8 @@ const SiteNavLinks = styled.div`
 
 const MenuOverlayContent = styled.div`
   ${tw`flex flex-col flex-none justify-around mx-4 max-w-screen-lg lg:mx-auto`}
-  height: 90vh; /* this allows justify-around to work */
+  height: 80vh;
+
   ul,
   li {
     ${tw`m-0 p-0 list-none`}
@@ -66,20 +69,24 @@ const MenuOverlayContent = styled.div`
     ${tw`m-0 text-4xl font-bold`}
   }
   h3 {
-    ${tw`mt-0 mb-8 text-base text-gray-500`}
+    ${tw`mt-0 mb-8 text-base`}
+    ${tw`text-gray-500`}
   }
   a,
   a:visited {
     ${tw`text-black`}
   }
   .cta-message {
-    ${tw`block text-gray-600 leading-normal md:text-left text-base xl:text-lg font-thin mb-6`}
+    ${tw`block leading-normal md:text-left text-base xl:text-lg font-thin mb-6`}
+    ${tw`text-gray-600`}
   }
   .email-link {
-    ${tw`text-xl xl:text-2xl text-gray-800 leading-normal`}
+    ${tw`text-xl xl:text-2xl leading-normal`}
+    ${tw`text-gray-800`}
   }
   .sharing-navigation {
-    ${tw`pt-6 border-t-2 border-solid border-gray-300`}
+    ${tw`pt-6 border-t-2 border-solid`}
+    ${tw`border-gray-300`}
   }
 `;
 

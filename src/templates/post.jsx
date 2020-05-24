@@ -21,7 +21,8 @@ const PostInformationContainer = styled.div`
     ${tw`uppercase lg:block tracking-wide uppercase font-bold text-lg xl:text-xl mb-4 opacity-75`}
   }
   .excerpt {
-    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl text-gray-800 leading-normal`}
+    ${tw`text-xl md:text-left md:text-lg lg:text-xl xl:text-2xl leading-normal`}
+    ${tw`text-gray-800`}
   }
 `;
 
@@ -30,7 +31,8 @@ const HeroImage = styled.div`
 `;
 
 const LastUpdatedAt = styled.p`
-  ${tw`text-sm text-gray-600 my-4`}
+  ${tw`text-sm my-4`}
+  ${tw`text-gray-600`}
 `;
 
 const BlogPost = ({ data, location }) => {

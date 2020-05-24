@@ -15,7 +15,8 @@ const FloatingHeaderWrapper = styled.div`
   ${({ isActive }) =>
     isActive &&
     css`
-      ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10 bg-black text-white`}
+      ${tw`flex items-center fixed inset-y-0 inset-x-0 z-10`}
+      ${tw`bg-black text-white`}
       height: 50px;
       visibility: visible;
     `}
@@ -33,8 +34,9 @@ const ProgressContainer = styled.div`
 `;
 
 const PostTitleWrapper = styled.div`
-  ${tw`overflow-hidden truncate flex-1 ml-4 text-gray-300 text-sm sm:text-base`}
-  ${tw`md:border-l-2 border-solid border-gray-900 md:pl-6`}
+  ${tw`overflow-hidden truncate flex-1 ml-4 text-sm sm:text-base`}
+  ${tw`md:border-l-2 border-solid md:pl-6`}
+  ${tw`text-gray-300 border-gray-900`}
 `;
 
 const FloatingHeader = ({ title, pathName }) => {

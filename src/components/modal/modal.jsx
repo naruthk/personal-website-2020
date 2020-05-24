@@ -14,20 +14,21 @@ const ModalWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  ${tw`w-full h-screen overflow-y-auto mx-auto`}
+  ${tw`w-full h-screen overflow-y-auto mx-auto relative z-30`}
   ${tw`bg-white`}
-  ${tw`relative z-30`}
 `;
 
 const CloseButton = styled.span`
   ${tw`pt-6 text-right block uppercase`}
   ${tw`mr-6 md:mr-12`}
   button {
-    ${tw`font-thin transition-all duration-700 opacity-75 text-gray-500`}
-    ${tw`text-2xl md:text-5xl cursor-pointer`}
+    ${tw`text-gray-500 font-thin`}
+    ${tw`transition-all duration-700 opacity-75 cursor-pointer`}
+    ${tw`text-2xl md:text-5xl`}
   }
   button:hover {
-    ${tw`opacity-100 text-gray-700`}
+    ${tw`text-gray-700`}
+    ${tw`opacity-100`}
   }
 `;
 
